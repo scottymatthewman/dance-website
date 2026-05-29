@@ -38,8 +38,8 @@
   --stack-header: calc(var(--stack-md) + 0.75rem);
   --stack-lg: 4rem;
 
-  --text-hero: 3rem;
-  --text-h2: 2.5rem;
+  --text-hero: 2.25rem;
+  --text-h2: 1.75rem;
   --text-display: 3rem;
   --text-quote: 2.25rem;
   --text-attribution: 1.25rem;
@@ -54,6 +54,8 @@
 @media (min-width: 768px) {
   :root {
     --gutter: 2.5rem;
+    --text-hero: 3rem;
+    --text-h2: 2.5rem;
   }
 }
 
@@ -203,8 +205,31 @@
     gap: var(--stack-header);
   }
 
+  @media (max-width: 767px) {
+    .hero-mobile-mockup-slot {
+      --hero-content-left: calc(
+        var(--spacing-gutter) + max(0px, (100vw - 85vw - 2 * var(--spacing-gutter)) / 2)
+      );
+    }
+
+    .hero-mobile-mockup-image {
+      top: 0;
+      bottom: calc(-1 * var(--section-y-hero-bottom));
+      aspect-ratio: 1459 / 1512;
+      height: auto;
+      width: auto;
+      min-width: calc(100vw - var(--hero-content-left));
+    }
+  }
+
   html.product-flow-snap-root {
     scroll-snap-type: y proximity;
+  }
+
+  @media (max-width: 1023px) {
+    html.product-flow-snap-root {
+      scroll-snap-type: none;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -292,4 +317,20 @@
       transform: translateY(-1px);
     }
   }
+}
+
+.hero-bg {
+  background-color: #000000;
+  background-image:
+    linear-gradient(
+      to bottom,
+      #000000 0%,
+      #000000 35.577%,
+      rgba(0, 0, 0, 0) 67.788%,
+      #000000 100%
+    ),
+    url("/hero/orange-motion-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }

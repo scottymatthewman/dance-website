@@ -5,6 +5,7 @@ import { ContentContainer } from "@/components/layout/ContentContainer";
 import { ProductFlowPreview } from "@/components/sections/ProductFlowPreview";
 import { COPY } from "@/lib/copy";
 import { cn } from "@/lib/cn";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const STEPS = COPY.productFlow.steps;
@@ -33,23 +34,38 @@ function StepPanel({
   isActive,
   panelRef,
   showMockup,
+  magneticScroll,
 }: {
   step: (typeof STEPS)[number];
   stepIndex: number;
   isActive: boolean;
   panelRef: (el: HTMLElement | null) => void;
   showMockup: boolean;
+  magneticScroll: boolean;
 }) {
+  const contentVisible = !magneticScroll || isActive;
+
   return (
     <article
       ref={panelRef}
-      className="product-flow-step flex min-h-svh snap-center snap-always flex-col justify-center py-section md:py-section-md"
-      aria-current={isActive ? "step" : undefined}
+      className={cn(
+        "product-flow-step flex flex-col",
+        magneticScroll
+          ? "min-h-svh snap-center snap-always justify-center py-section md:py-section-md"
+          : "gap-6",
+      )}
+      aria-current={magneticScroll && isActive ? "step" : undefined}
     >
       <div
         className={cn(
-          "flex flex-col gap-6 transition-[opacity,transform] duration-500 ease-out will-change-[opacity,transform]",
-          isActive ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-6",
+          "flex flex-col gap-6",
+          magneticScroll &&
+            "transition-[opacity,transform] duration-500 ease-out will-change-[opacity,transform]",
+          contentVisible
+            ? magneticScroll
+              ? "translate-y-0 opacity-100"
+              : undefined
+            : "pointer-events-none translate-y-6 opacity-0",
         )}
       >
         <div className="flex flex-col gap-3">
@@ -63,7 +79,7 @@ function StepPanel({
         <p className="text-body-lg max-w-prose leading-normal text-secondary">
           {step.body}
         </p>
-        {showMockup && isActive ? (
+        {showMockup && contentVisible ? (
           <ProductFlowPreview
             activeIndex={stepIndex}
             className="mt-2 w-full lg:hidden"
@@ -78,6 +94,8 @@ export function ProductFlow() {
   const [activeIndex, setActiveIndex] = useState(0);
   const panelRefs = useRef<(HTMLElement | null)[]>([]);
   const reducedMotion = useReducedMotion();
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const magneticScroll = isDesktop && !reducedMotion;
 
   const updateFocusedPanel = useCallback(() => {
     const panels = panelRefs.current.filter(Boolean) as HTMLElement[];
@@ -86,7 +104,7 @@ export function ProductFlow() {
   }, []);
 
   useEffect(() => {
-    if (reducedMotion) return;
+    if (!magneticScroll) return;
 
     updateFocusedPanel();
     window.addEventListener("scroll", updateFocusedPanel, { passive: true });
@@ -95,15 +113,15 @@ export function ProductFlow() {
       window.removeEventListener("scroll", updateFocusedPanel);
       window.removeEventListener("resize", updateFocusedPanel);
     };
-  }, [reducedMotion, updateFocusedPanel]);
+  }, [magneticScroll, updateFocusedPanel]);
 
   useEffect(() => {
-    if (reducedMotion) return;
+    if (!magneticScroll) return;
     document.documentElement.classList.add("product-flow-snap-root");
     return () => {
       document.documentElement.classList.remove("product-flow-snap-root");
     };
-  }, [reducedMotion]);
+  }, [magneticScroll]);
 
   if (reducedMotion) {
     return (
@@ -111,7 +129,7 @@ export function ProductFlow() {
         className="bg-section py-section md:py-section-md"
         aria-label="Product capabilities"
       >
-        <ContentContainer className="flex flex-col gap-stack-lg">
+        <ContentContainer className="flex flex-col gap-stack-lg max-lg:gap-[calc(var(--spacing-stack-lg)+2.25rem)]">
           {STEPS.map((step, index) => (
             <StepPanel
               key={step.eyebrow}
@@ -120,6 +138,7 @@ export function ProductFlow() {
               isActive
               panelRef={() => {}}
               showMockup
+              magneticScroll={false}
             />
           ))}
         </ContentContainer>
@@ -129,7 +148,10 @@ export function ProductFlow() {
 
   return (
     <section
-      className="product-flow-snap bg-section"
+      className={cn(
+        "bg-section",
+        magneticScroll ? "product-flow-snap" : "py-section md:py-section-md",
+      )}
       aria-label="Product capabilities"
     >
       <ContentContainer className="lg:px-gutter">
@@ -138,12 +160,17 @@ export function ProductFlow() {
             <div className="sticky top-0 flex h-svh items-center">
               <ProductFlowPreview
                 activeIndex={activeIndex}
-                className="w-full rounded-l-lg"
+                className="w-full"
               />
             </div>
           </div>
 
-          <div>
+          <div
+            className={cn(
+              !magneticScroll &&
+                "flex flex-col gap-stack-lg max-lg:gap-[calc(var(--spacing-stack-lg)+2.25rem)]",
+            )}
+          >
             {STEPS.map((step, index) => (
               <StepPanel
                 key={step.eyebrow}
@@ -154,6 +181,7 @@ export function ProductFlow() {
                   panelRefs.current[index] = el;
                 }}
                 showMockup
+                magneticScroll={magneticScroll}
               />
             ))}
           </div>

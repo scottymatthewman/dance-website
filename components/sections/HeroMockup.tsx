@@ -76,7 +76,7 @@ export function HeroMockup() {
 
   return (
     <div className="hero-mockup flex h-full min-h-0 w-full overflow-hidden bg-[#0f0f0f] text-[#f4f4f4]">
-      <aside className="hero-mockup-sidebar hidden w-[14.4%] min-w-[9.5rem] max-w-[16.375rem] shrink-0 flex-col justify-between border-r border-white/[0.06] bg-[#0f0f0f] md:flex">
+      <aside className="hero-mockup-sidebar flex w-[14.4%] min-w-[9.5rem] max-w-[16.375rem] shrink-0 flex-col justify-between border-r border-white/[0.06] bg-[#0f0f0f]">
         <div className="flex flex-col">
           <div className="flex items-center justify-between px-3.5 py-4">
             <MenuIcon className="size-4 text-[#949494]" />
