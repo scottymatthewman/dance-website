@@ -8,7 +8,7 @@ import { cn } from "@/lib/cn";
 export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border-subtle bg-section/80 backdrop-blur-md">
-      <ContentContainer className="flex h-16 items-center justify-between lg:h-20">
+      <ContentContainer className="flex h-16 items-center justify-between lg:h-16">
         <Link
           href="/"
           className={cn(
@@ -18,7 +18,9 @@ export function Header() {
         >
           {SITE.name}
         </Link>
-        <Button href={SITE.demoHref}>{COPY.nav.cta}</Button>
+        <Button href={SITE.demoHref} size="sm">
+          {COPY.nav.cta}
+        </Button>
       </ContentContainer>
     </header>
   );

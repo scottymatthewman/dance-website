@@ -11,7 +11,7 @@ export const COPY = {
   },
   statement: {
     headlineLines: ["Scale expansion.", "Not your headcount."],
-    body: "More accounts shouldn't mean more QBRs. Kya agents monitor, prioritize, and execute. Scale without headcount.",
+    body: "More accounts shouldn't mean more QBRs. Kya agents monitor, prioritize, and execute.",
   },
   productFlow: {
     steps: [
@@ -43,7 +43,7 @@ export const COPY = {
   },
   workflowCards: {
     headline: "Work the way your team already does",
-    cta: "Get a demo",
+    cta: "Book a demo",
     cards: [
       {
         title: "Chat with agents in Slack",
@@ -98,7 +98,7 @@ export const COPY = {
   platformBento: {
     headline: "One platform for your entire CS stack.",
     headlineAccent: "Agents that work 24/7.",
-    cta: "Get a demo",
+    cta: "Book a demo",
     topRow: [
       {
         title: "Account monitoring",
@@ -130,6 +130,6 @@ export const COPY = {
     ],
   },
   nav: {
-    cta: "Get a demo",
+    cta: "Book a demo",
   },
 } as const;
