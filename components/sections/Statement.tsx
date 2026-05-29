@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import { ContentContainer } from "@/components/layout/ContentContainer";
 import { PageSection } from "@/components/layout/PageSection";
 import { RevealBlock, RevealWords } from "@/components/motion/RevealWords";
 import { COPY } from "@/lib/copy";
@@ -31,22 +30,22 @@ export function Statement() {
           className={
             reducedMotion
               ? "py-section-responsive"
-              : "sticky top-0 flex min-h-screen items-center py-section-responsive"
+              : "sticky top-0 flex min-h-screen flex-col items-center justify-center py-section-responsive"
           }
         >
-          <ContentContainer className="flex flex-col items-center gap-4 text-center">
+          <div className="w-full max-w-[32rem] px-gutter text-center">
             <RevealWords
               as="h2"
               lines={COPY.statement.headlineLines}
               progress={progress}
-              className="text-h2 w-full max-w-narrow leading-[1.3] text-primary"
+              className="text-h2 w-full leading-[1.3] text-primary"
             />
-            <RevealBlock progress={progress} className="w-full max-w-[40rem]">
-              <p className="text-body-lg w-full leading-normal text-secondary">
+            <RevealBlock progress={progress} className="mt-4 block w-full">
+              <p className="text-body-lg block w-full leading-normal text-secondary">
                 {COPY.statement.body}
               </p>
             </RevealBlock>
-          </ContentContainer>
+          </div>
         </div>
       </div>
     </PageSection>
