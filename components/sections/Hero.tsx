@@ -5,6 +5,7 @@ import { ContentContainer } from "@/components/layout/ContentContainer";
 import { PageSection } from "@/components/layout/PageSection";
 import { RevealBlock, RevealWords } from "@/components/motion/RevealWords";
 import { Button } from "@/components/ui/Button";
+import { HeroMockup } from "@/components/sections/HeroMockup";
 import { MockupFrame } from "@/components/ui/MockupFrame";
 import { COPY } from "@/lib/copy";
 import { SITE } from "@/lib/constants";
@@ -89,7 +90,9 @@ export function Hero() {
             </RevealBlock>
           </div>
         </div>
-        <MockupFrame variant="hero" title="Product preview" />
+        <MockupFrame variant="hero">
+          <HeroMockup />
+        </MockupFrame>
       </ContentContainer>
     </PageSection>
   );

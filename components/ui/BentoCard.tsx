@@ -7,6 +7,7 @@ type BentoCardProps = {
   visual: ReactNode;
   size?: "large" | "medium";
   className?: string;
+  titleClassName?: string;
 };
 
 export function BentoCard({
@@ -15,6 +16,7 @@ export function BentoCard({
   visual,
   size = "medium",
   className,
+  titleClassName,
 }: BentoCardProps) {
   return (
     <div
@@ -27,7 +29,12 @@ export function BentoCard({
       )}
     >
       <div className="relative z-10 py-8 pl-6 pr-6 lg:pl-8">
-        <h3 className="max-w-[18.75rem] text-xl font-medium leading-snug text-primary lg:text-2xl">
+        <h3
+          className={cn(
+            "max-w-[18.75rem] text-xl font-medium leading-snug text-primary lg:text-2xl",
+            titleClassName,
+          )}
+        >
           {title}{" "}
           <span className="font-normal text-secondary">{subtitle}</span>
         </h3>

@@ -24,7 +24,7 @@ export function MockupFrame({
   return (
     <div
       className={cn(
-        "mockup-hover relative overflow-hidden border border-border-subtle",
+        "relative transform-gpu overflow-hidden border border-border-subtle transition-[transform,border-color,box-shadow] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:scale-[1.01] hover:border-white/25 hover:shadow-[0_0_0_1px_rgba(255,255,255,0.1)]",
         variantClasses[variant],
         className,
       )}
@@ -34,7 +34,9 @@ export function MockupFrame({
           {title}
         </div>
       ) : null}
-      {children ?? (
+      {children ? (
+        <div className="absolute inset-0">{children}</div>
+      ) : (
         <div className="flex h-full min-h-[inherit] items-center justify-center p-8">
           <div className="rounded-lg border border-dashed border-border-strong px-6 py-4 text-center text-sm text-muted">
             Product preview placeholder

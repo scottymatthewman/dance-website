@@ -88,9 +88,9 @@ export const COPY = {
         visual: "monitoring" as const,
       },
       {
-        title: "Risk & expansion",
-        subtitle: "without waiting for QBRs",
-        visual: "expansion" as const,
+        title: "Unified intelligence",
+        subtitle: "that connects every data source",
+        visual: "intelligence" as const,
       },
     ],
     bottomRow: [
@@ -100,9 +100,9 @@ export const COPY = {
         visual: "playbooks" as const,
       },
       {
-        title: "Unified intelligence",
-        subtitle: "that connects every data source",
-        visual: "intelligence" as const,
+        title: "Risk & expansion",
+        subtitle: "without waiting for QBRs",
+        visual: "expansion" as const,
       },
       {
         title: "50+ integrations",
