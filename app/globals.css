@@ -230,18 +230,66 @@
     animation: flow-blur-enter 600ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
   }
 
+  .hero-mockup-suggestion {
+    cursor: pointer;
+  }
+
+  .hero-mockup-suggestion:active {
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .integrations-mockup-card {
+    cursor: pointer;
+  }
+
+  .integrations-mockup-card:active {
+    transform: scale(0.985);
+  }
+
+  .boards-mockup-scroll {
+    scrollbar-width: none;
+  }
+
+  .boards-mockup-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .boards-mockup-card {
+    cursor: pointer;
+  }
+
+  .boards-mockup-card:active {
+    transform: scale(0.985);
+  }
+
   @media (hover: hover) and (pointer: fine) {
-    .mockup-hover {
-      transition:
-        transform 200ms ease-out,
-        border-color 200ms ease,
-        box-shadow 200ms ease;
+    .hero-mockup-nav-item:hover,
+    .hero-mockup-nav-item.is-active {
+      background: rgba(255, 255, 255, 0.06);
     }
 
-    .mockup-hover:hover {
-      transform: scale(1.01);
-      border-color: color-mix(in srgb, var(--accent) 25%, transparent);
-      box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 10%, transparent);
+    .hero-mockup-suggestion:hover,
+    .hero-mockup-suggestion.is-hovered {
+      background: rgba(255, 255, 255, 0.04);
+      cursor: pointer;
+    }
+
+    .hero-mockup-icon-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-mockup-send:hover {
+      background: #3a3a3a;
+      transform: scale(1.04);
+    }
+
+    .integrations-mockup-card:hover {
+      transform: translateY(-1px);
+    }
+
+    .boards-mockup-card:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-1px);
     }
   }
 }

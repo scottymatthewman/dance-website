@@ -1,40 +1,25 @@
 import { ContentContainer } from "@/components/layout/ContentContainer";
 import { PageSection } from "@/components/layout/PageSection";
+import { BoardsMockup } from "@/components/sections/BoardsMockup";
+import { IntegrationsMockup } from "@/components/sections/IntegrationsMockup";
 import { BentoCard } from "@/components/ui/BentoCard";
 import { Button } from "@/components/ui/Button";
 import { COPY } from "@/lib/copy";
 import { SITE } from "@/lib/constants";
 
+function TopBentoMockupShell({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="pointer-events-auto absolute inset-x-0 bottom-0 top-[7.5rem] flex items-start justify-center overflow-hidden lg:top-[8.25rem]">
+      {children}
+    </div>
+  );
+}
+
 function AccountMonitoringVisual() {
   return (
-    <div className="absolute inset-x-0 bottom-0 flex items-end justify-center px-6 pb-0 lg:px-10">
-      <div className="w-full max-w-[22rem] rounded-t-lg border border-b-0 border-border-subtle bg-card p-4 shadow-[0_-1rem_3rem_rgba(0,0,0,0.45)]">
-        <div className="mb-4 flex items-center justify-between">
-          <span className="text-sm text-muted">Account health</span>
-          <span className="rounded-full bg-accent/15 px-2 py-0.5 text-xs text-accent">
-            Live
-          </span>
-        </div>
-        <div className="flex flex-col gap-3">
-          {[
-            { name: "Acme Corp", score: "92", trend: "↑ Expansion" },
-            { name: "Northwind", score: "41", trend: "↓ At risk" },
-            { name: "Globex", score: "78", trend: "→ Stable" },
-          ].map((row) => (
-            <div
-              key={row.name}
-              className="flex items-center justify-between rounded-md border border-border-subtle bg-card-inner px-3 py-2"
-            >
-              <span className="text-sm text-primary">{row.name}</span>
-              <div className="flex items-center gap-3 text-xs">
-                <span className="text-secondary">{row.trend}</span>
-                <span className="font-medium text-primary">{row.score}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
+    <TopBentoMockupShell>
+      <BoardsMockup />
+    </TopBentoMockupShell>
   );
 }
 
@@ -86,26 +71,9 @@ function PlaybookVisual() {
 
 function UnifiedIntelligenceVisual() {
   return (
-    <div className="absolute inset-x-0 bottom-0 flex items-end justify-center">
-      <div className="relative w-[min(100%,22rem)] px-6 pb-0 lg:w-auto lg:px-0">
-        <div className="rounded-t-xl border border-b-0 border-border-subtle bg-card px-5 py-4 shadow-[0_-1rem_3rem_rgba(0,0,0,0.45)]">
-          <div className="mb-3 flex items-center gap-2">
-            <div className="size-2 rounded-full bg-accent" />
-            <span className="text-sm text-primary">Unified account view</span>
-          </div>
-          <div className="grid grid-cols-2 gap-2 text-xs">
-            {["CRM", "Product", "Support", "Billing"].map((source) => (
-              <div
-                key={source}
-                className="rounded-md border border-border-subtle bg-card-inner px-3 py-2 text-secondary"
-              >
-                {source}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
+    <TopBentoMockupShell>
+      <IntegrationsMockup />
+    </TopBentoMockupShell>
   );
 }
 
@@ -161,6 +129,9 @@ export function PlatformBento() {
                 title={card.title}
                 subtitle={card.subtitle}
                 size="large"
+                titleClassName={
+                  card.visual === "intelligence" ? "max-w-[24rem]" : undefined
+                }
                 visual={<Visual />}
               />
             );
