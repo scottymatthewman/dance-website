@@ -41,24 +41,27 @@ export const COPY = {
       },
     ],
   },
-  workflowCards: {
-    headline: "Work the way your team already does",
+  productSurfaces: {
+    headline: "A better way of working.",
     cta: "Book a demo",
     cards: [
       {
-        title: "Chat with agents in Slack",
-        body: "Ask about any account. Get updates. Kick off work in Slack. No new app to learn.",
-        preview: "Slack agent preview",
-      },
-      {
+        icon: "context" as const,
         title: "Context that finds you",
-        body: "Recurring briefings on what changed. Open tasks, account movement, work you were mid-flight on. Never start cold.",
-        preview: "Newsletter preview",
+        body: "Recurring debriefs on what changed. Open tasks, account movement, and work you were mid-flight on.",
+        visual: "briefing" as const,
       },
       {
+        icon: "slack" as const,
+        title: "Chat with agents in Slack",
+        body: "Ask about any account in Slack. Get updates, kick off work, and stay in the tool your team already uses.",
+        visual: "slack" as const,
+      },
+      {
+        icon: "crm" as const,
         title: "Your CRM, with superpowers",
-        body: "The CRM your team already knows. Agents surface risk, draft outreach, and suggest next actions in every record.",
-        preview: "CRM preview",
+        body: "Your familiar CRM view. Agents surface risk, draft outreach, and suggest next actions in every record.",
+        visual: "crm" as const,
       },
     ],
   },
@@ -72,7 +75,7 @@ export const COPY = {
       "We've been able to expand our area of impact without growing our team.",
     name: "Maya Swatch",
     role: "Head of CS",
-    company: "Profound",
+    company: "Dance",
   },
   platform: {
     headline: "One platform for your entire CS stack.",

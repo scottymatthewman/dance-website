@@ -193,5 +193,7 @@ From Figma type styles — marketing site uses Geist; mockups approximate Suisse
 | `HeroMockup` | Hero section |
 | `IntegrationsMockup` | Bento — Unified intelligence |
 | `BoardsMockup` | Bento — Account monitoring |
+| `SlackAgentMockup` | Standalone Slack thread mockup (product surfaces now use `context-card.png` / `slack-card.png`) |
+| `AgentBriefingReportMockup` | Standalone briefing report mockup (product surfaces now use `context-card.png`) |
 
 When adding a new mockup, match these tokens first. If Figma introduces a new semantic color, add it to this doc before hardcoding in the component.

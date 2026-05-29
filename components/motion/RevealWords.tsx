@@ -8,18 +8,21 @@ import {
   getSecondarySubheadProgress,
   getSubheadProgress,
   getSubheadRevealStyle,
+  getWordColorRevealStyle,
   getWordProgress,
   getWordRevealStyle,
 } from "@/lib/motion/word-reveal";
 import { cn } from "@/lib/cn";
 
 type RevealWordsPace = "default" | "hero";
+type RevealWordsVariant = "fade" | "color";
 
 type RevealWordsProps = {
   words?: string[];
   lines?: readonly string[];
   progress: number;
   pace?: RevealWordsPace;
+  variant?: RevealWordsVariant;
   as?: ElementType;
   className?: string;
 };
@@ -27,6 +30,16 @@ type RevealWordsProps = {
 const wordProgressGetters = {
   default: getWordProgress,
   hero: getHeroWordProgress,
+} as const;
+
+const wordStyleGetters = {
+  fade: getWordRevealStyle,
+  color: getWordColorRevealStyle,
+} as const;
+
+const wordWillChangeClass = {
+  fade: "will-change-[transform,filter,opacity]",
+  color: "will-change-[color]",
 } as const;
 
 function flattenLines(lines: readonly string[]): string[] {
@@ -38,10 +51,13 @@ export function RevealWords({
   lines,
   progress,
   pace = "default",
+  variant = "fade",
   as: Component = "span",
   className,
 }: RevealWordsProps) {
   const getProgress = wordProgressGetters[pace];
+  const getStyle = wordStyleGetters[variant];
+  const willChangeClass = wordWillChangeClass[variant];
   const allWords = wordsProp ?? (lines ? flattenLines(lines) : []);
 
   if (lines) {
@@ -62,8 +78,8 @@ export function RevealWords({
                 return (
                   <span
                     key={`${line}-${word}-${index}`}
-                    className="inline-block will-change-[transform,filter,opacity]"
-                    style={getWordRevealStyle(wordProgress)}
+                    className={cn("inline-block", willChangeClass)}
+                    style={getStyle(wordProgress)}
                   >
                     {word}
                     {index < lineWords.length - 1 ? "\u00a0" : null}
@@ -86,8 +102,8 @@ export function RevealWords({
         return (
           <span
             key={`${word}-${index}`}
-            className="inline-block will-change-[transform,filter,opacity]"
-            style={getWordRevealStyle(wordProgress)}
+            className={cn("inline-block", willChangeClass)}
+            style={getStyle(wordProgress)}
           >
             {word}
             {index < allWords.length - 1 ? "\u00a0" : null}

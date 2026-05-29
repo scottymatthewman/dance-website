@@ -2,7 +2,17 @@
 
 import { useEffect, useState } from "react";
 
-export function useScrollProgress(ref: React.RefObject<HTMLElement | null>) {
+type ScrollProgressAlign = "top" | "center";
+
+type UseScrollProgressOptions = {
+  align?: ScrollProgressAlign;
+};
+
+export function useScrollProgress(
+  ref: React.RefObject<HTMLElement | null>,
+  options: UseScrollProgressOptions = {},
+) {
+  const { align = "top" } = options;
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -16,7 +26,20 @@ export function useScrollProgress(ref: React.RefObject<HTMLElement | null>) {
         setProgress(1);
         return;
       }
-      const scrolled = Math.min(Math.max(-rect.top, 0), scrollable);
+
+      const pinnedContent = element.firstElementChild;
+      const contentHeight =
+        pinnedContent instanceof HTMLElement
+          ? pinnedContent.offsetHeight
+          : element.offsetHeight;
+      const startOffset =
+        align === "center"
+          ? window.innerHeight / 2 - contentHeight / 2
+          : 0;
+      const scrolled = Math.min(
+        Math.max(startOffset - rect.top, 0),
+        scrollable,
+      );
       setProgress(scrolled / scrollable);
     };
 
@@ -27,7 +50,7 @@ export function useScrollProgress(ref: React.RefObject<HTMLElement | null>) {
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
     };
-  }, [ref]);
+  }, [align, ref]);
 
   return progress;
 }

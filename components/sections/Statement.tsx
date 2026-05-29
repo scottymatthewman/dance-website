@@ -12,7 +12,7 @@ const SCROLL_RANGE_VH = 1.5;
 export function Statement() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
-  const rawProgress = useScrollProgress(sectionRef);
+  const rawProgress = useScrollProgress(sectionRef, { align: "center" });
   const progress = reducedMotion ? 1 : rawProgress;
 
   return (
@@ -30,7 +30,7 @@ export function Statement() {
           className={
             reducedMotion
               ? "py-section-responsive"
-              : "sticky top-0 flex min-h-screen flex-col items-center justify-center py-section-responsive"
+              : "sticky top-1/2 -translate-y-1/2 flex flex-col items-center py-section-responsive"
           }
         >
           <div className="w-full max-w-[32rem] px-gutter text-center">
