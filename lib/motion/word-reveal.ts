@@ -76,6 +76,15 @@ export function getWordRevealStyle(wordProgress: number) {
   } as const;
 }
 
+export function getWordColorRevealStyle(wordProgress: number) {
+  const tertiaryWeight = (1 - wordProgress) * 100;
+  const primaryWeight = wordProgress * 100;
+
+  return {
+    color: `color-mix(in srgb, var(--text-tertiary) ${tertiaryWeight}%, var(--text-primary) ${primaryWeight}%)`,
+  } as const;
+}
+
 export function getSubheadRevealStyle(revealProgress: number) {
   return {
     opacity: revealProgress,

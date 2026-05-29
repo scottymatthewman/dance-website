@@ -13,6 +13,7 @@
   --text-primary: #ffffff;
   --text-secondary: #a1a1a1;
   --text-muted: #71717a;
+  --text-tertiary: #444444;
   --text-inverse: #101010;
 
   --accent: #a8ffe2;
@@ -74,6 +75,7 @@
   --color-primary: var(--text-primary);
   --color-secondary: var(--text-secondary);
   --color-muted: var(--text-muted);
+  --color-tertiary: var(--text-tertiary);
   --color-inverse: var(--text-inverse);
   --color-accent: var(--accent);
   --color-label: var(--label);
