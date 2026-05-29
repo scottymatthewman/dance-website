@@ -6,25 +6,31 @@ import { cn } from "@/lib/cn";
 type MockupFrameProps = {
   variant?: "hero" | "feature";
   title?: string;
+  interactive?: boolean;
   className?: string;
   children?: ReactNode;
 };
 
 const variantClasses = {
   hero: "aspect-[1201/710] rounded-xl bg-page",
-  feature: "min-h-[28rem] rounded-l-lg bg-mockup lg:min-h-[34.9375rem]",
+  feature: "min-h-[28rem] rounded-lg bg-mockup lg:min-h-[34.9375rem]",
 } as const;
+
+const featureHoverClasses =
+  "transition-[transform,border-color,box-shadow] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:scale-[1.01] hover:border-white/25 hover:shadow-[0_0_0_1px_rgba(255,255,255,0.1)]";
 
 export function MockupFrame({
   variant = "hero",
   title,
+  interactive = true,
   className,
   children,
 }: MockupFrameProps) {
   return (
     <div
       className={cn(
-        "relative transform-gpu overflow-hidden border border-border-subtle transition-[transform,border-color,box-shadow] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:scale-[1.01] hover:border-white/25 hover:shadow-[0_0_0_1px_rgba(255,255,255,0.1)]",
+        "relative transform-gpu overflow-hidden border border-border-subtle",
+        variant === "feature" && interactive && featureHoverClasses,
         variantClasses[variant],
         className,
       )}

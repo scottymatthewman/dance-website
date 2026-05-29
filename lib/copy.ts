@@ -6,12 +6,12 @@ export const COPY = {
       "customer success agents.",
     ],
     subhead:
-      "Agents that know your accounts, spot risk and opportunity, and take the next best action across your CS stack.",
+      "Agents that know your accounts, spot risk and opportunity, and act across your CS stack.",
     cta: "Book a demo",
   },
   statement: {
     headlineLines: ["Scale expansion.", "Not your headcount."],
-    body: "More accounts means more QBRs, more spreadsheets, more reactive firefighting. Kya gives CS teams agents that monitor, prioritize, and execute, so growth doesn't depend on hiring faster.",
+    body: "More accounts shouldn't mean more QBRs. Kya agents monitor, prioritize, and execute. Scale without headcount.",
   },
   productFlow: {
     steps: [
@@ -19,25 +19,25 @@ export const COPY = {
         number: "1",
         eyebrow: "Monitor",
         headline: "See every account in one place",
-        body: "Kya unifies product usage, support history, CRM data, and conversation signals into a single identity-resolved view — so agents always know what's happening.",
+        body: "One view of every account. Usage, support, CRM, conversations. Agents always know what's happening.",
       },
       {
         number: "2",
         eyebrow: "Detect",
         headline: "Spot expansion and risk before it's obvious",
-        body: "Agents continuously score accounts for churn risk, upsell potential, and engagement drops — surfacing what needs attention today, not at the next QBR.",
+        body: "Agents score every account for churn, upsell, and engagement drops. See what needs attention today, not at the next QBR.",
       },
       {
         number: "3",
         eyebrow: "Act",
         headline: "Take the next best action automatically",
-        body: "From nudges and outreach to internal tasks and playbook steps — agents execute across your tools while your team stays in control.",
+        body: "Nudges, outreach, tasks, playbooks. Agents execute across your tools while your team stays in control.",
       },
       {
         number: "4",
         eyebrow: "Measure",
         headline: "Prove impact on revenue, not activity",
-        body: "Track expansion influenced, retention saved, and time reclaimed. Every agent action is logged, reviewable, and tied to outcomes.",
+        body: "Track expansion influenced, retention saved, time reclaimed. Every action logged and tied to outcomes.",
       },
     ],
   },
@@ -46,28 +46,25 @@ export const COPY = {
     cta: "Get a demo",
     cards: [
       {
-        title: "Your accessible coworker",
-        body: "Ask Kya in Slack for account health, usage trends, or renewal status — and get answers pulled from PostHog, your CRM, and billing data. No dashboards to dig through, no waiting on RevOps.",
-        preview:
-          "Slack conversation preview — export from Figma when ready.",
+        title: "Chat with agents in Slack",
+        body: "Ask about any account. Get updates. Kick off work in Slack. No new app to learn.",
+        preview: "Slack agent preview",
       },
       {
-        title: "Morning brief, already done",
-        body: "Start every day with a prioritized account brief: who's at risk, who's ready to expand, and what changed overnight. Your team opens one summary instead of ten tabs.",
-        preview:
-          "Today's account brief · 12 accounts need attention · 3 expansion signals · 2 renewals in 30 days",
+        title: "Context that finds you",
+        body: "Recurring briefings on what changed. Open tasks, account movement, work you were mid-flight on. Never start cold.",
+        preview: "Newsletter preview",
       },
       {
-        title: "Answers without the ticket",
-        body: "CSMs get instant answers about any account — last login, support history, contract terms, champion changes — without filing internal requests or pinging three people on Slack.",
-        preview:
-          "What's Acme Corp's current ARR and last QBR sentiment? → structured answer in seconds.",
+        title: "Your CRM, with superpowers",
+        body: "The CRM your team already knows. Agents surface risk, draft outreach, and suggest next actions in every record.",
+        preview: "CRM preview",
       },
     ],
   },
   integrations: {
     headlineLines: ["Connected and proactive.", "Just like your team."],
-    body: "Kya integrates with all your communication channels so it can contribute like the rest of your team.",
+    body: "Kya plugs into every channel your team uses. It contributes like anyone else on the team.",
     cta: "Book a demo today",
   },
   testimonial: {
@@ -76,6 +73,27 @@ export const COPY = {
     name: "Maya Swatch",
     role: "Head of CS",
     company: "Profound",
+  },
+  platform: {
+    headline: "One platform for your entire CS stack.",
+    headlineAccent: "Agents that work 24/7.",
+    pillars: [
+      {
+        icon: "stack" as const,
+        title: "A workspace for customer success",
+        body: "Accounts, tasks, and agents in one place. Not another dashboard to check.",
+      },
+      {
+        icon: "agents" as const,
+        title: "Agents that work like teammates",
+        body: "Assign agents to tasks. They research, draft, follow up, and update your tools. You stay in control.",
+      },
+      {
+        icon: "outcomes" as const,
+        title: "Built for revenue outcomes",
+        body: "Every action tied to retention, expansion, and book health. Not ticket counts.",
+      },
+    ],
   },
   platformBento: {
     headline: "One platform for your entire CS stack.",

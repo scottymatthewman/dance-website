@@ -110,14 +110,12 @@ export function PlatformBento() {
   return (
     <PageSection variant="contained" background="section">
       <ContentContainer className="flex flex-col">
-        <div className=" flex items-start justify-between gap-6 lg:mt-8">
-          <div className="flex justify-between items-center">
-            <h2 className="max-w-[47.1875rem] text-h2 leading-[1.3] text-primary">
-              {headline}
-              <br className="hidden md:block" />
-              <span className="text-secondary"> {headlineAccent}</span>
-            </h2>
-          </div>
+        <div className="flex flex-col items-center gap-6 text-center md:items-start md:text-left lg:mt-8 lg:flex-row lg:items-start lg:justify-between">
+          <h2 className="max-w-[47.1875rem] text-h2 leading-[1.3] text-primary">
+            {headline}
+            <br className="hidden md:block" />
+            <span className="text-secondary"> {headlineAccent}</span>
+          </h2>
           <Button href={SITE.demoHref}>{cta}</Button>
         </div>
         <div className="mt-8 grid grid-cols-1 gap-6 md:mt-12 md:grid-cols-2 lg:mt-16">

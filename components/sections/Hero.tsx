@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { ContentContainer } from "@/components/layout/ContentContainer";
 import { PageSection } from "@/components/layout/PageSection";
@@ -11,6 +12,8 @@ import { COPY } from "@/lib/copy";
 import { SITE } from "@/lib/constants";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useTimedRevealProgress } from "@/hooks/useTimedRevealProgress";
+
+const MOBILE_HERO_MOCKUP_SRC = "/hero/mobile-hero.png";
 
 const HEADLINE_DURATION_MS = 2800;
 const SECONDARY_DURATION_MS = 1000;
@@ -53,46 +56,72 @@ export function Hero() {
   );
 
   return (
-    <PageSection id="demo" variant="full" spacing="hero" background="section">
-      <ContentContainer className="flex flex-col gap-stack-lg">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-          <div className="flex max-w-[41.875rem] flex-col gap-stack-sm">
-            <RevealWords
-              as="h1"
-              words={words}
-              progress={headlineProgress}
-              pace="hero"
-              className="text-hero leading-[1.3] text-primary"
+    <PageSection
+      id="demo"
+      variant="full"
+      spacing="hero"
+      background="section"
+      className="relative overflow-hidden max-md:flex max-md:min-h-svh max-md:flex-col"
+    >
+      <div aria-hidden="true" className="hero-bg pointer-events-none absolute inset-0" />
+      <ContentContainer className="relative z-10 flex flex-col gap-stack-lg max-md:min-h-0 max-md:flex-1 max-md:gap-6">
+        <div className="max-md:mx-auto max-md:flex max-md:w-full max-md:max-w-[85vw] max-md:flex-1 max-md:flex-col md:contents">
+          <div className="flex shrink-0 flex-col items-center gap-4 max-md:gap-6 md:items-start lg:flex-row lg:items-start lg:justify-between lg:gap-6">
+            <div className="flex w-full max-w-[41.875rem] flex-col items-center gap-stack-sm md:items-start">
+              <RevealWords
+                as="h1"
+                words={words}
+                progress={headlineProgress}
+                pace="hero"
+                className="text-center text-hero leading-[1.3] text-primary md:text-left"
+              />
+            </div>
+
+            <div className="flex w-full max-w-[41.875rem] flex-col items-center gap-6 md:items-start lg:max-w-[24.375rem] lg:items-end lg:gap-stack-sm lg:pt-3">
+              <RevealBlock
+                progress={secondaryProgress}
+                timeline="secondary"
+                phase="subhead"
+                hidden={!secondaryEnabled}
+              >
+                <p className="max-w-[24.375rem] text-center text-base leading-normal text-secondary md:max-w-none md:text-left md:text-body-lg lg:max-w-[24.375rem] lg:text-right">
+                  {COPY.hero.subhead}
+                </p>
+              </RevealBlock>
+              <RevealBlock
+                progress={secondaryProgress}
+                timeline="secondary"
+                phase="cta"
+                hidden={!secondaryEnabled}
+                className="shrink-0"
+              >
+                <Button href={SITE.demoHref} className="w-full sm:w-auto">
+                  {COPY.hero.cta}
+                </Button>
+              </RevealBlock>
+            </div>
+          </div>
+
+          <div
+            aria-hidden
+            className="hero-mobile-mockup-slot max-md:relative max-md:mt-9 max-md:min-h-0 max-md:flex-1 max-md:overflow-visible md:hidden"
+          >
+            <Image
+              alt=""
+              className="hero-mobile-mockup-image max-md:pointer-events-none max-md:absolute max-md:top-0 max-md:left-0 max-md:max-w-none"
+              height={1512}
+              priority
+              sizes="100vw"
+              src={MOBILE_HERO_MOCKUP_SRC}
+              width={1459}
             />
           </div>
-          
-          <div className="flex flex-col items-end max-w-[24.375rem] gap-stack-sm pt-3">
-            <RevealBlock
-              progress={secondaryProgress}
-              timeline="secondary"
-              phase="subhead"
-              hidden={!secondaryEnabled}
-            >
-              <p className="text-body-lg max-w-[24.375rem] leading-normal text-secondary text-right">
-                {COPY.hero.subhead}
-              </p>
-            </RevealBlock>
-            <RevealBlock
-              progress={secondaryProgress}
-              timeline="secondary"
-              phase="cta"
-              hidden={!secondaryEnabled}
-              className="shrink-0"
-            >
-              <Button href={SITE.demoHref} className="w-full sm:w-auto">
-                {COPY.hero.cta}
-              </Button>
-            </RevealBlock>
-          </div>
         </div>
-        <MockupFrame variant="hero">
-          <HeroMockup />
-        </MockupFrame>
+        <div className="hidden md:block">
+          <MockupFrame variant="hero">
+            <HeroMockup />
+          </MockupFrame>
+        </div>
       </ContentContainer>
     </PageSection>
   );
