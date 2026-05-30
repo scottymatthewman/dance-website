@@ -95,7 +95,7 @@ export function Hero() {
                 hidden={!secondaryEnabled}
                 className="shrink-0"
               >
-                <Button href={SITE.demoHref} size="sm">
+                <Button href={SITE.demoHref} size="default">
                   {COPY.hero.cta}
                 </Button>
               </RevealBlock>
