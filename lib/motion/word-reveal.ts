@@ -5,6 +5,16 @@ export const SUBHEAD_START_PROGRESS = 0.78;
 /** Subhead finishes here; CTA begins immediately after. */
 export const CTA_START_PROGRESS = 0.9;
 
+/** Testimonial: finish quote color reveal before the sticky track releases. */
+const TESTIMONIAL_SCROLL_REVEAL_END = 0.62;
+
+export function mapTestimonialScrollProgress(scrollProgress: number): number {
+  if (scrollProgress <= TESTIMONIAL_SCROLL_REVEAL_END) {
+    return scrollProgress / TESTIMONIAL_SCROLL_REVEAL_END;
+  }
+  return 1;
+}
+
 /** Statement scroll track: headline phase ends, subhead phase ends (then hold). */
 const STATEMENT_SCROLL_HEADLINE_END = 0.65;
 const STATEMENT_SCROLL_SUBHEAD_END = 0.88;

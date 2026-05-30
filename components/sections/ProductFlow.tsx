@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ContentContainer } from "@/components/layout/ContentContainer";
+import { SiteFrameCell, SiteFrameSection } from "@/components/layout/SiteFrame";
 import { ProductFlowPreview } from "@/components/sections/ProductFlowPreview";
 import { COPY } from "@/lib/copy";
 import { cn } from "@/lib/cn";
@@ -49,10 +49,8 @@ function StepPanel({
     <article
       ref={panelRef}
       className={cn(
-        "product-flow-step flex flex-col",
-        magneticScroll
-          ? "min-h-svh snap-center snap-always justify-center py-section md:py-section-md"
-          : "gap-6",
+        "product-flow-step flex flex-col gap-6",
+        magneticScroll && "justify-center",
       )}
       aria-current={magneticScroll && isActive ? "step" : undefined}
     >
@@ -129,19 +127,22 @@ export function ProductFlow() {
         className="bg-section py-section md:py-section-md"
         aria-label="Product capabilities"
       >
-        <ContentContainer className="flex flex-col gap-stack-lg max-lg:gap-[calc(var(--spacing-stack-lg)+2.25rem)]">
-          {STEPS.map((step, index) => (
-            <StepPanel
-              key={step.eyebrow}
-              step={step}
-              stepIndex={index}
-              isActive
-              panelRef={() => {}}
-              showMockup
-              magneticScroll={false}
-            />
-          ))}
-        </ContentContainer>
+        <SiteFrameSection ruled ruledBottom>
+          <div className="divide-y divide-border-subtle">
+            {STEPS.map((step, index) => (
+              <SiteFrameCell key={step.eyebrow}>
+                <StepPanel
+                  step={step}
+                  stepIndex={index}
+                  isActive
+                  panelRef={() => {}}
+                  showMockup
+                  magneticScroll={false}
+                />
+              </SiteFrameCell>
+            ))}
+          </div>
+        </SiteFrameSection>
       </section>
     );
   }
@@ -154,39 +155,43 @@ export function ProductFlow() {
       )}
       aria-label="Product capabilities"
     >
-      <ContentContainer className="lg:px-gutter">
-        <div className="lg:grid lg:grid-cols-2 lg:gap-16">
+        <SiteFrameSection ruled ruledBottom>
+        <div className="lg:grid lg:grid-cols-2 lg:divide-x lg:divide-border-subtle">
           <div className="relative hidden lg:block">
             <div className="sticky top-0 flex h-svh items-center">
-              <ProductFlowPreview
-                activeIndex={activeIndex}
-                className="w-full"
-              />
+              <SiteFrameCell className="flex h-full items-center !py-0 lg:!px-10 lg:!py-12 xl:!px-12">
+                <ProductFlowPreview
+                  activeIndex={activeIndex}
+                  className="w-full"
+                />
+              </SiteFrameCell>
             </div>
           </div>
 
-          <div
-            className={cn(
-              !magneticScroll &&
-                "flex flex-col gap-stack-lg max-lg:gap-[calc(var(--spacing-stack-lg)+2.25rem)]",
-            )}
-          >
+          <div className="divide-y divide-border-subtle">
             {STEPS.map((step, index) => (
-              <StepPanel
+              <SiteFrameCell
                 key={step.eyebrow}
-                step={step}
-                stepIndex={index}
-                isActive={index === activeIndex}
-                panelRef={(el) => {
-                  panelRefs.current[index] = el;
-                }}
-                showMockup
-                magneticScroll={magneticScroll}
-              />
+                className={cn(
+                  magneticScroll &&
+                    "min-h-svh snap-center snap-always flex flex-col justify-center !py-section md:!py-section-md",
+                )}
+              >
+                <StepPanel
+                  step={step}
+                  stepIndex={index}
+                  isActive={index === activeIndex}
+                  panelRef={(el) => {
+                    panelRefs.current[index] = el;
+                  }}
+                  showMockup
+                  magneticScroll={magneticScroll}
+                />
+              </SiteFrameCell>
             ))}
           </div>
         </div>
-      </ContentContainer>
+      </SiteFrameSection>
     </section>
   );
 }
