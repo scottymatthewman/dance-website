@@ -97,7 +97,11 @@ export function Footer() {
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute max-md:hidden"
+          className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[28%] bg-gradient-to-b from-section to-transparent"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute z-20 max-md:hidden"
           style={{
             height: "18.84%",
             left: "71.03%",
@@ -113,10 +117,10 @@ export function Footer() {
             unoptimized
           />
         </div>
-        <div className="absolute inset-x-0 top-[13.28%] flex justify-center px-gutter md:hidden">
+        <div className="absolute inset-x-0 top-[13.28%] z-20 flex justify-center px-gutter md:hidden">
           <FooterContent align="center" />
         </div>
-        <div className="absolute inset-0 hidden items-center pl-[clamp(1.5rem,20.57vw,25rem)] pr-gutter md:flex">
+        <div className="absolute inset-0 z-20 hidden items-center pl-[clamp(1rem,20.57vw,25rem)] pr-gutter md:flex">
           <FooterContent align="start" />
         </div>
       </div>

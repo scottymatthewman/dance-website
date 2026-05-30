@@ -15,7 +15,7 @@ export default function Home() {
       <Hero />
       <Statement />
       <PlatformSection />
-      <SiteFrameRoot>
+      <SiteFrameRoot className="rounded-b-lg bg-section">
         <div className="site-frame-platform-lead overflow-visible">
           <PlatformMockup />
           <PlatformPillars />

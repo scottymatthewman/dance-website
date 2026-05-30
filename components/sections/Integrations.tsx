@@ -7,14 +7,14 @@ import { SITE } from "@/lib/constants";
 
 export function Integrations() {
   return (
-    <section className="relative flex min-h-[90vh] flex-col overflow-hidden md:min-h-0">
+    <section className="relative flex min-h-[90vh] flex-col overflow-hidden rounded-b-lg md:min-h-0">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-y-0 left-1/2 w-screen -translate-x-1/2 overflow-hidden"
       >
         <LuminaGradientBackground />
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg-section)] to-transparent" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_0%,transparent_75%,#030807_100%)]" />
+        <div className="absolute inset-0 hidden bg-[linear-gradient(to_bottom,transparent_0%,transparent_75%,#030807_100%)]" />
       </div>
       <SiteFrameSection
         ruled

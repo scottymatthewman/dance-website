@@ -158,11 +158,12 @@ export function ProductFlow() {
         <SiteFrameSection ruled ruledBottom>
         <div className="lg:grid lg:grid-cols-2 lg:divide-x lg:divide-border-subtle">
           <div className="relative hidden lg:block">
-            <div className="sticky top-0 flex h-svh items-center">
-              <SiteFrameCell className="flex h-full items-center !py-0 lg:!px-10 lg:!py-12 xl:!px-12">
+            <div className="sticky top-0 z-10 flex h-svh items-center">
+              <SiteFrameCell className="w-full !py-0 lg:!px-10 lg:!py-12 xl:!px-12">
                 <ProductFlowPreview
                   activeIndex={activeIndex}
                   className="w-full"
+                  variant="desktop"
                 />
               </SiteFrameCell>
             </div>

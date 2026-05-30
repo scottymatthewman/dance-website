@@ -104,11 +104,11 @@ export function Hero() {
 
           <div
             aria-hidden
-            className="hero-mobile-mockup-slot max-md:relative max-md:mt-9 max-md:min-h-0 max-md:flex-1 max-md:overflow-x-clip md:hidden"
+            className="hero-mobile-mockup-slot max-md:relative max-md:mt-9 max-md:min-h-0 max-md:flex-1 md:hidden"
           >
             <Image
               alt=""
-              className="hero-mobile-mockup-image max-md:pointer-events-none max-md:absolute max-md:top-0 max-md:left-0 max-md:max-w-none"
+              className="hero-mobile-mockup-image max-md:pointer-events-none max-md:absolute max-md:top-0 max-md:max-w-none"
               height={1512}
               priority
               sizes="100vw"
