@@ -103,6 +103,8 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: clip;
+    overscroll-behavior-x: none;
   }
 
   body {
@@ -111,6 +113,8 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+    overscroll-behavior-x: none;
   }
 
   @media (prefers-reduced-motion: reduce) {
