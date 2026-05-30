@@ -18,14 +18,14 @@ export function ProductSurfaceVisual({
   return (
     <div
       className={cn(
-        "relative h-[16.125rem] shrink-0 overflow-hidden border-t border-white/10",
+        "relative h-[20rem] shrink-0 overflow-hidden border-t border-white/10 md:h-[22rem] lg:h-[24rem]",
         className,
       )}
     >
       <Image
         alt=""
         aria-hidden
-        className="object-cover"
+        className="object-cover object-top"
         fill
         sizes="(min-width: 1024px) 33vw, 100vw"
         src={backgroundSrc}

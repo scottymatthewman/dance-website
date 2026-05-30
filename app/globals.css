@@ -25,6 +25,7 @@
   --content-max: 75rem;
   --content-narrow: 40.625rem;
   --content-prose: 36.25rem;
+  --frame-max: 82rem;
 
   --gutter: 1.5rem;
   --section-y: 6rem;
@@ -95,6 +96,7 @@
   --max-width-content: var(--content-max);
   --max-width-narrow: var(--content-narrow);
   --max-width-prose: var(--content-prose);
+  --max-width-frame: min(94vw, var(--frame-max));
 
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
@@ -209,6 +211,28 @@
 
   .gap-stack-header {
     gap: var(--stack-header);
+  }
+
+  .site-frame-stack > * + * {
+    margin-top: var(--section-y);
+  }
+
+  @media (min-width: 768px) {
+    .site-frame-stack > * + * {
+      margin-top: var(--section-y-md);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .site-frame-stack > * + * {
+      margin-top: var(--section-y-lg);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .site-frame-stack > * + * {
+      margin-top: var(--section-y-xl);
+    }
   }
 
   @media (max-width: 767px) {

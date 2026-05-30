@@ -2,17 +2,17 @@
 
 import Image from "next/image";
 import { useMemo, useRef } from "react";
-import { ContentContainer } from "@/components/layout/ContentContainer";
-import { PageSection } from "@/components/layout/PageSection";
+import { SiteFrameCell, SiteFrameSection } from "@/components/layout/SiteFrame";
 import { RevealWords } from "@/components/motion/RevealWords";
 import { COPY } from "@/lib/copy";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useScrollProgress } from "@/hooks/useScrollProgress";
+import { mapTestimonialScrollProgress } from "@/lib/motion/word-reveal";
 
 const SCROLL_RANGE_VH = 1.5;
 
 const SECTION_PADDING =
-  "pt-[calc(var(--section-y)/2+1.5rem)] pb-[var(--section-y)] md:pt-[calc(var(--section-y-md)/2+1.5rem)] md:pb-[var(--section-y-md)] lg:pt-[calc(var(--section-y-lg)/2)] lg:pb-[var(--section-y-lg)] xl:pt-[calc(var(--section-y-xl)/2)] xl:pb-[var(--section-y-xl)]";
+  "pt-[calc(var(--section-y)/8+0.375rem)] pb-[var(--section-y)] md:pt-[calc(var(--section-y-md)/8+0.375rem)] md:pb-[var(--section-y-md)] lg:pt-[calc(var(--section-y-lg)/8)] lg:pb-[var(--section-y-lg)] xl:pt-[calc(var(--section-y-xl)/8)] xl:pb-[var(--section-y-xl)]";
 
 const TESTIMONIAL_PHOTO = {
   src: "/testimonial/headshot.png",
@@ -30,43 +30,45 @@ export function Testimonial() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
   const rawProgress = useScrollProgress(sectionRef);
-  const progress = reducedMotion ? 1 : rawProgress;
+  const progress = reducedMotion ? 1 : mapTestimonialScrollProgress(rawProgress);
   const quoteWords = useMemo(
     () => COPY.testimonial.quote.split(/\s+/).filter(Boolean),
     [],
   );
 
   return (
-    <PageSection variant="contained" background="section" className="!py-0">
+    <div
+      ref={sectionRef}
+      className="relative bg-section"
+      style={{
+        minHeight: reducedMotion
+          ? undefined
+          : `${100 + SCROLL_RANGE_VH * 100}vh`,
+      }}
+    >
       <div
-        ref={sectionRef}
-        className="relative"
-        style={{
-          minHeight: reducedMotion
-            ? undefined
-            : `${100 + SCROLL_RANGE_VH * 100}vh`,
-        }}
+        className={
+          reducedMotion
+            ? SECTION_PADDING
+            : `sticky top-0 flex min-h-screen w-full items-center ${SECTION_PADDING}`
+        }
       >
-        <div
-          className={
-            reducedMotion
-              ? SECTION_PADDING
-              : `sticky top-0 flex min-h-screen items-center ${SECTION_PADDING}`
-          }
-        >
-          <ContentContainer>
-            <div className="flex flex-col items-start gap-8 lg:flex-row lg:items-stretch lg:justify-center">
-              <div className="relative h-[calc(31.25rem*0.6)] w-full max-w-[calc(27.5rem*0.6)] shrink-0 overflow-hidden rounded-lg border border-border-subtle md:h-[calc(31.25rem*0.8)] md:max-w-[calc(27.5rem*0.8)] lg:h-[31.25rem] lg:max-w-[27.5rem]">
+        <SiteFrameSection ruled ruledBottom className="w-full">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-0 lg:divide-x lg:divide-border-subtle">
+            <SiteFrameCell className="flex items-center justify-center lg:!py-16 xl:!py-20">
+              <div className="relative aspect-[11/16] w-full max-w-[27.5rem] overflow-hidden rounded-lg border border-border-subtle">
                 <Image
                   alt={`${COPY.testimonial.name}, ${COPY.testimonial.role}`}
                   className="object-cover object-top"
                   fill
-                  sizes="(min-width: 1024px) 440px, (min-width: 768px) 352px, 264px"
+                  sizes="(min-width: 1024px) 440px, 100vw"
                   src={TESTIMONIAL_PHOTO.src}
                   unoptimized
                 />
               </div>
-              <figure className="flex w-full max-w-[31.125rem] flex-col justify-start gap-9 py-2 lg:min-h-[31.25rem] lg:justify-between lg:gap-0">
+            </SiteFrameCell>
+            <SiteFrameCell className="flex flex-col justify-center lg:!py-16 xl:!py-20">
+              <figure className="flex w-full flex-col justify-start gap-9 py-2 lg:min-h-[20rem] lg:justify-between lg:gap-0">
                 <div className="flex flex-col gap-4">
                   <blockquote className="text-quote leading-[1.3] text-tertiary">
                     <span aria-hidden>&ldquo;</span>
@@ -94,10 +96,10 @@ export function Testimonial() {
                   />
                 </figcaption>
               </figure>
-            </div>
-          </ContentContainer>
-        </div>
+            </SiteFrameCell>
+          </div>
+        </SiteFrameSection>
       </div>
-    </PageSection>
+    </div>
   );
 }

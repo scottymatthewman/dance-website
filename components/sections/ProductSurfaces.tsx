@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { ProductSurfaceVisual } from "@/components/sections/ProductSurfaceVisual";
-import { ContentContainer } from "@/components/layout/ContentContainer";
-import { PageSection } from "@/components/layout/PageSection";
 import { SectionHeader } from "@/components/layout/SectionHeader";
+import { SiteFrameCell, SiteFrameInset, SiteFrameSection } from "@/components/layout/SiteFrame";
 import { SiteIcon, type SiteIconName } from "@/components/ui/SiteIcon";
 import { COPY } from "@/lib/copy";
 import { SITE } from "@/lib/constants";
@@ -24,22 +23,20 @@ const SURFACE_VISUALS = {
 
 export function ProductSurfaces() {
   return (
-    <PageSection variant="contained" background="section">
-      <ContentContainer className="flex flex-col gap-stack-header">
-        <SectionHeader title={COPY.productSurfaces.headline} />
+    <SiteFrameSection ruled>
+        <div className="grid grid-cols-1 divide-y divide-border-subtle lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+          <SiteFrameInset className="col-span-1 flex flex-col justify-end border-b border-border-subtle pt-section md:pt-section-md lg:col-span-3 lg:pt-section-lg xl:pt-section-xl">
+            <SectionHeader title={COPY.productSurfaces.headline} />
+          </SiteFrameInset>
 
-        <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-3 lg:items-stretch">
           {COPY.productSurfaces.cards.map((card) => (
-            <article
-              key={card.title}
-              className="flex h-full flex-col overflow-hidden rounded-lg border border-white/10"
-            >
-              <div className="flex flex-1 flex-col gap-3 p-4">
+            <article key={card.title} className="flex min-h-0 flex-col">
+              <SiteFrameCell className="flex flex-col !py-8 md:!py-10 lg:!py-12">
                 <SiteIcon
                   className="size-7 shrink-0 text-primary"
                   name={SURFACE_ICONS[card.icon]}
                 />
-                <div className="flex flex-1 flex-col gap-4">
+                <div className="mt-3 flex flex-col gap-4">
                   <div className="flex flex-col gap-2">
                     <h3 className="text-xl font-medium leading-normal text-primary">
                       {card.title}
@@ -55,7 +52,7 @@ export function ProductSurfaces() {
                     {COPY.productSurfaces.cta}
                   </Link>
                 </div>
-              </div>
+              </SiteFrameCell>
 
               <ProductSurfaceVisual
                 backgroundSrc={SURFACE_VISUALS[card.visual]}
@@ -63,7 +60,6 @@ export function ProductSurfaces() {
             </article>
           ))}
         </div>
-      </ContentContainer>
-    </PageSection>
+    </SiteFrameSection>
   );
 }
