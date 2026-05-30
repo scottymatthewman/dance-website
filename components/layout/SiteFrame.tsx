@@ -14,7 +14,7 @@ export function SiteFrameRoot({ children, className }: SiteFrameRootProps) {
   return (
     <div
       className={cn(
-        "site-frame-stack relative mx-auto w-full max-w-content overflow-visible border-x border-border-subtle",
+        "site-frame-stack relative mx-auto w-full max-w-content border-x border-border-subtle",
         className,
       )}
     >

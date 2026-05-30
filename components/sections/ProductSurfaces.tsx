@@ -24,9 +24,12 @@ const SURFACE_VISUALS = {
 export function ProductSurfaces() {
   return (
     <SiteFrameSection ruled>
-        <div className="grid grid-cols-1 divide-y divide-border-subtle lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+        <div className="grid grid-cols-1 gap-10 md:gap-12 lg:grid-cols-3 lg:gap-0 lg:divide-x lg:divide-border-subtle">
           <SiteFrameInset className="col-span-1 flex flex-col justify-end border-b border-border-subtle pt-section md:pt-section-md lg:col-span-3 lg:pt-section-lg xl:pt-section-xl">
-            <SectionHeader title={COPY.productSurfaces.headline} />
+            <SectionHeader
+              className="items-center text-center md:items-start md:text-left"
+              title={COPY.productSurfaces.headline}
+            />
           </SiteFrameInset>
 
           {COPY.productSurfaces.cards.map((card) => (

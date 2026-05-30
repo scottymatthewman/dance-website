@@ -34,7 +34,7 @@ export function PlatformMockup() {
         <MockupFrame
           variant="feature"
           interactive={false}
-          className="aspect-[343/386] min-h-0 w-full md:aspect-[16/10] lg:aspect-[1295/736] lg:min-h-[38.5rem]"
+          className="aspect-[343/386] min-h-0 w-full shadow-[0_12px_24px_rgba(0,0,0,0.5)] md:aspect-[16/10] lg:aspect-[1295/736] lg:min-h-[38.5rem]"
         >
           <PlatformTasksMockup />
         </MockupFrame>

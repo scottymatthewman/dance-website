@@ -68,6 +68,10 @@
 }
 
 @theme inline {
+  /* Mobile-first breakpoints: base 320px+, sm 480px, md 768px (tablet), lg 1024px+ */
+  --breakpoint-sm: 30rem;
+  --breakpoint-md: 48rem;
+
   --color-page: var(--bg-page);
   --color-section: var(--bg-section);
   --color-mockup: var(--bg-mockup);
@@ -240,15 +244,19 @@
       --hero-content-left: calc(
         var(--spacing-gutter) + max(0px, (100vw - 85vw - 2 * var(--spacing-gutter)) / 2)
       );
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
     }
 
     .hero-mobile-mockup-image {
+      left: var(--hero-content-left);
       top: 0;
       bottom: calc(-1 * var(--section-y-hero-bottom));
       aspect-ratio: 1459 / 1512;
       height: auto;
       width: auto;
       min-width: calc(100vw - var(--hero-content-left));
+      max-width: none !important;
     }
   }
 

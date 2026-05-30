@@ -35,17 +35,24 @@ const STEP_MOCKUPS: readonly (ComponentType | null)[] = [
 type ProductFlowPreviewProps = {
   activeIndex: number;
   className?: string;
+  variant?: "inline" | "desktop";
 };
 
 export function ProductFlowPreview({
   activeIndex,
   className,
+  variant = "inline",
 }: ProductFlowPreviewProps) {
   return (
     <MockupFrame
       variant="feature"
       interactive={false}
-      className={cn("transform-none border-0", className)}
+      className={cn(
+        "transform-none border-0 w-full min-h-[28rem]",
+        variant === "desktop" &&
+          "aspect-[10/11] h-auto max-h-[75svh] min-h-0 w-full",
+        className,
+      )}
     >
       <div className="absolute inset-0">
         {STEPS.map((step, index) => {
