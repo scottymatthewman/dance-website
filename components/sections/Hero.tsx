@@ -84,7 +84,7 @@ export function Hero() {
                 phase="subhead"
                 hidden={!secondaryEnabled}
               >
-                <p className="max-w-[24.375rem] text-center text-base leading-normal text-secondary md:max-w-none md:text-left md:text-body-lg lg:max-w-[24.375rem] lg:text-right">
+                <p className="max-w-[24.375rem] text-center text-base leading-normal text-secondary md:max-w-none md:text-left lg:max-w-[24.375rem] lg:text-right">
                   {COPY.hero.subhead}
                 </p>
               </RevealBlock>
@@ -95,7 +95,7 @@ export function Hero() {
                 hidden={!secondaryEnabled}
                 className="shrink-0"
               >
-                <Button href={SITE.demoHref} className="w-full sm:w-auto">
+                <Button href={SITE.demoHref} size="sm">
                   {COPY.hero.cta}
                 </Button>
               </RevealBlock>
