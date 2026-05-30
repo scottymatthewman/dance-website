@@ -18,6 +18,10 @@ export function Integrations() {
         aria-hidden
         className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-black to-transparent"
       />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(to_bottom,transparent_0%,transparent_75%,#000_100%)]"
+      />
       <ContentContainer className="relative z-10 flex flex-1 flex-col items-center justify-center gap-stack-lg md:flex-none md:justify-start">
         <IntegrationTilesGrid />
         <div className="flex w-full max-w-[62.5rem] flex-col items-center gap-8">
@@ -28,7 +32,9 @@ export function Integrations() {
               {COPY.integrations.headlineLines[1]}
             </h2>
             <p className="text-body-lg max-w-[35rem] leading-normal text-secondary">
-              {COPY.integrations.body}
+              {COPY.integrations.taglineLines[0]}
+              <br />
+              {COPY.integrations.taglineLines[1]}
             </p>
           </div>
           <Button href={SITE.demoHref}>{COPY.integrations.cta}</Button>

@@ -67,7 +67,10 @@ export const COPY = {
   },
   integrations: {
     headlineLines: ["Connected and proactive.", "Just like your team."],
-    body: "Kya plugs into every channel your team uses. It contributes like anyone else on the team.",
+    taglineLines: [ 
+      "Kya plugs into every channel your team uses.", 
+      "It contributes like anyone else on the team."
+    ],
     cta: "Book a demo today",
   },
   testimonial: {
@@ -80,6 +83,7 @@ export const COPY = {
   platform: {
     headline: "One platform for your entire CS stack.",
     headlineAccent: "Agents that work 24/7.",
+    cta: "Book a demo",
     pillars: [
       {
         icon: "stack" as const,
@@ -133,6 +137,13 @@ export const COPY = {
     ],
   },
   nav: {
+    cta: "Book a demo",
+  },
+  footer: {
+    taglineLines: [
+      "Expand your revenue with ",
+      "customer success agents.",
+    ],
     cta: "Book a demo",
   },
 } as const;

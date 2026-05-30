@@ -1,8 +1,10 @@
 import { ContentContainer } from "@/components/layout/ContentContainer";
 import { PageSection } from "@/components/layout/PageSection";
 import { PlatformTasksMockup } from "@/components/sections/PlatformTasksMockup";
+import { Button } from "@/components/ui/Button";
 import { MockupFrame } from "@/components/ui/MockupFrame";
 import { COPY } from "@/lib/copy";
+import { SITE } from "@/lib/constants";
 
 const PILLAR_ICONS = {
   stack: StackIcon,
@@ -11,16 +13,19 @@ const PILLAR_ICONS = {
 } as const;
 
 export function PlatformSection() {
-  const { headline, headlineAccent, pillars } = COPY.platform;
+  const { headline, headlineAccent, cta, pillars } = COPY.platform;
 
   return (
     <PageSection variant="contained" background="section">
       <ContentContainer className="flex flex-col gap-stack-lg">
-        <h2 className="max-w-[47.1875rem] text-h2 leading-[1.3] text-primary">
-          {headline}
-          <br className="hidden md:block" />
-          <span className="text-secondary"> {headlineAccent}</span>
-        </h2>
+        <div className="flex flex-col items-center gap-6 text-center md:items-start md:text-left lg:flex-row lg:items-start lg:justify-between">
+          <h2 className="max-w-[47.1875rem] text-h2 leading-[1.3] text-primary">
+            {headline}
+            <br className="hidden md:block" />
+            <span className="text-secondary"> {headlineAccent}</span>
+          </h2>
+          <Button href={SITE.demoHref}>{cta}</Button>
+        </div>
 
         <div className="relative left-1/2 w-[min(94vw,82rem)] -translate-x-1/2">
           <MockupFrame
