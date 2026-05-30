@@ -5,6 +5,32 @@ export const SUBHEAD_START_PROGRESS = 0.78;
 /** Subhead finishes here; CTA begins immediately after. */
 export const CTA_START_PROGRESS = 0.9;
 
+/** Statement scroll track: headline phase ends, subhead phase ends (then hold). */
+const STATEMENT_SCROLL_HEADLINE_END = 0.65;
+const STATEMENT_SCROLL_SUBHEAD_END = 0.88;
+
+/**
+ * Maps raw scroll progress (0–1) to animation progress so the sticky section
+ * does not release until the subtitle has finished fading in.
+ */
+export function mapStatementScrollProgress(scrollProgress: number): number {
+  if (scrollProgress <= STATEMENT_SCROLL_HEADLINE_END) {
+    return (
+      (scrollProgress / STATEMENT_SCROLL_HEADLINE_END) * WORDS_END_PROGRESS
+    );
+  }
+  if (scrollProgress <= STATEMENT_SCROLL_SUBHEAD_END) {
+    const t =
+      (scrollProgress - STATEMENT_SCROLL_HEADLINE_END) /
+      (STATEMENT_SCROLL_SUBHEAD_END - STATEMENT_SCROLL_HEADLINE_END);
+    return WORDS_END_PROGRESS + t * (CTA_START_PROGRESS - WORDS_END_PROGRESS);
+  }
+  const t =
+    (scrollProgress - STATEMENT_SCROLL_SUBHEAD_END) /
+    (1 - STATEMENT_SCROLL_SUBHEAD_END);
+  return CTA_START_PROGRESS + t * (1 - CTA_START_PROGRESS);
+}
+
 /** Scroll-driven sections (e.g. Statement). */
 export function getWordProgress(
   progress: number,

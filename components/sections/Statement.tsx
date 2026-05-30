@@ -6,14 +6,17 @@ import { RevealBlock, RevealWords } from "@/components/motion/RevealWords";
 import { COPY } from "@/lib/copy";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useScrollProgress } from "@/hooks/useScrollProgress";
+import { mapStatementScrollProgress } from "@/lib/motion/word-reveal";
 
-const SCROLL_RANGE_VH = 1.5;
+const SCROLL_RANGE_VH = 2.25;
 
 export function Statement() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
   const rawProgress = useScrollProgress(sectionRef, { align: "center" });
-  const progress = reducedMotion ? 1 : rawProgress;
+  const progress = reducedMotion
+    ? 1
+    : mapStatementScrollProgress(rawProgress);
 
   return (
     <PageSection variant="contained" background="section" className="!py-0">
