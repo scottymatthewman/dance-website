@@ -1,16 +1,17 @@
 import { ContentContainer } from "@/components/layout/ContentContainer";
 import { PageSection } from "@/components/layout/PageSection";
 import { PlatformTasksMockup } from "@/components/sections/PlatformTasksMockup";
+import { SiteIcon, type SiteIconName } from "@/components/ui/SiteIcon";
 import { Button } from "@/components/ui/Button";
 import { MockupFrame } from "@/components/ui/MockupFrame";
 import { COPY } from "@/lib/copy";
 import { SITE } from "@/lib/constants";
 
 const PILLAR_ICONS = {
-  stack: StackIcon,
-  agents: AgentsIcon,
-  outcomes: OutcomesIcon,
-} as const;
+  stack: "platform-workspace",
+  agents: "platform-agent",
+  outcomes: "platform-revenue",
+} as const satisfies Record<(typeof COPY.platform.pillars)[number]["icon"], SiteIconName>;
 
 export function PlatformSection() {
   const { headline, headlineAccent, cta, pillars } = COPY.platform;
@@ -38,109 +39,24 @@ export function PlatformSection() {
         </div>
 
         <div className="grid grid-cols-1 gap-stack-md md:grid-cols-3 md:gap-6">
-          {pillars.map((pillar) => {
-            const Icon = PILLAR_ICONS[pillar.icon];
-
-            return (
-              <article key={pillar.title} className="flex flex-col gap-3">
-                <Icon className="size-7 text-primary" />
-                <div className="flex flex-col gap-2">
-                  <h3 className="text-body-lg font-medium leading-normal text-primary">
-                    {pillar.title}
-                  </h3>
-                  <p className="text-body-md leading-normal text-secondary">
-                    {pillar.body}
-                  </p>
-                </div>
-              </article>
-            );
-          })}
+          {pillars.map((pillar) => (
+            <article key={pillar.title} className="flex flex-col gap-3">
+              <SiteIcon
+                className="size-7 text-primary"
+                name={PILLAR_ICONS[pillar.icon]}
+              />
+              <div className="flex flex-col gap-2">
+                <h3 className="text-body-lg font-medium leading-normal text-primary">
+                  {pillar.title}
+                </h3>
+                <p className="text-body-md leading-normal text-secondary">
+                  {pillar.body}
+                </p>
+              </div>
+            </article>
+          ))}
         </div>
       </ContentContainer>
     </PageSection>
-  );
-}
-
-function StackIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden
-      className={className}
-      fill="none"
-      viewBox="0 0 28 28"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <ellipse
-        cx="14"
-        cy="8"
-        rx="8"
-        ry="3"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
-      <path
-        d="M6 8v6c0 1.66 3.58 3 8 3s8-1.34 8-3V8"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
-      <path
-        d="M6 14v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
-    </svg>
-  );
-}
-
-function AgentsIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden
-      className={className}
-      fill="none"
-      viewBox="0 0 28 28"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="11" cy="10" r="3.5" stroke="currentColor" strokeWidth="1.5" />
-      <path
-        d="M5 22c0-3.31 2.69-6 6-6s6 2.69 6 6"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeWidth="1.5"
-      />
-      <path
-        d="M19 8v6M22 11h-6"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeWidth="1.5"
-      />
-    </svg>
-  );
-}
-
-function OutcomesIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden
-      className={className}
-      fill="none"
-      viewBox="0 0 28 28"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M5 20l6-6 4 4 8-10"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.5"
-      />
-      <path
-        d="M19 8h4v4"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.5"
-      />
-    </svg>
   );
 }

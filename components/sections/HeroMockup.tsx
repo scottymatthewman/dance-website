@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import { useCallback, useState } from "react";
+import { SiteIcon, type SiteIconName } from "@/components/ui/SiteIcon";
 import { cn } from "@/lib/cn";
 
 type NavItem = {
   id: string;
   label: string;
-  icon: React.ReactNode;
+  icon: SiteIconName;
 };
 
 type Suggestion = {
@@ -16,36 +17,12 @@ type Suggestion = {
 };
 
 const NAV_ITEMS: NavItem[] = [
-  {
-    id: "new-chat",
-    label: "New Chat",
-    icon: <PlusIcon />,
-  },
-  {
-    id: "customers",
-    label: "Customers",
-    icon: <UsersIcon />,
-  },
-  {
-    id: "tasks",
-    label: "Tasks",
-    icon: <CheckSquareIcon />,
-  },
-  {
-    id: "agents",
-    label: "Agents",
-    icon: <BotIcon />,
-  },
-  {
-    id: "marketplace",
-    label: "Marketplace",
-    icon: <StoreIcon />,
-  },
-  {
-    id: "history",
-    label: "History",
-    icon: <ClockIcon />,
-  },
+  { id: "new-chat", label: "New Chat", icon: "nav-newchat" },
+  { id: "customers", label: "Customers", icon: "nav-customers" },
+  { id: "tasks", label: "Tasks", icon: "nav-tasks" },
+  { id: "agents", label: "Agents", icon: "nav-agents" },
+  { id: "marketplace", label: "Marketplace", icon: "nav-marketplace" },
+  { id: "history", label: "History", icon: "nav-history" },
 ];
 
 const SUGGESTIONS: Suggestion[] = [
@@ -79,10 +56,8 @@ export function HeroMockup() {
       <aside className="hero-mockup-sidebar flex w-[14.4%] min-w-[9.5rem] max-w-[16.375rem] shrink-0 flex-col justify-between border-r border-white/[0.06] bg-[#0f0f0f]">
         <div className="flex flex-col">
           <div className="flex items-center justify-between px-3.5 py-4">
-            <MenuIcon className="size-4 text-[#949494]" />
-            <div className="flex items-center gap-1">
-              <ChevronIcon className="size-4 text-[#949494]" />
-            </div>
+            <SiteIcon className="size-4 text-[#949494]" name="nav-bartoggle" />
+            <SiteIcon className="size-4 text-[#949494]" name="nav-chevronleft" />
           </div>
 
           <nav className="flex flex-col gap-px px-2">
@@ -124,18 +99,21 @@ export function HeroMockup() {
       <div className="flex min-w-0 flex-1 flex-col">
         <div className="flex items-center gap-2 px-2 py-2 sm:px-3">
           <div className="flex items-center gap-2 rounded-lg bg-[#141414] px-3 py-1.5 shadow-[0_1px_2px_rgba(0,0,0,0.06)]">
-            <SparkleIcon className="size-4 shrink-0" />
+            <SiteIcon className="size-4 shrink-0 text-[#d4d4d4]" name="tab-writeIcon" />
             <span className="whitespace-nowrap text-[0.8125rem] leading-[1.4] tracking-[-0.02em] text-[#d4d4d4]">
               New Chat
             </span>
           </div>
-          <PlusIcon className="size-4 shrink-0 text-[#949494]" />
+          <SiteIcon className="size-4 shrink-0 text-[#949494]" name="tabBar-add" />
         </div>
 
         <div className="flex min-h-0 flex-1 flex-col items-center justify-center rounded-tl-xl bg-[#141414] px-4 pb-6 pt-4 shadow-[0_1px_2px_rgba(0,0,0,0.06)] sm:px-8 md:px-12 lg:px-16 xl:px-[15%]">
           <div className="flex w-full max-w-[43.625rem] flex-col items-center gap-4 sm:gap-6">
             <div className="flex flex-col items-center gap-4 sm:gap-6">
-              <SparkleIcon className="size-5 sm:size-6" />
+              <SiteIcon
+                className="h-5 aspect-[19/26] text-[#f4f4f4] sm:h-6"
+                name="kya-logo"
+              />
               <h2 className="text-center text-[1.375rem] leading-[1.4] tracking-[-0.02em] sm:text-[1.75rem]">
                 <span className="font-normal">Work </span>
                 <span className="font-medium">Smarter</span>
@@ -162,10 +140,10 @@ export function HeroMockup() {
               <div className="mt-6 flex items-center justify-between sm:mt-8">
                 <div className="flex items-center gap-3">
                   <IconButton aria-label="Add attachment">
-                    <PlusIcon className="size-4" />
+                    <SiteIcon className="size-4 text-[#949494]" name="chatbox-add" />
                   </IconButton>
                   <IconButton aria-label="Browse sources">
-                    <GlobeIcon className="size-4" />
+                    <SiteIcon className="size-4 text-[#949494]" name="chatbox-model" />
                   </IconButton>
                 </div>
                 <button
@@ -173,7 +151,7 @@ export function HeroMockup() {
                   className="hero-mockup-send flex size-8 items-center justify-center rounded-full bg-[#2a2a2a] transition-[background-color,transform] duration-200 ease-out"
                   type="button"
                 >
-                  <ArrowUpIcon className="size-4" />
+                  <SiteIcon className="size-4 text-[#949494]" name="chatbox-send" />
                 </button>
               </div>
             </div>
@@ -202,12 +180,13 @@ export function HeroMockup() {
                     >
                       {suggestion.prompt}
                     </span>
-                    <ArrowUpRightIcon
+                    <SiteIcon
                       className={cn(
                         "size-4 shrink-0 text-[#828282] transition-[color,transform] duration-200 ease-out",
                         hoveredSuggestion === index &&
                           "translate-x-0.5 -translate-y-0.5 text-[#f4f4f4]",
                       )}
+                      name="suggestedprompt-send"
                     />
                   </button>
                   {index < SUGGESTIONS.length - 1 ? (
@@ -230,7 +209,7 @@ function NavButton({
   onClick,
 }: {
   active: boolean;
-  icon: React.ReactNode;
+  icon: SiteIconName;
   label: string;
   onClick: () => void;
 }) {
@@ -246,11 +225,12 @@ function NavButton({
     >
       <span
         className={cn(
-          "flex size-4 shrink-0 items-center justify-center",
+          "flex size-4 shrink-0 items-center justify-center text-[#949494]",
+          active && "text-[#f4f4f4]",
           active && label === "New Chat" && "rounded-full bg-[#333]",
         )}
       >
-        {icon}
+        <SiteIcon className="size-4" name={icon} />
       </span>
       <span className="truncate text-[0.8125rem] leading-[1.4] tracking-[-0.02em]">
         {label}
@@ -274,278 +254,5 @@ function IconButton({
     >
       {children}
     </button>
-  );
-}
-
-function MenuIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden
-      className={className}
-      fill="none"
-      viewBox="0 0 16 16"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M2 4h12M2 8h12M2 12h12"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeWidth="1.25"
-      />
-    </svg>
-  );
-}
-
-function ChevronIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden
-      className={className}
-      fill="none"
-      viewBox="0 0 16 16"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M4 6l4 4 4-4"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.25"
-      />
-    </svg>
-  );
-}
-
-function PlusIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden
-      className={className}
-      fill="none"
-      viewBox="0 0 16 16"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M8 3v10M3 8h10"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeWidth="1.25"
-      />
-    </svg>
-  );
-}
-
-function UsersIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden
-      className={className}
-      fill="none"
-      viewBox="0 0 16 16"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="6" cy="5.5" r="2" stroke="currentColor" strokeWidth="1.25" />
-      <path
-        d="M2.5 13c0-2.2 1.6-3.5 3.5-3.5S9.5 10.8 9.5 13"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeWidth="1.25"
-      />
-      <path
-        d="M10.5 6.5a2 2 0 1 1 0 4"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeWidth="1.25"
-      />
-      <path
-        d="M12.5 13c0-1.6-1-2.8-2.5-3.2"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeWidth="1.25"
-      />
-    </svg>
-  );
-}
-
-function CheckSquareIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden
-      className={className}
-      fill="none"
-      viewBox="0 0 16 16"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect
-        height="10"
-        rx="1.5"
-        stroke="currentColor"
-        strokeWidth="1.25"
-        width="10"
-        x="3"
-        y="3"
-      />
-      <path
-        d="M5.5 8l1.8 1.8L10.5 6.5"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.25"
-      />
-    </svg>
-  );
-}
-
-function BotIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden
-      className={className}
-      fill="none"
-      viewBox="0 0 16 16"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect
-        height="7"
-        rx="2"
-        stroke="currentColor"
-        strokeWidth="1.25"
-        width="9"
-        x="3.5"
-        y="4.5"
-      />
-      <circle cx="6" cy="8" fill="currentColor" r="0.75" />
-      <circle cx="10" cy="8" fill="currentColor" r="0.75" />
-      <path
-        d="M8 2.5v2"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeWidth="1.25"
-      />
-    </svg>
-  );
-}
-
-function StoreIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden
-      className={className}
-      fill="none"
-      viewBox="0 0 16 16"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M2.5 6.5 3.5 3h9l1 3.5"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.25"
-      />
-      <path
-        d="M3 6.5h10v6.5H3z"
-        stroke="currentColor"
-        strokeLinejoin="round"
-        strokeWidth="1.25"
-      />
-    </svg>
-  );
-}
-
-function ClockIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden
-      className={className}
-      fill="none"
-      viewBox="0 0 16 16"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="8" cy="8" r="5.5" stroke="currentColor" strokeWidth="1.25" />
-      <path
-        d="M8 5.5V8l2 1.2"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.25"
-      />
-    </svg>
-  );
-}
-
-function SparkleIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden
-      className={className}
-      fill="none"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M12 2v4M21 11h-4M7 11H3M12 16.127V20M7 6l1.465 1.465M17 6l-1.465 1.465M15.625 14.625L17 16M8.464 14.536C6.116 16.536 4.797 19.017 4 22"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-      />
-      <circle cx="12" cy="11" r="1" stroke="currentColor" strokeWidth="2" />
-    </svg>
-  );
-}
-
-function GlobeIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden
-      className={className}
-      fill="none"
-      viewBox="0 0 16 16"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="8" cy="8" r="5.5" stroke="currentColor" strokeWidth="1.25" />
-      <ellipse cx="8" cy="8" rx="2.5" ry="5.5" stroke="currentColor" strokeWidth="1.25" />
-      <path d="M2.5 8h11" stroke="currentColor" strokeWidth="1.25" />
-    </svg>
-  );
-}
-
-function ArrowUpIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden
-      className={className}
-      fill="none"
-      viewBox="0 0 16 16"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M8 12V4M8 4l-3 3M8 4l3 3"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.25"
-      />
-    </svg>
-  );
-}
-
-function ArrowUpRightIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden
-      className={className}
-      fill="none"
-      viewBox="0 0 16 16"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M5 11l6-6M6 5h5v5"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.25"
-      />
-    </svg>
   );
 }
