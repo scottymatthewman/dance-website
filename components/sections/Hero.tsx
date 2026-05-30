@@ -104,7 +104,7 @@ export function Hero() {
 
           <div
             aria-hidden
-            className="hero-mobile-mockup-slot max-md:relative max-md:mt-9 max-md:min-h-0 max-md:flex-1 max-md:overflow-visible md:hidden"
+            className="hero-mobile-mockup-slot max-md:relative max-md:mt-9 max-md:min-h-0 max-md:flex-1 max-md:overflow-x-clip md:hidden"
           >
             <Image
               alt=""

@@ -27,9 +27,9 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-section text-primary">
+      <body className="min-h-full overflow-x-clip bg-section text-primary">
         <Header />
-        <main>{children}</main>
+        <main className="overflow-x-clip">{children}</main>
         <AgentationToolbar />
       </body>
     </html>
