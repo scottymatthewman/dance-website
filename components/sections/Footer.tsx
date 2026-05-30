@@ -1,7 +1,9 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
+import { SiteIcon } from "@/components/ui/SiteIcon";
 import { COPY } from "@/lib/copy";
 import { SITE } from "@/lib/constants";
+import { cn } from "@/lib/cn";
 
 const FOOTER_IMAGE = {
   desktop: {
@@ -41,12 +43,17 @@ function FooterContent({ align }: { align: "center" | "start" }) {
         }
       >
         <p
-          className={
+          className={cn(
+            "flex items-center gap-3 font-normal leading-[1.5] text-primary",
             centered
-              ? "text-[clamp(2rem,10.8vw,2.703rem)] font-normal leading-[1.5] text-primary"
-              : "text-[clamp(2rem,2.22vw,2.703rem)] font-normal leading-[1.5] text-primary"
-          }
+              ? "text-[clamp(2rem,10.8vw,2.703rem)]"
+              : "text-[clamp(2rem,2.22vw,2.703rem)]",
+          )}
         >
+          <SiteIcon
+            className="h-[1em] aspect-[19/26] shrink-0 text-primary"
+            name="dance-logo"
+          />
           {SITE.name}
         </p>
         <p className="text-base leading-normal text-secondary">

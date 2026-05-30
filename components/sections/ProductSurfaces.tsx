@@ -1,17 +1,20 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ProductSurfaceVisual } from "@/components/sections/ProductSurfaceVisual";
 import { ContentContainer } from "@/components/layout/ContentContainer";
 import { PageSection } from "@/components/layout/PageSection";
 import { SectionHeader } from "@/components/layout/SectionHeader";
+import { SiteIcon, type SiteIconName } from "@/components/ui/SiteIcon";
 import { COPY } from "@/lib/copy";
 import { SITE } from "@/lib/constants";
 
 const SURFACE_ICONS = {
-  context: "/product-surfaces/icon-context.svg",
-  slack: "/product-surfaces/icon-slack.svg",
-  crm: "/product-surfaces/icon-crm.svg",
-} as const;
+  context: "bullet-context",
+  slack: "bullet-chat",
+  crm: "bullet-superpower",
+} as const satisfies Record<
+  (typeof COPY.productSurfaces.cards)[number]["icon"],
+  SiteIconName
+>;
 
 const SURFACE_VISUALS = {
   briefing: "/product-surfaces/context-card.png",
@@ -32,13 +35,9 @@ export function ProductSurfaces() {
               className="flex h-full flex-col overflow-hidden rounded-lg border border-white/10"
             >
               <div className="flex flex-1 flex-col gap-3 p-4">
-                <Image
-                  alt=""
-                  aria-hidden
-                  className="size-7 shrink-0"
-                  height={28}
-                  src={SURFACE_ICONS[card.icon]}
-                  width={28}
+                <SiteIcon
+                  className="size-7 shrink-0 text-primary"
+                  name={SURFACE_ICONS[card.icon]}
                 />
                 <div className="flex flex-1 flex-col gap-4">
                   <div className="flex flex-col gap-2">
