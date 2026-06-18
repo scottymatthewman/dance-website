@@ -25,8 +25,8 @@ export function SlackAgentMockup({ className }: { className?: string }) {
         }
         time="10:45 AM"
       >
-        What&apos;s going on with Terrace? I haven&apos;t touched base with them in a
-        few weeks and I&apos;m nervous we&apos;re about to get surprised.
+        What&apos;s the latest on Config 2026 catering? I need to know if we&apos;re
+        still on track before Friday&apos;s BEO deadline.
       </MessageRow>
 
       <MessageRow
@@ -37,14 +37,13 @@ export function SlackAgentMockup({ className }: { className?: string }) {
       >
         <span className="block space-y-2">
           <span className="block">
-            Terrace is worth a look this week. Usage dropped 18% over the last 14
-            days, their last two support tickets were about API rate limits, and
-            their renewal is in 47 days. I&apos;d prioritize a check-in on the
-            integration rollout — that&apos;s where usage fell off.
+            Catering phase is close. The BEO draft is 80% complete, two vendor
+            quotes are pending, and the phase budget is at 71%. Load-in is still
+            18 days out with no timeline conflicts.
           </span>
           <span className="block">
-            I&apos;ve drafted a note to their champion in this thread. Do you want me
-            to open a follow-up task for you?
+            I can&apos;t move the event start past Jun 23 (guardrail). Want me to
+            assign final BEO review to an agent and ping the vendor?
           </span>
         </span>
         <span className="mt-2 flex items-center gap-1">

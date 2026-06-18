@@ -17,31 +17,30 @@ type Suggestion = {
 };
 
 const NAV_ITEMS: NavItem[] = [
-  { id: "new-chat", label: "New Chat", icon: "nav-newchat" },
-  { id: "customers", label: "Customers", icon: "nav-customers" },
+  { id: "plans", label: "Plans", icon: "nav-customers" },
+  { id: "phases", label: "Phases", icon: "nav-history" },
   { id: "tasks", label: "Tasks", icon: "nav-tasks" },
   { id: "agents", label: "Agents", icon: "nav-agents" },
-  { id: "marketplace", label: "Marketplace", icon: "nav-marketplace" },
-  { id: "history", label: "History", icon: "nav-history" },
+  { id: "chat", label: "Chat", icon: "nav-newchat" },
 ];
 
 const SUGGESTIONS: Suggestion[] = [
   {
-    category: "Accounts",
-    prompt: "How healthy is Xero this week?",
+    category: "Plans",
+    prompt: "What's the status of Config 2026?",
   },
   {
-    category: "Signals",
-    prompt: "What changed across my book in the last 7 days?",
+    category: "Budget",
+    prompt: "Which phases are over budget this week?",
   },
   {
-    category: "Playbooks",
-    prompt: "How do we handle a stalled onboarding?",
+    category: "Tasks",
+    prompt: "Assign vendor outreach for load-in to an agent",
   },
 ];
 
 export function HeroMockup() {
-  const [activeNav, setActiveNav] = useState("new-chat");
+  const [activeNav, setActiveNav] = useState("plans");
   const [inputValue, setInputValue] = useState("");
   const [hoveredSuggestion, setHoveredSuggestion] = useState<number | null>(
     null,
@@ -89,7 +88,7 @@ export function HeroMockup() {
                 John Allen
               </p>
               <p className="truncate text-[0.75rem] leading-[1.3] tracking-[-0.02em] text-[#949494]">
-                Acme Inc.
+                Meridian Events
               </p>
             </div>
           </div>
@@ -111,11 +110,11 @@ export function HeroMockup() {
           <div className="flex w-full max-w-[43.625rem] flex-col items-center gap-4 sm:gap-6">
             <div className="flex flex-col items-center gap-4 sm:gap-6">
               <SiteIcon
-                className="h-5 aspect-[19/26] text-[#f4f4f4] sm:h-6"
-                name="dance-logo"
+                className="size-5 text-[#f4f4f4] sm:size-6"
+                name="dance-mark"
               />
               <h2 className="text-center text-[1.375rem] leading-[1.4] tracking-[-0.02em] sm:text-[1.75rem]">
-                <span className="font-normal">Work </span>
+                <span className="font-normal">Plan </span>
                 <span className="font-medium">Smarter</span>
               </h2>
             </div>

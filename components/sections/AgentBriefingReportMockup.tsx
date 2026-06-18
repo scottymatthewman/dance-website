@@ -51,7 +51,7 @@ export function AgentBriefingReportMockup({
                   : "text-[1.0625rem]",
               )}
             >
-              {isFloating ? "Config 2026 Report" : "Northwind Labs — Account brief"}
+              {isFloating ? "Config 2026 Report" : "Config 2026 — Plan brief"}
             </h3>
             <ShareButton compact={isFloating} />
           </header>
@@ -82,18 +82,18 @@ export function AgentBriefingReportMockup({
 
           <ReportSection
             compact={isFloating}
-            title={isFloating ? "Account Snapshot" : "Account snapshot"}
-            metricLabel="ARR"
-            metricValue="$240K"
-            body="Usage is up 18% WoW with three new power users in Finance. Renewal is in 94 days; health is stable with a high expansion signal from procurement activity on SSO."
+            title={isFloating ? "Plan Snapshot" : "Plan snapshot"}
+            metricLabel="Budget"
+            metricValue="$142K"
+            body="79% of budget allocated across four phases. AV is the tightest phase at 94% spend with quotes still pending. Load-in is 18 days out with no timeline conflicts."
           />
 
           <ReportSection
             compact={isFloating}
             title="What changed"
-            metricLabel="Signals this week"
-            metricValue="7"
-            body="We flagged more movement than the prior period. VP Ops replied in Slack about SSO timing, and onboarding for the new subsidiary is still 2 of 6 complete."
+            metricLabel="Open tasks"
+            metricValue="12"
+            body="Three tasks moved to In Progress this week. Catering BEO is due Friday, and two vendor quotes were added to the AV phase backlog."
           >
             <ul
               className={cn(
@@ -103,7 +103,7 @@ export function AgentBriefingReportMockup({
                   : "space-y-0.5 pl-4 text-[0.6875rem] leading-snug tracking-[-0.02em]",
               )}
             >
-              <li>Priority: SSO timeline + subsidiary rollout</li>
+              <li>Priority: catering BEO + AV vendor quotes</li>
             </ul>
             <HotLeadActions compact={isFloating} />
             <ul
@@ -114,11 +114,11 @@ export function AgentBriefingReportMockup({
                   : "space-y-0.5 pl-4 text-[0.6875rem] leading-snug tracking-[-0.02em]",
               )}
             >
-              <li>Open risk: support ticket #4821 (API rate limits)</li>
+              <li>Open flag: AV phase at 94% of budget</li>
               <li>
                 {isFloating
-                  ? "Champion: Maya Chen (VP Ops) – last contact 4 days"
-                  : "Champion: Maya Chen (VP Ops) — last touch 4 days ago"}
+                  ? "Owner: Maya Swatch – last update 2 days"
+                  : "Owner: Maya Swatch — last update 2 days ago"}
               </li>
             </ul>
           </ReportSection>
@@ -126,14 +126,13 @@ export function AgentBriefingReportMockup({
           {!isFloating ? (
             <ReportSection
               title="Recommended actions"
-              metricLabel="Expansion score"
+              metricLabel="Timeline health"
               metricValue={
                 <>
-                  <span className="text-[#87ff9f]">8.4</span>
-                  <span className="text-[#f4f4f4]">/10</span>
+                  <span className="text-[#87ff9f]">On track</span>
                 </>
               }
-              body="Send the SSO beta invite before Monday’s sync. Book a 15-minute check-in on subsidiary rollout and offer to finish the remaining onboarding tasks. Nudge procurement if the thread stays idle through Wednesday."
+              body="Assign agent to chase catering signatures before Friday. Schedule AV walkthrough with venue for next Tuesday. Agent will not shift event dates past Jun 23."
             />
           ) : null}
         </div>

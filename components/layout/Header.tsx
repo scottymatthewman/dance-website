@@ -18,8 +18,8 @@ export function Header() {
           )}
         >
           <SiteIcon
-            className="h-5 aspect-[19/26] shrink-0 text-primary"
-            name="dance-logo"
+            className="size-5 shrink-0 text-primary"
+            name="dance-mark"
           />
           {SITE.name}
         </Link>
