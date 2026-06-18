@@ -5,6 +5,7 @@ import { ProductFlow } from "@/components/sections/ProductFlow";
 import { ProductSurfaces } from "@/components/sections/ProductSurfaces";
 import { Integrations } from "@/components/sections/Integrations";
 import { Footer } from "@/components/sections/Footer";
+import { Pricing } from "@/components/sections/Pricing";
 import { Testimonial } from "@/components/sections/Testimonial";
 import { PlatformSection, PlatformMockup } from "@/components/sections/PlatformSection";
 import { PlatformPillars } from "@/components/sections/PlatformPillars";
@@ -25,6 +26,7 @@ export default function Home() {
         <Testimonial />
         <Integrations />
       </SiteFrameRoot>
+      <Pricing />
       <Footer />
     </>
   );

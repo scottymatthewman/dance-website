@@ -2,26 +2,26 @@
 
 import Image from "next/image";
 
-const CUSTOMER_DETAILS = [
+const PHASE_DETAILS = [
   {
-    label: "Plan",
-    value: "Enterprise",
-    description: "Annual contract · renews in 94 days",
+    label: "Timeline",
+    value: "Jun 23–25, 2026",
+    description: "Load-in Jun 22 · Strike Jun 26",
   },
   {
-    label: "ARR",
-    value: "$240K",
-    description: "Flat vs. last quarter",
+    label: "Budget",
+    value: "$142K of $180K",
+    description: "79% allocated · AV phase at risk",
   },
   {
-    label: "CSM",
-    value: "Maya Chen",
-    description: "Primary owner · last touch 4 days ago",
+    label: "Owner",
+    value: "Maya Swatch",
+    description: "Director of Events · 12 open tasks",
   },
   {
-    label: "Health score",
-    value: "72 · At risk",
-    description: "Down 14 pts in the last 30 days",
+    label: "Status",
+    value: "On track · 1 flag",
+    description: "Catering BEO due Friday",
   },
 ] as const;
 
@@ -43,15 +43,15 @@ export function DetectCustomerDetailMockup() {
               </div>
               <div className="min-w-0">
                 <h3 className="truncate text-lg font-medium leading-[1.4] tracking-[-0.02em] text-[#f4f4f4] sm:text-xl">
-                  Northwind Labs
+                  Config 2026
                 </h3>
                 <p className="truncate text-[0.75rem] leading-[1.4] tracking-[-0.02em] text-[#828282] sm:text-[0.8125rem]">
-                  Enterprise · San Francisco
+                  Corporate conference · San Francisco
                 </p>
               </div>
             </div>
             <span className="hidden shrink-0 rounded-lg bg-[#2a2a2a] px-2.5 py-1 text-[0.6875rem] font-medium leading-[1.4] tracking-[-0.02em] text-[#d4d4d4] shadow-[0_1px_2px_rgba(0,0,0,0.06)] sm:inline-flex">
-              View in CRM
+              View plan
             </span>
           </div>
 
@@ -60,25 +60,24 @@ export function DetectCustomerDetailMockup() {
               <div className="flex min-w-0 items-start gap-2.5">
                 <AlertIcon className="mt-0.5 size-4 shrink-0 text-[#e8963a]" />
                 <p className="text-[0.8125rem] leading-[1.45] tracking-[-0.02em] text-[#f4f4f4] sm:text-sm">
-                  We noticed some changes in this account that might lead to
-                  churn.
+                  AV phase budget is at 94% with vendor quotes still pending.
                 </p>
               </div>
               <button
                 className="detect-customer-detail-alert-btn shrink-0 self-start rounded-lg bg-[#e8963a] px-3 py-1.5 text-[0.8125rem] font-medium leading-[1.4] tracking-[-0.02em] text-black shadow-[0_1px_2px_rgba(0,0,0,0.06)] transition-[background-color,transform] duration-200 ease-out sm:self-center"
                 type="button"
               >
-                Explore options
+                Review budget
               </button>
             </div>
           </div>
 
           <div className="flex flex-col gap-3">
             <p className="px-1 text-[0.8125rem] font-medium leading-[1.4] tracking-[-0.02em] text-[#949494]">
-              Account details
+              Phase details
             </p>
             <div className="overflow-hidden rounded-2xl border border-[#2e2e2e] bg-gradient-to-b from-[#141414] to-black">
-              {CUSTOMER_DETAILS.map((detail, index) => (
+              {PHASE_DETAILS.map((detail, index) => (
                 <div
                   key={detail.label}
                   className="border-[#2e2e2e] px-4 py-3.5 sm:px-5 sm:py-4"

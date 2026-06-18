@@ -24,6 +24,7 @@ export const SITE_ICON_NAMES = [
   "platform-agent",
   "platform-revenue",
   "kya-logo",
+  "dance-mark",
 ] as const;
 
 export type SiteIconName = (typeof SITE_ICON_NAMES)[number];

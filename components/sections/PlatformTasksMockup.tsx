@@ -6,12 +6,11 @@ import { SiteIcon, type SiteIconName } from "@/components/ui/SiteIcon";
 import { cn } from "@/lib/cn";
 
 const NAV_ITEMS = [
-  { id: "new-chat", label: "New Chat", icon: "nav-newchat" },
-  { id: "customers", label: "Customers", icon: "nav-customers" },
+  { id: "plans", label: "Plans", icon: "nav-customers" },
+  { id: "phases", label: "Phases", icon: "nav-history" },
   { id: "tasks", label: "Tasks", icon: "nav-tasks" },
   { id: "agents", label: "Agents", icon: "nav-agents" },
-  { id: "marketplace", label: "Marketplace", icon: "nav-marketplace" },
-  { id: "history", label: "History", icon: "nav-history" },
+  { id: "chat", label: "Chat", icon: "nav-newchat" },
 ] as const satisfies ReadonlyArray<{
   id: string;
   label: string;
@@ -74,7 +73,7 @@ export function PlatformTasksMockup() {
                 John Allen
               </p>
               <p className="truncate text-[0.75rem] leading-[1.3] tracking-[-0.02em] text-[#949494]">
-                Acme Inc.
+                Meridian Events
               </p>
             </div>
           </div>

@@ -1,132 +1,129 @@
 export const COPY = {
   hero: {
-    headline: "Expand your revenue with customer success agents",
-    headlineLines: [
-      "Expand your revenue with",
-      "customer success agents.",
-    ],
+    headline: "Event planning that feels as clear as Linear",
+    headlineLines: ["Event planning that feels", "as clear as Linear."],
     subhead:
-      "Agents that know your accounts, spot risk and opportunity, and act across your CS stack.",
-    cta: "Book a demo",
+      "One place for every event plan — phases, timelines, budget, and tasks. Assign work to agents or chat to adjust the plan on the fly.",
+    cta: "Book a call",
   },
   statement: {
-    headlineLines: ["Scale expansion.", "Not your headcount."],
-    body: "More accounts shouldn't mean more QBRs. Kya agents monitor, prioritize, and execute.",
+    headlineLines: ["Plan more events.", "Not more spreadsheets."],
+    body: "Every phase, deadline, and dollar in one workspace. Dance keeps your team aligned and your agents on task.",
   },
   productFlow: {
     steps: [
       {
         number: "1",
-        eyebrow: "Monitor",
-        headline: "See every account in one place",
-        body: "One view of every account. Usage, support, CRM, conversations. Agents always know what's happening.",
+        eyebrow: "Plan",
+        headline: "See every event in one place",
+        body: "All your event plans in a single view. Timelines, owners, and status — always current, never buried in email threads.",
       },
       {
         number: "2",
-        eyebrow: "Detect",
-        headline: "Spot expansion and risk before it's obvious",
-        body: "Agents score every account for churn, upsell, and engagement drops. See what needs attention today, not at the next QBR.",
+        eyebrow: "Phase",
+        headline: "Break work into phases with budget and timelines",
+        body: "Each phase has its own timeline and budget. See what's due this week and where spend is tracking before it becomes a surprise.",
       },
       {
         number: "3",
-        eyebrow: "Act",
-        headline: "Take the next best action automatically",
-        body: "Nudges, outreach, tasks, playbooks. Agents execute across your tools while your team stays in control.",
+        eyebrow: "Task",
+        headline: "Assign tasks to your team or your agents",
+        body: "Tasks live inside each phase. Assign to a teammate or hand off to an agent — research vendors, draft run-of-show updates, chase confirmations.",
       },
       {
         number: "4",
-        eyebrow: "Measure",
-        headline: "Prove impact on revenue, not activity",
-        body: "Track expansion influenced, retention saved, time reclaimed. Every action logged and tied to outcomes.",
+        eyebrow: "Track",
+        headline: "Stay on budget and on schedule",
+        body: "Budget per phase and per plan. Timeline health at a glance. Know what's slipping before load-in day.",
       },
     ],
   },
   productSurfaces: {
-    headline: "A better way of working.",
-    cta: "Book a demo",
+    headline: "A better way to plan events.",
+    cta: "Book a call",
     cards: [
       {
         icon: "context" as const,
-        title: "Context that finds you",
-        body: "Recurring debriefs on what changed. Open tasks, account movement, and work you were mid-flight on.",
+        title: "Every plan at a glance",
+        body: "Open any event and see phases, open tasks, budget status, and what changed since you last looked.",
         visual: "briefing" as const,
       },
       {
         icon: "slack" as const,
-        title: "Chat with agents in Slack",
-        body: "Ask about any account in Slack. Get updates, kick off work, and stay in the tool your team already uses.",
+        title: "Chat to adjust the plan",
+        body: "Ask an agent to shift timelines, reassign tasks, or draft vendor outreach. Changes stay within your guardrails.",
         visual: "slack" as const,
       },
       {
         icon: "crm" as const,
-        title: "Your CRM, with superpowers",
-        body: "Your familiar CRM view. Agents surface risk, draft outreach, and suggest next actions in every record.",
+        title: "Budget and timeline in sync",
+        body: "Spend tracked per phase. Dates enforced across the plan. Agents can't push a start date past your end date.",
         visual: "crm" as const,
       },
     ],
   },
   integrations: {
-    headlineLines: ["Connected and proactive.", "Just like your team."],
-    taglineLines: [ 
-      "Kya plugs into every channel your team uses.", 
-      "It contributes like anyone else on the team."
+    headlineLines: ["Connected to your event stack.", "Just like your team."],
+    taglineLines: [
+      "Dance plugs into the tools your team already uses.",
+      "Calendar, email, Slack, spreadsheets, and more.",
     ],
-    cta: "Book a demo today",
+    cta: "Book a call",
   },
   testimonial: {
     quote:
-      "We've been able to expand our area of impact without growing our team.",
+      "We finally have one place for every event plan. Our team spends less time chasing updates and more time on the work that matters.",
     name: "Maya Swatch",
-    role: "Head of CS",
-    company: "Dance",
+    role: "Director of Events",
+    company: "Meridian Events",
   },
   platform: {
-    headline: "One platform for your entire CS stack.",
-    headlineAccent: "Agents that work 24/7.",
-    cta: "Book a demo",
+    headline: "One workspace for every event plan.",
+    headlineAccent: "Agents that work within your guardrails.",
+    cta: "Book a call",
     pillars: [
       {
         icon: "stack" as const,
-        title: "A workspace for customer success",
-        body: "Accounts, tasks, and agents in one place. Not another dashboard to check.",
+        title: "A workspace for event planning",
+        body: "Plans, phases, tasks, and budget in one place. Not another spreadsheet to maintain.",
       },
       {
         icon: "agents" as const,
         title: "Agents that work like teammates",
-        body: "Assign agents to tasks. They research, draft, follow up, and update your tools. You stay in control.",
+        body: "Assign agents to tasks or chat to adjust the plan. They research, draft, and follow up — you stay in control.",
       },
       {
         icon: "outcomes" as const,
-        title: "Built for revenue outcomes",
-        body: "Every action tied to retention, expansion, and book health. Not ticket counts.",
+        title: "Built for event teams",
+        body: "Guardrails keep plans sane — start dates before end dates, budget caps per phase, dependencies enforced.",
       },
     ],
   },
   platformBento: {
-    headline: "One platform for your entire CS stack.",
-    headlineAccent: "Agents that work 24/7.",
-    cta: "Book a demo",
+    headline: "One workspace for every event plan.",
+    headlineAccent: "Agents that work within your guardrails.",
+    cta: "Book a call",
     topRow: [
       {
-        title: "Account monitoring",
-        subtitle: "that never misses a signal",
+        title: "Plan overview",
+        subtitle: "every event in one view",
         visual: "monitoring" as const,
       },
       {
-        title: "Unified intelligence",
-        subtitle: "that connects every data source",
+        title: "Phase timelines",
+        subtitle: "with budget per phase",
         visual: "intelligence" as const,
       },
     ],
     bottomRow: [
       {
-        title: "Playbook automation",
-        subtitle: "that executes your best motions",
+        title: "Task assignment",
+        subtitle: "to people or agents",
         visual: "playbooks" as const,
       },
       {
-        title: "Risk & expansion",
-        subtitle: "without waiting for QBRs",
+        title: "Budget tracking",
+        subtitle: "without spreadsheet chaos",
         visual: "expansion" as const,
       },
       {
@@ -136,14 +133,25 @@ export const COPY = {
       },
     ],
   },
+  pricing: {
+    headline: "Pricing",
+    price: "$50",
+    period: "per seat / month",
+    body: "Less than the hour you'll save each month.",
+    subbody: "No procurement. No committee. Just better event plans.",
+    cta: "Book a call",
+    features: [
+      "Unlimited event plans",
+      "Phases, timelines, and budget tracking",
+      "Tasks with agent assignment",
+      "Agent chat with plan guardrails",
+    ],
+  },
   nav: {
-    cta: "Book a demo",
+    cta: "Book a call",
   },
   footer: {
-    taglineLines: [
-      "Expand your revenue with ",
-      "customer success agents.",
-    ],
-    cta: "Book a demo",
+    taglineLines: ["Intelligent event planning", "for teams that move fast."],
+    cta: "Book a call",
   },
 } as const;

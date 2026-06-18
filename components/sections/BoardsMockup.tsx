@@ -29,21 +29,19 @@ const COLUMNS: BoardColumn[] = [
     tasks: [
       {
         id: "b1",
-        title:
-          "Follow up with the customer to ensure satisfaction with the recent service",
+        title: "Confirm AV vendor load-in window with venue",
       },
       {
         id: "b2",
-        title:
-          "Prepare a report on customer feedback for the upcoming team meeting",
+        title: "Draft run-of-show updates for keynote block",
       },
       {
         id: "b3",
-        title: "Follow-up on customer feedback for product enhancement",
+        title: "Follow up on catering BEO signatures",
       },
       {
         id: "b4",
-        title: "Schedule a meeting to discuss project timelines",
+        title: "Review staffing plan for registration desk",
       },
     ],
   },
@@ -55,15 +53,15 @@ const COLUMNS: BoardColumn[] = [
     tasks: [
       {
         id: "t1",
-        title: "Schedule a meeting to discuss project timelines",
+        title: "Finalize venue contract addendum",
       },
       {
         id: "t2",
-        title: "Prepare a presentation for the upcoming client pitch",
+        title: "Send speaker travel confirmations",
       },
       {
         id: "t3",
-        title: "Review and finalize the project budget estimates",
+        title: "Review AV phase budget with finance",
       },
     ],
   },
@@ -75,12 +73,12 @@ const COLUMNS: BoardColumn[] = [
     tasks: [
       {
         id: "p1",
-        title: "Schedule a meeting to discuss project timelines",
-        agentLabel: "3 agents at work...",
+        title: "Collect vendor quotes for stage build",
+        agentLabel: "2 agents at work...",
       },
       {
         id: "p2",
-        title: "Prepare a presentation for the upcoming client pitch",
+        title: "Draft signage package for registration area",
         agentLabel: "1 agent at work...",
       },
     ],
@@ -93,19 +91,19 @@ const COLUMNS: BoardColumn[] = [
     tasks: [
       {
         id: "r1",
-        title: "Schedule a meeting to discuss project timelines",
+        title: "Approve final run-of-show for keynote",
       },
       {
         id: "r2",
-        title: "Prepare a presentation for the upcoming client pitch",
+        title: "Sign off on catering BEO",
       },
       {
         id: "r3",
-        title: "Review and finalize the project budget estimates",
+        title: "Review AV phase budget with finance",
       },
       {
         id: "r4",
-        title: "Prepare the presentation for stakeholder meeting",
+        title: "Confirm speaker travel itinerary",
       },
     ],
   },

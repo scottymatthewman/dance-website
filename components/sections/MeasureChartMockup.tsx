@@ -3,17 +3,17 @@
 const MARKERS = [
   {
     left: "12.5%",
-    lines: ["No conversation", "in 4 mo"],
+    lines: ["Venue deposit", "due"],
     top: "11.6%",
   },
   {
     left: "50%",
-    lines: ["Re-engaged"],
+    lines: ["AV booked"],
     top: "10%",
   },
   {
     left: "74.4%",
-    lines: ["Upsell"],
+    lines: ["Under", "budget"],
     top: "10%",
   },
 ] as const;

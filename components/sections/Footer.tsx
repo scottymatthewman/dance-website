@@ -19,9 +19,9 @@ const FOOTER_IMAGE = {
 } as const;
 
 const FOOTER_LOCKUP = {
-  src: "/footer/kya-lockup.svg",
-  width: 129,
-  height: 138,
+  src: "/icons/dance-mark.svg",
+  width: 73,
+  height: 72,
 } as const;
 
 function FooterContent({ align }: { align: "center" | "start" }) {
@@ -51,8 +51,8 @@ function FooterContent({ align }: { align: "center" | "start" }) {
           )}
         >
           <SiteIcon
-            className="h-[1em] aspect-[19/26] shrink-0 text-primary"
-            name="kya-logo"
+            className="h-[1em] aspect-square shrink-0 text-primary"
+            name="dance-mark"
           />
           {SITE.name}
         </p>

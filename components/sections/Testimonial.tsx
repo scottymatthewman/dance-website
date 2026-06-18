@@ -21,9 +21,9 @@ const TESTIMONIAL_PHOTO = {
 } as const;
 
 const TESTIMONIAL_LOGO = {
-  src: "/testimonial/dance-logo.svg",
-  width: 354,
-  height: 72,
+  src: "/product-flow/northwind-logo.png",
+  width: 200,
+  height: 48,
 } as const;
 
 export function Testimonial() {
