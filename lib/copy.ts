@@ -1,7 +1,7 @@
 export const COPY = {
   hero: {
-    headline: "Event planning that feels as clear as Linear",
-    headlineLines: ["Event planning that feels", "as clear as Linear."],
+    headline: "The smartest way to plan events",
+    headlineLines: ["The smartest way", "to plan events"],
     subhead:
       "One place for every event plan — phases, timelines, budget, and tasks. Assign work to agents or chat to adjust the plan on the fly.",
     cta: "Book a call",
