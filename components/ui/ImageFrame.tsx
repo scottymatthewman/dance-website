@@ -1,12 +1,11 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
-import { CardVisualFrame } from "@/components/ui/CardVisualFrame";
 import { cn } from "@/lib/cn";
 
+/** Matches PLAN_MOCKUP_ASPECT (1462÷784) — final plan timeline frame. */
 const IMAGE_FRAME_PRESETS = {
   flow: {
-    className: "h-full min-h-0",
-    innerClassName: "h-full min-h-0",
+    className: "aspect-[1462/784] w-full",
     sizes: "(min-width: 768px) 60vw, 100vw",
   },
 } as const;
@@ -41,11 +40,11 @@ export function ImageFrame({
   const resolvedSizes = sizes ?? presetStyles?.sizes ?? "100vw";
 
   return (
-    <CardVisualFrame
-      className={cn(presetStyles?.className, className)}
-      innerClassName={cn(
-        "relative overflow-hidden",
-        presetStyles?.innerClassName,
+    <div
+      className={cn(
+        "relative overflow-hidden rounded-[6px]",
+        presetStyles?.className,
+        className,
         innerClassName,
       )}
     >
@@ -73,6 +72,6 @@ export function ImageFrame({
         ))}
       </div>
       {children}
-    </CardVisualFrame>
+    </div>
   );
 }

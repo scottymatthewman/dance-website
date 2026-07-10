@@ -19,14 +19,12 @@ export const SECTION_INTRO_SPACING = {
 
 const SECTION_INSET_CLASS: Record<SectionInsetPreset, string> = {
   hero: "section-inset section-inset--hero",
+  default: "section-inset section-inset--default",
   viewport: "section-inset section-inset--viewport",
   statement: "section-inset section-inset--statement",
-  scroll: "section-inset section-inset--scroll",
   compact: "section-inset section-inset--compact",
-  cta: "section-inset section-inset--cta",
-  standard: "section-inset section-inset--scroll",
+  spacious: "section-inset section-inset--spacious",
   flush: "section-inset section-inset--flush",
-  benefits: "section-inset section-inset--benefits",
 };
 
 const DEFAULT_SECTION_INSET: Record<
@@ -36,11 +34,11 @@ const DEFAULT_SECTION_INSET: Record<
   hero: "hero",
   useCases: "viewport",
   features: "viewport",
-  benefits: "benefits",
+  benefits: "spacious",
   statement: "statement",
   bento: "compact",
   emailCapture: "flush",
-  footer: "standard",
+  footer: "default",
 };
 
 export function getSectionSurfaceKey(section: HomeSectionConfig): string {

@@ -3,6 +3,9 @@
 import { CollaborateMockup } from "@/components/home/CollaborateMockupLazy";
 import { DefineMockup } from "@/components/home/DefineMockupLazy";
 import { PlanMockup } from "@/components/home/PlanMockupLazy";
+import { ContentRail } from "@/components/home/sections/ContentRail";
+import { SectionHeader } from "@/components/home/sections/SectionHeader";
+import { SectionShell } from "@/components/home/sections/SectionShell";
 import { ImageFrame } from "@/components/ui/ImageFrame";
 import { CtaButton } from "@/components/ui/CtaButton";
 import { cn } from "@/lib/cn";
@@ -78,7 +81,7 @@ function FlowStepTab({
           <span
             aria-hidden={!isActive}
             className={cn(
-              "block text-[0.9375rem] leading-normal text-secondary transition-opacity duration-300 ease-out md:leading-[1.5]",
+              "block text-body-md leading-normal text-secondary transition-opacity duration-300 ease-out md:leading-[1.5]",
               isActive ? "opacity-100" : "opacity-0",
             )}
           >
@@ -118,19 +121,19 @@ export function FeaturesContent({ stepProgress = 0 }: FeaturesContentProps) {
   };
 
   return (
-    <div className="flex h-full min-h-0 flex-col items-center justify-start">
-      <div className="section-intro w-full max-w-[81.25rem] min-h-0 flex-1">
-        <div className="flex shrink-0 flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-4">
-          <h2 className="text-h2 max-w-[42rem] leading-[1.3] text-primary">
-            {COPY.mockup.headline}
-          </h2>
-          <CtaButton
-            size="section"
-            className="w-fit shrink-0"
-          />
-        </div>
+    <SectionShell variant="standard" className="justify-center">
+      <ContentRail
+        width="content"
+        align="center"
+        className="section-intro w-full shrink-0"
+      >
+        <SectionHeader
+          layout="split"
+          headline={COPY.mockup.headline}
+          action={<CtaButton size="section" className="w-fit shrink-0" />}
+        />
 
-        <div className="flex min-h-0 w-full flex-1 flex-col gap-6 md:flex-row md:items-stretch md:gap-8">
+        <div className="flex w-full flex-col gap-6 md:flex-row md:items-stretch md:gap-8">
           <div
             role="tablist"
             aria-label="Product flow"
@@ -151,14 +154,13 @@ export function FeaturesContent({ stepProgress = 0 }: FeaturesContentProps) {
             id="flow-mockup-panel"
             role="tabpanel"
             aria-labelledby={`flow-step-${activeStep}`}
-            className="flex min-h-[16rem] flex-1 flex-col md:min-h-0"
+            className="flex min-h-[16rem] w-full flex-1 flex-col"
           >
             <ImageFrame
               preset="flow"
               src={FLOW_BACKGROUNDS}
               activeIndex={activeStep}
               priority
-              className="min-h-0 flex-1"
             >
               {activeStep === DEFINE_STEP_INDEX ? (
                 <DefineMockup
@@ -184,7 +186,7 @@ export function FeaturesContent({ stepProgress = 0 }: FeaturesContentProps) {
             </ImageFrame>
           </div>
         </div>
-      </div>
-    </div>
+      </ContentRail>
+    </SectionShell>
   );
 }

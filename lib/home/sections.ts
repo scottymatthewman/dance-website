@@ -30,14 +30,12 @@ export const NAV_SECTIONS = {
 
 export type SectionInsetPreset =
   | "hero"
+  | "default"
   | "viewport"
   | "statement"
-  | "scroll"
   | "compact"
-  | "cta"
-  | "standard"
-  | "flush"
-  | "benefits";
+  | "spacious"
+  | "flush";
 
 export type HomeSectionConfig = {
   id: SectionId;

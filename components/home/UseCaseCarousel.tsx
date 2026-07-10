@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { UseCaseInterestForm } from "@/components/home/UseCaseInterestForm";
-import { CardVisualFrame } from "@/components/ui/CardVisualFrame";
 import { Button } from "@/components/ui/Button";
 import { ImageFrame } from "@/components/ui/ImageFrame";
 import { COPY } from "@/lib/copy";
@@ -51,7 +50,7 @@ function UseCaseCtaCard() {
 
   return (
     <article className="w-[min(28.125rem,85vw)] shrink-0 snap-start">
-      <CardVisualFrame className="w-full" innerClassName="h-[30rem]">
+      <div className="relative h-[30rem] w-full overflow-hidden rounded-[6px]">
         <div className="flex h-full flex-col items-center justify-center gap-5 bg-[#edebe9] p-6 text-center">
           {showForm ? (
             <UseCaseInterestForm
@@ -78,7 +77,7 @@ function UseCaseCtaCard() {
             </>
           )}
         </div>
-      </CardVisualFrame>
+      </div>
     </article>
   );
 }

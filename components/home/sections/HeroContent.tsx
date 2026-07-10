@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { MockupFrame } from "@/components/home/MockupFrame";
 import { TimelineMockup } from "@/components/home/TimelineMockupLazy";
+import { ContentRail } from "@/components/home/sections/ContentRail";
+import { SectionShell } from "@/components/home/sections/SectionShell";
 import { RevealBlock, RevealWords } from "@/components/motion/RevealWords";
 import { CtaButton } from "@/components/ui/CtaButton";
 import { COPY } from "@/lib/copy";
@@ -56,9 +58,13 @@ export function HeroContent() {
       : secondaryProgressRaw;
 
   return (
-    <div className="flex h-full min-h-0 flex-col items-center overflow-visible">
-      <div className="flex w-full max-w-[41.875rem] shrink-0 flex-col items-center gap-6 text-center">
-        <div className="flex w-full flex-col gap-2">
+    <SectionShell variant="centered" className="overflow-visible">
+      <ContentRail
+        width="narrow"
+        align="center"
+        className="flex shrink-0 flex-col items-center gap-6"
+      >
+        <div className="section-copy w-full items-center">
           <RevealWords
             as="h1"
             lines={[COPY.hero.headline]}
@@ -92,19 +98,21 @@ export function HeroContent() {
         >
           <CtaButton size="section" />
         </RevealBlock>
-      </div>
+      </ContentRail>
 
       <RevealBlock
         progress={secondaryProgress}
         timeline="secondary"
         phase="cta"
         hidden={!secondaryEnabled}
-        className="relative mt-6 min-h-0 w-full max-w-[1200px] flex-1 md:mt-8"
+        className="relative mt-6 min-h-0 w-full flex-1 md:mt-8"
       >
-        <MockupFrame bleedBottom className="bg-black">
-          <TimelineMockup />
-        </MockupFrame>
+        <ContentRail width="content" align="center" className="h-full">
+          <MockupFrame bleedBottom className="bg-black">
+            <TimelineMockup />
+          </MockupFrame>
+        </ContentRail>
       </RevealBlock>
-    </div>
+    </SectionShell>
   );
 }

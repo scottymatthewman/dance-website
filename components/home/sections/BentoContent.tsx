@@ -1,6 +1,8 @@
 "use client";
 
 import { BentoCard } from "@/components/ui/BentoCard";
+import { ContentRail } from "@/components/home/sections/ContentRail";
+import { SectionShell } from "@/components/home/sections/SectionShell";
 import { COPY } from "@/lib/copy";
 
 const [planOverview, phaseTimelines] = COPY.bento.topRow;
@@ -43,8 +45,12 @@ const BENTO_CARDS = [
 
 export function BentoContent() {
   return (
-    <div className="flex h-full min-h-0 flex-col">
-      <div className="mx-auto grid min-h-0 w-full max-w-[81.25rem] flex-1 grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-12 lg:grid-rows-[minmax(0,1fr)_minmax(0,1fr)]">
+    <SectionShell variant="headingless" className="h-full min-h-0">
+      <ContentRail
+        width="content"
+        align="center"
+        className="grid min-h-0 flex-1 grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-12 lg:grid-rows-[minmax(0,1fr)_minmax(0,1fr)]"
+      >
         {BENTO_CARDS.map(
           ({
             data,
@@ -68,7 +74,7 @@ export function BentoContent() {
             />
           ),
         )}
-      </div>
-    </div>
+      </ContentRail>
+    </SectionShell>
   );
 }

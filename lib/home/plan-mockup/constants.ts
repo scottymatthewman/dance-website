@@ -13,6 +13,9 @@ import { PROFILES } from "@/lib/profiles";
 export const FULL_TIMELINE_WIDTH = 1462;
 export const FULL_TIMELINE_HEIGHT = 784;
 
+/** Final timeline frame aspect — use for flow section mockup container. */
+export const PLAN_MOCKUP_ASPECT = FULL_TIMELINE_WIDTH / FULL_TIMELINE_HEIGHT;
+
 export const BAR_HEIGHT = 51;
 export const TASK_ROW_HEIGHT = 48;
 

@@ -35,7 +35,8 @@
   --bevel-stroke: inset 0 0 0 1px var(--bevel-stroke-color);
   --bevel-highlight: inset 0 0 0.2px 2px var(--bevel-highlight-color);
 
-  --content-max: 75rem;
+  --content-max: 81.25rem;
+  --content-headline: 42rem;
   --content-narrow: 40.625rem;
   --content-prose: 36.25rem;
   --frame-max: 82rem;
@@ -67,6 +68,7 @@
 
   --text-hero: 3rem;
   --text-h2: 1.75rem;
+  --text-h3: 1.25rem;
   --text-body-lg: 1.125rem;
   --text-body-md: 1.0625rem;
   --text-subhead: 1.0625rem;
@@ -131,6 +133,7 @@
   --spacing-copy-to-content: var(--copy-to-content);
 
   --max-width-content: var(--content-max);
+  --max-width-headline: var(--content-headline);
   --max-width-narrow: var(--content-narrow);
   --max-width-prose: var(--content-prose);
   --max-width-frame: min(94vw, var(--frame-max));
@@ -417,6 +420,10 @@
     padding-bottom: var(--section-y-hero-bottom);
   }
 
+  .section-inset--default {
+    padding-block: var(--section-y);
+  }
+
   .section-inset--viewport {
     padding-block: var(--stack-md);
   }
@@ -439,15 +446,11 @@
     padding-bottom: var(--section-y);
   }
 
-  .section-inset--scroll {
-    padding-block: var(--section-y);
-  }
-
   .section-inset--compact {
     padding-block: var(--stack-sm);
   }
 
-  .section-inset--cta {
+  .section-inset--spacious {
     padding-block: var(--section-y);
   }
 
@@ -455,32 +458,28 @@
     padding: 0;
   }
 
-  .section-inset--benefits {
-    padding-block: 6rem;
-  }
-
   @media (min-width: 48rem) {
     .section-inset--statement {
       padding-top: 2.5rem;
     }
 
-    .section-inset--scroll,
-    .section-inset--cta {
+    .section-inset--default {
       padding-block: var(--section-y-md);
     }
 
-    .section-inset--cta {
+    .section-inset--spacious {
       padding-block: var(--section-y-lg);
-    }
-
-    .section-inset--benefits {
-      padding-block: 10rem;
     }
   }
 
   .text-h2 {
     font-family: var(--font-display);
     font-size: var(--text-h2);
+  }
+
+  .text-h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
   }
 
   .text-body-lg {

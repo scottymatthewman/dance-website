@@ -1,5 +1,7 @@
 "use client";
 
+import { ContentRail } from "@/components/home/sections/ContentRail";
+import { SectionShell } from "@/components/home/sections/SectionShell";
 import { RevealBlock, RevealWords } from "@/components/motion/RevealWords";
 import { CtaButton } from "@/components/ui/CtaButton";
 import { COPY } from "@/lib/copy";
@@ -17,9 +19,13 @@ export function StatementContent({ entryProgress }: StatementContentProps) {
     : mapStatementScrollProgress(entryProgress);
 
   return (
-    <div className="flex h-full flex-col items-center justify-center">
-      <div className="flex w-full max-w-[40.625rem] flex-col items-center gap-6 text-center">
-        <div className="flex flex-col gap-2">
+    <SectionShell variant="centered" className="justify-center">
+      <ContentRail
+        width="narrow"
+        align="center"
+        className="flex flex-col items-center gap-6"
+      >
+        <div className="section-copy w-full items-center">
           <RevealWords
             as="h2"
             lines={COPY.statement.headlineLines}
@@ -40,7 +46,7 @@ export function StatementContent({ entryProgress }: StatementContentProps) {
         <RevealBlock progress={progress} timeline="statement" phase="cta">
           <CtaButton variant="primary" size="section" />
         </RevealBlock>
-      </div>
-    </div>
+      </ContentRail>
+    </SectionShell>
   );
 }
