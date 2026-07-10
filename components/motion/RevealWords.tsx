@@ -3,9 +3,13 @@
 import type { ElementType, ReactNode } from "react";
 import {
   getCtaProgress,
+  getHeroLineProgress,
   getHeroWordProgress,
   getSecondaryCtaProgress,
   getSecondarySubheadProgress,
+  getStatementCtaProgress,
+  getStatementSubheadProgress,
+  getStatementWordProgress,
   getSubheadProgress,
   getSubheadRevealStyle,
   getWordColorRevealStyle,
@@ -14,14 +18,16 @@ import {
 } from "@/lib/motion/word-reveal";
 import { cn } from "@/lib/cn";
 
-type RevealWordsPace = "default" | "hero";
+type RevealWordsPace = "default" | "hero" | "statement";
 type RevealWordsVariant = "fade" | "color";
+type RevealBy = "word" | "line";
 
 type RevealWordsProps = {
   words?: string[];
   lines?: readonly string[];
   progress: number;
   pace?: RevealWordsPace;
+  revealBy?: RevealBy;
   variant?: RevealWordsVariant;
   as?: ElementType;
   className?: string;
@@ -30,6 +36,7 @@ type RevealWordsProps = {
 const wordProgressGetters = {
   default: getWordProgress,
   hero: getHeroWordProgress,
+  statement: getStatementWordProgress,
 } as const;
 
 const wordStyleGetters = {
@@ -51,6 +58,7 @@ export function RevealWords({
   lines,
   progress,
   pace = "default",
+  revealBy = "word",
   variant = "fade",
   as: Component = "span",
   className,
@@ -59,6 +67,33 @@ export function RevealWords({
   const getStyle = wordStyleGetters[variant];
   const willChangeClass = wordWillChangeClass[variant];
   const allWords = wordsProp ?? (lines ? flattenLines(lines) : []);
+
+  if (lines && revealBy === "line") {
+    const getLineProgress =
+      pace === "hero" ? getHeroLineProgress : getWordProgress;
+
+    return (
+      <Component className={className}>
+        {lines.map((line, lineIndex) => {
+          const lineProgress = getLineProgress(
+            progress,
+            lineIndex,
+            lines.length,
+          );
+
+          return (
+            <span
+              key={line}
+              className={cn("block", willChangeClass)}
+              style={getStyle(lineProgress)}
+            >
+              {line}
+            </span>
+          );
+        })}
+      </Component>
+    );
+  }
 
   if (lines) {
     let wordOffset = 0;
@@ -115,7 +150,7 @@ export function RevealWords({
 }
 
 type RevealBlockPhase = "subhead" | "cta";
-type RevealBlockTimeline = "default" | "secondary";
+type RevealBlockTimeline = "default" | "secondary" | "statement";
 
 type RevealBlockProps = {
   progress: number;
@@ -134,6 +169,10 @@ const phaseProgressGetters = {
   secondary: {
     subhead: getSecondarySubheadProgress,
     cta: getSecondaryCtaProgress,
+  },
+  statement: {
+    subhead: getStatementSubheadProgress,
+    cta: getStatementCtaProgress,
   },
 } as const;
 

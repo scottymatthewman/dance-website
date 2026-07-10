@@ -1,55 +1,154 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
+import { BentoMockupTag } from "@/components/home/bento/BentoMockupTag";
 import { cn } from "@/lib/cn";
+
+type BentoCardTag = {
+  label: string;
+  icon: string;
+};
 
 type BentoCardProps = {
   title: string;
   subtitle: string;
-  visual: ReactNode;
+  image?: string;
+  imagePosition?: "top" | "bottom" | "right";
+  visual?: ReactNode;
+  tag?: BentoCardTag;
   size?: "large" | "medium";
   className?: string;
   titleClassName?: string;
+  subtitleOnNewLine?: boolean;
+  imageUnoptimized?: boolean;
 };
+
+function BentoImage({
+  src,
+  unoptimized = false,
+}: {
+  src: string;
+  unoptimized?: boolean;
+}) {
+  const serveUnoptimized = unoptimized || src.startsWith("/bento-mockup/");
+
+  return (
+    <div className="relative h-full min-h-[8rem] w-full">
+      <Image
+        src={src}
+        alt=""
+        aria-hidden
+        fill
+        className="object-cover"
+        sizes="(min-width: 1024px) 40vw, (min-width: 768px) 50vw, 100vw"
+        quality={serveUnoptimized ? undefined : 90}
+        unoptimized={serveUnoptimized}
+      />
+    </div>
+  );
+}
 
 export function BentoCard({
   title,
   subtitle,
+  image,
+  imagePosition = "bottom",
   visual,
+  tag,
   size = "medium",
   className,
   titleClassName,
+  subtitleOnNewLine = true,
+  imageUnoptimized = false,
 }: BentoCardProps) {
+  const resolvedVisual =
+    visual ?? (image ? <BentoImage src={image} unoptimized={imageUnoptimized} /> : null);
+  const hasVisual = Boolean(resolvedVisual);
+  const usesGraphicImage = Boolean(image && !visual);
+  const imageOnTop = imagePosition === "top";
+  const imageOnRight = imagePosition === "right";
+
+  const divider = hasVisual ? (
+    <div
+      aria-hidden
+      className={cn(
+        "shrink-0 bg-[#EEEEEE]",
+        imageOnRight
+          ? "h-px w-full md:h-auto md:w-px md:self-stretch"
+          : "h-px w-full",
+      )}
+    />
+  ) : null;
+
+  const titleBlock = (
+    <div
+      className={cn(
+        "relative z-10 w-full shrink-0 px-5 py-5 lg:px-6 lg:py-6",
+        !hasVisual && "flex flex-1 flex-col justify-end",
+        hasVisual && imageOnTop && "mt-auto",
+        imageOnRight &&
+          "flex flex-1 flex-col justify-start md:h-full md:max-w-[42%] md:flex-none md:py-6",
+      )}
+    >
+      <h3
+        className={cn(
+          "w-full text-lg font-medium leading-snug text-primary lg:text-xl",
+          titleClassName,
+        )}
+      >
+        {title}
+        {subtitleOnNewLine ? <br /> : " "}
+        <span className="font-normal text-secondary">{subtitle}</span>
+      </h3>
+    </div>
+  );
+
+  const visualBlock = hasVisual ? (
+    <div
+      className={cn(
+        "relative min-h-0 flex-1 basis-0 overflow-hidden",
+        !usesGraphicImage && "bento-mockup-surface",
+        imageOnRight && "md:min-w-0 md:flex-[1.2]",
+      )}
+    >
+      {resolvedVisual}
+      {tag ? (
+        <BentoMockupTag
+          iconSrc={tag.icon}
+          label={tag.label}
+          className="absolute left-4 top-4 z-10 md:left-6"
+        />
+      ) : null}
+    </div>
+  ) : null;
+
   return (
     <div
       className={cn(
-        "group relative flex h-full w-full flex-col overflow-hidden rounded-xl border border-border-subtle bg-card-inner text-left transition-colors duration-200 hover:border-border-strong",
-        size === "large"
-          ? "min-h-[29.25rem] max-md:aspect-[343/386] max-lg:aspect-[421/612] lg:min-h-[38.25rem]"
-          : "min-h-[22.5rem] max-md:aspect-[343/386] max-lg:aspect-[421/612] lg:min-h-[38.25rem]",
+        "group relative flex h-full w-full overflow-hidden rounded-xl border border-border-subtle bg-white text-left transition-colors duration-200 hover:border-[#DDDDDD]",
+        size === "large" ? "min-h-[14rem]" : "min-h-[12rem]",
+        imageOnRight ? "flex-col-reverse md:flex-row" : "flex-col",
         className,
       )}
     >
-      <div className="relative z-10 py-8 pl-6 pr-6 lg:pl-8">
-        <h3
-          className={cn(
-            "max-w-[18.75rem] text-xl font-medium leading-snug text-primary lg:text-2xl",
-            titleClassName,
-          )}
-        >
-          {title}{" "}
-          <span className="font-normal text-secondary">{subtitle}</span>
-        </h3>
-      </div>
-      <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-xl">
-        {visual}
-        <div
-          aria-hidden
-          className="absolute inset-x-0 bottom-0 h-1/5 bg-gradient-to-b from-transparent to-card-inner"
-        />
-        <div
-          aria-hidden
-          className="absolute inset-y-0 right-0 w-1/5 bg-gradient-to-r from-transparent to-card-inner"
-        />
-      </div>
+      {imageOnRight ? (
+        <>
+          {titleBlock}
+          {divider}
+          {visualBlock}
+        </>
+      ) : imageOnTop ? (
+        <>
+          {visualBlock}
+          {divider}
+          {titleBlock}
+        </>
+      ) : (
+        <>
+          {titleBlock}
+          {divider}
+          {visualBlock}
+        </>
+      )}
     </div>
   );
 }

@@ -1,33 +1,5 @@
-import { SiteFrameRoot } from "@/components/layout/SiteFrame";
-import { Hero } from "@/components/sections/Hero";
-import { Statement } from "@/components/sections/Statement";
-import { ProductFlow } from "@/components/sections/ProductFlow";
-import { ProductSurfaces } from "@/components/sections/ProductSurfaces";
-import { Integrations } from "@/components/sections/Integrations";
-import { Footer } from "@/components/sections/Footer";
-import { Pricing } from "@/components/sections/Pricing";
-import { Testimonial } from "@/components/sections/Testimonial";
-import { PlatformSection, PlatformMockup } from "@/components/sections/PlatformSection";
-import { PlatformPillars } from "@/components/sections/PlatformPillars";
+import { ScrollStage } from "@/components/home/ScrollStage";
 
 export default function Home() {
-  return (
-    <>
-      <Hero />
-      <Statement />
-      <PlatformSection />
-      <SiteFrameRoot className="rounded-b-lg bg-section">
-        <div className="site-frame-platform-lead overflow-visible">
-          <PlatformMockup />
-          <PlatformPillars />
-        </div>
-        <ProductFlow />
-        <ProductSurfaces />
-        <Testimonial />
-        <Integrations />
-      </SiteFrameRoot>
-      <Pricing />
-      <Footer />
-    </>
-  );
+  return <ScrollStage />;
 }

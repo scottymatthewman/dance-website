@@ -5,19 +5,12 @@ export const SUBHEAD_START_PROGRESS = 0.78;
 /** Subhead finishes here; CTA begins immediately after. */
 export const CTA_START_PROGRESS = 0.9;
 
-/** Testimonial: finish quote color reveal before the sticky track releases. */
-const TESTIMONIAL_SCROLL_REVEAL_END = 0.62;
-
-export function mapTestimonialScrollProgress(scrollProgress: number): number {
-  if (scrollProgress <= TESTIMONIAL_SCROLL_REVEAL_END) {
-    return scrollProgress / TESTIMONIAL_SCROLL_REVEAL_END;
-  }
-  return 1;
-}
-
 /** Statement scroll track: headline phase ends, subhead phase ends (then hold). */
-const STATEMENT_SCROLL_HEADLINE_END = 0.65;
-const STATEMENT_SCROLL_SUBHEAD_END = 0.88;
+const STATEMENT_SCROLL_HEADLINE_END = 0.72;
+const STATEMENT_SCROLL_SUBHEAD_END = 0.94;
+const STATEMENT_SUBHEAD_PROGRESS_START = 0.8;
+const STATEMENT_SUBHEAD_PROGRESS_END = 0.94;
+const STATEMENT_CTA_PROGRESS_START = 0.94;
 
 /**
  * Maps raw scroll progress (0–1) to animation progress so the sticky section
@@ -33,12 +26,15 @@ export function mapStatementScrollProgress(scrollProgress: number): number {
     const t =
       (scrollProgress - STATEMENT_SCROLL_HEADLINE_END) /
       (STATEMENT_SCROLL_SUBHEAD_END - STATEMENT_SCROLL_HEADLINE_END);
-    return WORDS_END_PROGRESS + t * (CTA_START_PROGRESS - WORDS_END_PROGRESS);
+    return (
+      STATEMENT_SUBHEAD_PROGRESS_START +
+      t * (STATEMENT_SUBHEAD_PROGRESS_END - STATEMENT_SUBHEAD_PROGRESS_START)
+    );
   }
   const t =
     (scrollProgress - STATEMENT_SCROLL_SUBHEAD_END) /
     (1 - STATEMENT_SCROLL_SUBHEAD_END);
-  return CTA_START_PROGRESS + t * (1 - CTA_START_PROGRESS);
+  return STATEMENT_CTA_PROGRESS_START + t * (1 - STATEMENT_CTA_PROGRESS_START);
 }
 
 /** Scroll-driven sections (e.g. Statement). */
@@ -54,6 +50,19 @@ export function getWordProgress(
   return smootherstep(linear);
 }
 
+/** Statement headline — scroll-driven, slower per-word overlap than default. */
+export function getStatementWordProgress(
+  progress: number,
+  wordIndex: number,
+  wordCount: number,
+): number {
+  const wordSpan = WORDS_END_PROGRESS / wordCount;
+  const start = wordIndex * wordSpan * 0.7;
+  const end = start + wordSpan * 1.75;
+  const linear = Math.min(1, Math.max(0, (progress - start) / (end - start)));
+  return smootherstep(linear);
+}
+
 /** Hero headline — uses linear 0→1 progress; one word at a time, slow fades. */
 export function getHeroWordProgress(
   progress: number,
@@ -63,6 +72,25 @@ export function getHeroWordProgress(
   const wordSpan = 1 / wordCount;
   const start = wordIndex * wordSpan * 0.8;
   const end = start + wordSpan * 1.55;
+  const linear = Math.min(1, Math.max(0, (progress - start) / (end - start)));
+  return smootherstep(linear);
+}
+
+/** Hero headline — one line at a time; last line fully resolves by progress 1. */
+export function getHeroLineProgress(
+  progress: number,
+  lineIndex: number,
+  lineCount: number,
+): number {
+  if (progress >= 1) return 1;
+  if (lineCount <= 1) {
+    return smootherstep(Math.min(1, Math.max(0, progress)));
+  }
+
+  const segment = 1 / lineCount;
+  const overlap = segment * 0.35;
+  const start = lineIndex * (segment - overlap);
+  const end = lineIndex === lineCount - 1 ? 1 : start + segment + overlap;
   const linear = Math.min(1, Math.max(0, (progress - start) / (end - start)));
   return smootherstep(linear);
 }
@@ -101,7 +129,32 @@ export function getCtaProgress(progress: number): number {
   return getSegmentProgress(progress, CTA_START_PROGRESS);
 }
 
+export function getStatementSubheadProgress(progress: number): number {
+  if (progress <= STATEMENT_SUBHEAD_PROGRESS_START) return 0;
+  if (progress >= STATEMENT_SUBHEAD_PROGRESS_END) return 1;
+  return smoothstep(
+    (progress - STATEMENT_SUBHEAD_PROGRESS_START) /
+      (STATEMENT_SUBHEAD_PROGRESS_END - STATEMENT_SUBHEAD_PROGRESS_START),
+  );
+}
+
+export function getStatementCtaProgress(progress: number): number {
+  if (progress <= STATEMENT_CTA_PROGRESS_START) return 0;
+  return smoothstep(
+    (progress - STATEMENT_CTA_PROGRESS_START) /
+      (1 - STATEMENT_CTA_PROGRESS_START),
+  );
+}
+
 export function getWordRevealStyle(wordProgress: number) {
+  if (wordProgress >= 1) {
+    return {
+      opacity: 1,
+      filter: "none",
+      transform: "none",
+    } as const;
+  }
+
   const blur = (1 - wordProgress) * 8;
   const y = (1 - wordProgress) * 12;
 

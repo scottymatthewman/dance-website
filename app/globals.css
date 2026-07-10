@@ -1,63 +1,93 @@
 @import "tailwindcss";
 
 :root {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --scroll-release-offset: 0px;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-interface: var(--font-gen-interface), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-gen-interface-display), ui-sans-serif, system-ui, sans-serif;
 
-  --bg-page: #000000;
-  --bg-section: #000000;
-  --bg-mockup: #000000;
-  --bg-card: #000000;
-  --bg-card-inner: #0a0a0a;
+  --bg-section: #fffcf8;
+  --bg-mockup: #f4f4f4;
+  --bg-card: #ffffff;
+  --bg-card-inner: #fafaf9;
 
-  --text-primary: #ffffff;
-  --text-secondary: #a1a1a1;
-  --text-muted: #71717a;
-  --text-tertiary: #444444;
-  --text-inverse: #101010;
+  --text-primary: #090909;
+  --text-secondary: #555555;
+  --text-muted: #999999;
+  --text-tertiary: #828282;
+  --text-inverse: #ffffff;
 
-  --accent: #a8ffe2;
-  --label: #b8dde5;
+  --accent: #5d60ed;
+  --label: #666666;
 
-  --border-subtle: rgba(255, 255, 255, 0.1);
-  --border-strong: rgba(255, 255, 255, 0.2);
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.15);
+
+  --hover-overlay: rgba(0, 0, 0, 0.04);
+  --shadow-header: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-menu: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  /* Bevel: inside stroke (color-burn) + inner highlight */
+  --bevel-stroke-color: rgb(0 0 0 / 16%);
+  --bevel-highlight-color: rgb(255 255 255 / 40%);
+  --bevel-stroke: inset 0 0 0 1px var(--bevel-stroke-color);
+  --bevel-highlight: inset 0 0 0.2px 2px var(--bevel-highlight-color);
 
   --content-max: 75rem;
   --content-narrow: 40.625rem;
   --content-prose: 36.25rem;
   --frame-max: 82rem;
 
+  --shell-margin: 0px;
+  --shell-margin-top: var(--shell-margin);
+  --shell-rail: #eeeeee;
+  --bg-shell-outer: #fafafa;
+  --bg-scroll-canvas: #fdfdfc;
+  --z-shell-rails: 100;
+
   --gutter: 1.5rem;
   --section-y: 6rem;
   --section-y-md: 8rem;
   --section-y-lg: 12rem;
-  --section-y-xl: 18.75rem;
-  --section-y-hero-top: 4rem;
+  --section-y-hero-top: 4.5rem;
   --section-y-hero-bottom: 4rem;
+  --section-gap: 2rem;
+  --section-gap-same: 4rem;
 
   --stack-sm: 1rem;
   --stack-md: 2rem;
   --stack-header: calc(var(--stack-md) + 0.75rem);
   --stack-lg: 4rem;
+  /* Heading → subheading within a section intro block */
+  --copy-tight: 0.5rem;
+  /* Copy block → primary content within a section intro */
+  --copy-to-content: 1.5rem;
 
-  --text-hero: 2.25rem;
+  --text-hero: 3rem;
   --text-h2: 1.75rem;
-  --text-display: 3rem;
-  --text-quote: 2.25rem;
-  --text-attribution: 1.25rem;
   --text-body-lg: 1.125rem;
   --text-body-md: 1.0625rem;
-  --text-button: 1rem;
-  --text-eyebrow: 0.75rem;
+  --text-subhead: 1.0625rem;
+  --color-subhead: #555555;
 
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 @media (min-width: 768px) {
   :root {
+    --shell-margin: 24px;
     --gutter: 2.5rem;
-    --text-hero: 3rem;
+    --text-hero: 3.5rem;
     --text-h2: 2.5rem;
+    --section-y-hero-top: 5.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --shell-margin: 40px;
   }
 }
 
@@ -72,7 +102,6 @@
   --breakpoint-sm: 30rem;
   --breakpoint-md: 48rem;
 
-  --color-page: var(--bg-page);
   --color-section: var(--bg-section);
   --color-mockup: var(--bg-mockup);
   --color-card: var(--bg-card);
@@ -86,16 +115,20 @@
   --color-label: var(--label);
   --color-border-subtle: var(--border-subtle);
   --color-border-strong: var(--border-strong);
+  --color-hover-overlay: var(--hover-overlay);
+  --color-scroll-canvas: var(--bg-scroll-canvas);
+  --color-shell-outer: var(--bg-shell-outer);
 
   --spacing-gutter: var(--gutter);
   --spacing-section: var(--section-y);
   --spacing-section-md: var(--section-y-md);
   --spacing-section-lg: var(--section-y-lg);
-  --spacing-section-xl: var(--section-y-xl);
   --spacing-stack-sm: var(--stack-sm);
   --spacing-stack-md: var(--stack-md);
   --spacing-stack-header: var(--stack-header);
   --spacing-stack-lg: var(--stack-lg);
+  --spacing-copy-tight: var(--copy-tight);
+  --spacing-copy-to-content: var(--copy-to-content);
 
   --max-width-content: var(--content-max);
   --max-width-narrow: var(--content-narrow);
@@ -104,6 +137,8 @@
 
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
+  --font-interface: var(--font-interface);
+  --font-display: var(--font-display);
 }
 
 @layer base {
@@ -121,6 +156,25 @@
     -moz-osx-font-smoothing: grayscale;
     overflow-x: clip;
     overscroll-behavior-x: none;
+    text-wrap: pretty;
+  }
+
+  body:has(.site-shell-gutter--fixed-horizontal-rails) {
+    --shell-nav-height: 2.5rem;
+    --shell-margin-top: calc(var(--shell-nav-height) + 2 * 0.375rem);
+    background: var(--bg-shell-outer);
+  }
+
+  :where(h1, h2, h3, h4, h5, h6) {
+    text-wrap: balance;
+  }
+
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -139,236 +193,463 @@
 }
 
 @layer utilities {
-  .py-section-responsive {
-    padding-top: var(--section-y);
-    padding-bottom: var(--section-y);
+  /*
+   * Bevel — Figma inside stroke (1px #000 @ 16%, color burn)
+   * + inner shadow (0/0 blur 0.2 spread 2, #fff @ 40%).
+   * Add to any rounded surface: className="bevel rounded-xl"
+   */
+  .bevel {
+    position: relative;
+    isolation: isolate;
   }
 
-  @media (min-width: 768px) {
-    .py-section-responsive {
-      padding-top: var(--section-y-md);
-      padding-bottom: var(--section-y-md);
+  .bevel::before,
+  .bevel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  .bevel::before {
+    z-index: 1;
+    box-shadow: var(--bevel-stroke);
+    mix-blend-mode: color-burn;
+  }
+
+  .bevel::after {
+    z-index: 2;
+    box-shadow: var(--bevel-highlight);
+  }
+
+  .bento-mockup-surface {
+    background-color: #fff;
+    background-image: repeating-linear-gradient(
+      -45deg,
+      #eee 0,
+      #eee 0.5px,
+      transparent 0.5px,
+      transparent 10px
+    );
+  }
+
+  .site-shell-gutter {
+    min-height: 100dvh;
+    padding: var(--shell-margin);
+    background: var(--bg-section);
+  }
+
+  .site-shell-gutter--fixed-horizontal-rails {
+    --shell-nav-height: 2.5rem;
+    --shell-margin-top: calc(var(--shell-nav-height) + 2 * 0.375rem);
+    padding-top: var(--shell-margin-top);
+    padding-bottom: 0;
+    background: var(--bg-shell-outer);
+  }
+
+  .site-shell-rails {
+    position: absolute;
+    inset: 0;
+    z-index: var(--z-shell-rails);
+  }
+
+  .site-shell-rail {
+    position: absolute;
+    background: var(--shell-rail);
+  }
+
+  /* Lines sit on the center of each boundary vector (half margin / half content). */
+  .site-shell-rail--top {
+    top: var(--shell-margin);
+    right: 0;
+    left: 0;
+    height: 1px;
+    transform: translateY(-50%);
+  }
+
+  .site-shell-rail--bottom {
+    right: 0;
+    bottom: var(--shell-margin);
+    left: 0;
+    height: 1px;
+    transform: translateY(50%);
+  }
+
+  .site-shell-rail--left {
+    top: 0;
+    bottom: 0;
+    left: var(--shell-margin);
+    width: 1px;
+    transform: translateX(-50%);
+  }
+
+  .site-shell-rail--right {
+    top: 0;
+    right: var(--shell-margin);
+    bottom: 0;
+    width: 1px;
+    transform: translateX(50%);
+  }
+
+  /* Home page: tall scroll track; pin the rail frame to the viewport. */
+  .site-shell-gutter--fixed-horizontal-rails .site-shell {
+    position: relative;
+    z-index: 0;
+    min-height: calc(100dvh - var(--shell-margin-top));
+  }
+
+  .site-shell-rails--viewport-pinned {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+  }
+
+  .site-shell-rails--viewport-pinned .site-shell-rail--top {
+    top: var(--shell-margin-top);
+    right: 0;
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  .site-shell-rails--viewport-pinned .site-shell-rail--bottom {
+    bottom: var(--shell-margin);
+    right: 0;
+    left: 0;
+    transform: translateY(calc(50% - var(--scroll-release-offset)));
+  }
+
+  .site-shell-rails--viewport-pinned .site-shell-rail--left {
+    top: 0;
+    bottom: 0;
+    left: var(--shell-margin);
+    transform: translateX(-50%);
+  }
+
+  .site-shell-rails--viewport-pinned .site-shell-rail--right {
+    top: 0;
+    bottom: 0;
+    right: var(--shell-margin);
+    transform: translateX(50%);
+  }
+
+  .scroll-stage,
+  .scroll-track {
+    background: var(--bg-scroll-canvas);
+  }
+
+  .scroll-stage {
+    will-change: bottom;
+  }
+
+  .scroll-section-gap {
+    width: 100%;
+  }
+
+  .scroll-release-footer {
+    top: calc(
+      100dvh - var(--scroll-release-footer-bottom, var(--shell-margin)) -
+        var(--scroll-release-offset, 0px) + 0.5px
+    );
+    right: var(--shell-margin);
+    bottom: var(--scroll-release-footer-bottom, var(--shell-margin));
+    left: var(--shell-margin);
+    overflow: hidden;
+    contain: layout style;
+    will-change: opacity;
+  }
+
+  .site-shell {
+    min-height: calc(100dvh - 2 * var(--shell-margin));
+  }
+
+  /* Home page: nav lives in the top shell margin, above the top rail. */
+  .header--in-shell-margin {
+    --header-content-inset: max(
+      0.375rem,
+      calc((var(--shell-margin-top) - var(--shell-nav-height, 1.75rem)) / 2)
+    );
+    top: 0;
+    right: var(--shell-margin);
+    left: var(--shell-margin);
+    height: auto;
+    align-items: stretch;
+    padding: var(--header-content-inset);
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 47.9375rem) {
+    body:has(.site-shell-gutter--fixed-horizontal-rails) {
+      --shell-margin-top: var(--shell-margin);
+    }
+
+    .site-shell-gutter--fixed-horizontal-rails {
+      --shell-margin-top: var(--shell-margin);
+      padding-top: var(--shell-margin);
+    }
+
+    .header--in-shell-margin {
+      top: 0.5rem;
+      padding: 0;
+    }
+
+    .header--in-shell-margin .header-bar {
+      border-radius: 0.5rem;
+      border: 1px solid var(--border-subtle);
+      background: color-mix(in srgb, var(--bg-section) 80%, transparent);
+      padding-block: 0.375rem;
+      padding-inline: 0.75rem;
+      box-shadow: var(--shadow-header);
+      backdrop-filter: blur(12px);
     }
   }
 
-  @media (min-width: 1024px) {
-    .py-section-responsive {
-      padding-top: var(--section-y-lg);
-      padding-bottom: var(--section-y-lg);
-    }
+  /*
+   * Section shell spacing — horizontal gutter + vertical inset presets.
+   * Applied by ScrollTrackSection, not individual content blocks.
+   */
+  .section-inset {
+    padding-inline: var(--gutter);
   }
 
-  @media (min-width: 1280px) {
-    .py-section-responsive {
-      padding-top: var(--section-y-xl);
-      padding-bottom: var(--section-y-xl);
-    }
-  }
-
-  .py-hero-responsive {
+  .section-inset--hero {
     padding-top: var(--section-y-hero-top);
     padding-bottom: var(--section-y-hero-bottom);
   }
 
-  @media (min-width: 1024px) {
-    .py-hero-responsive {
-      padding-top: 5.5rem;
-      padding-bottom: var(--section-y-hero-bottom);
+  .section-inset--viewport {
+    padding-block: var(--stack-md);
+  }
+
+  .scroll-track-section-frame--statement {
+    border-block: 1px solid var(--shell-rail);
+  }
+
+  .section-image-scrim {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--bg-section) 94%, transparent) 0%,
+      color-mix(in srgb, var(--bg-section) 72%, transparent) 55%,
+      color-mix(in srgb, var(--bg-section) 40%, transparent) 100%
+    );
+  }
+
+  .section-inset--statement {
+    padding-top: var(--stack-md);
+    padding-bottom: var(--section-y);
+  }
+
+  .section-inset--scroll {
+    padding-block: var(--section-y);
+  }
+
+  .section-inset--compact {
+    padding-block: var(--stack-sm);
+  }
+
+  .section-inset--cta {
+    padding-block: var(--section-y);
+  }
+
+  .section-inset--flush {
+    padding: 0;
+  }
+
+  .section-inset--benefits {
+    padding-block: 6rem;
+  }
+
+  @media (min-width: 48rem) {
+    .section-inset--statement {
+      padding-top: 2.5rem;
+    }
+
+    .section-inset--scroll,
+    .section-inset--cta {
+      padding-block: var(--section-y-md);
+    }
+
+    .section-inset--cta {
+      padding-block: var(--section-y-lg);
+    }
+
+    .section-inset--benefits {
+      padding-block: 10rem;
     }
   }
 
-  .text-hero {
-    font-size: var(--text-hero);
-  }
-
   .text-h2 {
+    font-family: var(--font-display);
     font-size: var(--text-h2);
   }
 
-  .text-display {
-    font-size: var(--text-display);
-  }
-
-  .text-quote {
-    font-size: var(--text-quote);
-  }
-
-  .text-attribution {
-    font-size: var(--text-attribution);
-  }
-
   .text-body-lg {
+    font-family: var(--font-sans);
     font-size: var(--text-body-lg);
   }
 
   .text-body-md {
+    font-family: var(--font-sans);
     font-size: var(--text-body-md);
   }
 
-  .text-button {
-    font-size: var(--text-button);
+  .text-subhead {
+    font-family: var(--font-sans);
+    font-size: var(--text-subhead);
+    color: var(--color-subhead);
   }
 
-  .text-eyebrow {
-    font-size: var(--text-eyebrow);
+  /*
+   * Section intro rhythm — use cases, flow, email capture.
+   * copy-tight (8px): heading → subheading
+   * copy-to-content (24px): copy block → primary content
+   */
+  .section-copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--copy-tight);
   }
 
-  .gap-stack-header {
-    gap: var(--stack-header);
-  }
-
-  .site-frame-stack > * + * {
-    margin-top: var(--section-y);
-  }
-
-  @media (min-width: 768px) {
-    .site-frame-stack > * + * {
-      margin-top: var(--section-y-md);
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .site-frame-stack > * + * {
-      margin-top: var(--section-y-lg);
-    }
-  }
-
-  @media (min-width: 1280px) {
-    .site-frame-stack > * + * {
-      margin-top: var(--section-y-xl);
-    }
-  }
-
-  @media (max-width: 767px) {
-    .hero-mobile-mockup-slot {
-      --hero-content-left: calc(
-        var(--spacing-gutter) + max(0px, (100vw - 85vw - 2 * var(--spacing-gutter)) / 2)
-      );
-      width: 100vw;
-      margin-left: calc(50% - 50vw);
-    }
-
-    .hero-mobile-mockup-image {
-      left: var(--hero-content-left);
-      top: 0;
-      bottom: calc(-1 * var(--section-y-hero-bottom));
-      aspect-ratio: 1459 / 1512;
-      height: auto;
-      width: auto;
-      min-width: calc(100vw - var(--hero-content-left));
-      max-width: none !important;
-    }
-  }
-
-  html.product-flow-snap-root {
-    scroll-snap-type: y proximity;
-  }
-
-  @media (max-width: 1023px) {
-    html.product-flow-snap-root {
-      scroll-snap-type: none;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html.product-flow-snap-root {
-      scroll-snap-type: none;
-    }
-  }
-
-  @keyframes flow-blur-enter {
-    from {
-      opacity: 0;
-      filter: blur(12px);
-      transform: translateY(0.5rem);
-    }
-    to {
-      opacity: 1;
-      filter: blur(0);
-      transform: translateY(0);
-    }
-  }
-
-  .flow-blur-enter {
-    animation: flow-blur-enter 600ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  .section-intro {
+    display: flex;
+    flex-direction: column;
+    gap: var(--copy-to-content);
   }
 
   .hero-mockup-suggestion {
     cursor: pointer;
   }
 
+  .hero-mockup-gantt-bar {
+    cursor: pointer;
+  }
+
+  .hero-mockup-gantt-bar:active {
+    transform: translateY(-50%) scale(0.995);
+  }
+
+  .hero-mockup-search,
+  .hero-mockup-tab,
+  .hero-mockup-view-tab,
+  .hero-mockup-icon-btn {
+    cursor: pointer;
+  }
+
   .hero-mockup-suggestion:active {
-    background: rgba(255, 255, 255, 0.04);
-  }
-
-  .integrations-mockup-card {
-    cursor: pointer;
-  }
-
-  .integrations-mockup-card:active {
-    transform: scale(0.985);
-  }
-
-  .boards-mockup-scroll {
-    scrollbar-width: none;
-  }
-
-  .boards-mockup-scroll::-webkit-scrollbar {
-    display: none;
-  }
-
-  .boards-mockup-card {
-    cursor: pointer;
-  }
-
-  .boards-mockup-card:active {
-    transform: scale(0.985);
+    background: rgba(0, 0, 0, 0.04);
   }
 
   @media (hover: hover) and (pointer: fine) {
     .hero-mockup-nav-item:hover,
     .hero-mockup-nav-item.is-active {
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    .hero-mockup-search:hover,
+    .hero-mockup-search:focus-visible {
+      border-color: rgba(0, 0, 0, 0.15);
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
+    }
+
+    .hero-mockup-tab:hover,
+    .hero-mockup-view-tab:hover {
+      border-color: rgba(0, 0, 0, 0.15);
+    }
+
+    .hero-mockup-icon-btn:hover {
+      opacity: 0.7;
+    }
+
+    .hero-mockup-gantt-bar:hover {
+      transform: translateY(calc(-50% - 1px));
     }
 
     .hero-mockup-suggestion:hover,
     .hero-mockup-suggestion.is-hovered {
-      background: rgba(255, 255, 255, 0.04);
-      cursor: pointer;
-    }
-
-    .hero-mockup-icon-btn:hover {
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .hero-mockup-send:hover {
-      background: #3a3a3a;
-      transform: scale(1.04);
-    }
-
-    .integrations-mockup-card:hover {
-      transform: translateY(-1px);
-    }
-
-    .boards-mockup-card:hover {
-      border-color: rgba(255, 255, 255, 0.15);
-      transform: translateY(-1px);
+      background: rgba(0, 0, 0, 0.04);
     }
   }
-}
 
-.hero-bg {
-  background-color: #000000;
-  background-image:
-    linear-gradient(
-      to bottom,
-      #000000 0%,
-      #000000 35.577%,
-      rgba(0, 0, 0, 0) 67.788%,
-      #000000 100%
-    ),
-    url("/hero/orange-motion-bg.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  .hero-flow-caret {
+    animation: hero-flow-caret-blink 1s step-end infinite;
+  }
+
+  @keyframes hero-flow-caret-blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .hero-flow-dot-grid {
+    background-color: #ffffff;
+    background-image: radial-gradient(
+      circle,
+      rgba(0, 0, 0, 0.14) 1.2px,
+      transparent 1.2px
+    );
+    background-size: 26px 26px;
+    background-position: 13px 13px;
+  }
+
+  .collaborate-mockup-loader {
+    animation: collaborate-loader-spin 1s linear infinite;
+  }
+
+  .collaborate-mockup-shimmer {
+    background-image:
+      linear-gradient(270deg, rgb(0, 0, 0) 0%, rgb(187, 187, 187) 50%, rgb(0, 0, 0) 100%),
+      linear-gradient(90deg, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-size: 200% 100%;
+    animation: collaborate-shimmer 2.4s linear infinite;
+  }
+
+  @keyframes collaborate-loader-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes collaborate-shimmer {
+    to {
+      background-position: -200% 0;
+    }
+  }
+
+  @keyframes plan-phase-enter {
+    from {
+      opacity: 0;
+      transform: translateX(-8px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .plan-phase-enter {
+    animation: plan-phase-enter 450ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .collaborate-mockup-loader,
+    .collaborate-mockup-shimmer,
+    .plan-phase-enter {
+      animation: none;
+    }
+
+    .collaborate-mockup-shimmer {
+      color: #777;
+      background: none;
+      -webkit-background-clip: initial;
+      background-clip: initial;
+    }
+  }
 }

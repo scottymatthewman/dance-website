@@ -1,14 +1,14 @@
 # Dance mockup color system
 
-Reference for **interactive product mockups** on the marketing site (`HeroMockup`, `IntegrationsMockup`, `BoardsMockup`, etc.).
+Reference for **interactive product mockups** on the marketing site (`PlanMockup`, `TimelineMockup`, `AgentInteractionMockup`, bento mockups, etc.).
 
-This is separate from the **marketing site palette** in `app/globals.css` (black page, white text, mint accent). Mockups mirror the in-app UI from [Figma — Dance](https://www.figma.com/design/CnIGTzZeYLLu2glXTzZKk5/Dance) in dark mode.
+This is separate from the **marketing site palette** in `app/globals.css` (black page, white text, mint accent). Mockups use Dance's dark product UI palette.
 
 ---
 
 ## Principles
 
-1. **Dark mode by default** for all product mockups embedded in bento cards and the hero.
+1. **Dark mode by default** for all product mockups embedded in bento cards and feature sections.
 2. **Do not recolor brand logos** — Slack, HubSpot, Gmail, etc. keep their native colors; icon tiles may stay `#FFFFFF`.
 3. **Use semantic tokens** below rather than one-off hex values when possible.
 4. **Prefer subtle borders and shadows** over heavy boxes-in-boxes framing.
@@ -17,9 +17,7 @@ This is separate from the **marketing site palette** in `app/globals.css` (black
 
 ## Neutral scale (primitives)
 
-Extracted from Figma variables and layer fills on product frames.
-
-| Token | Light (Figma) | Dark (mockups) | Usage |
+| Token | Light | Dark (mockups) | Usage |
 |---|---|---|---|
 | `gray-0` | `#FFFFFF` | — | Logo icon tiles only |
 | `gray-1` | `#FCFCFD` | `#141414` | Raised surface / canvas |
@@ -33,13 +31,11 @@ Extracted from Figma variables and layer fills on product frames.
 | `gray-9` | `#272727` | `#D4D4D4` | Secondary emphasis text |
 | `gray-10` | `#1A1A1A` | `#F4F4F4` | Primary text |
 
-Figma variable bindings seen in file: `Neutral Colors/Gray 3` → `#F2F2F2`, `Neutral Colors/Gray 7` → `#828282`.
-
 ---
 
 ## Semantic tokens — dark mockups
 
-These are the values currently used across mockup components.
+These are the values used across mockup components.
 
 ### Backgrounds
 
@@ -101,7 +97,7 @@ Keep these for column headers, agent badges, and semantic UI — do not neutrali
 
 | Token | Value | Usage |
 |---|---|---|
-| `accent-agent` | `#02ABFF` | Dance agent avatar badge |
+| `accent-agent` | `#02ABFF` | Agent avatar badge |
 | `accent-today` | `#02ABFF` | Today column / open status ring |
 | `accent-progress` | `#5D60ED` | In Progress column, half-circle status |
 | `accent-progress-gradient-from` | `#5DB1ED` | "N agents at work…" text gradient |
@@ -122,9 +118,9 @@ Subtle top gradients on kanban columns — use low opacity on dark base:
 
 ---
 
-## Light mode reference (Figma source)
+## Light mode reference (optional)
 
-Use when translating new Figma frames before applying dark tokens.
+Use when building light-variant mockups before applying dark tokens.
 
 | Role | Light value |
 |---|---|
@@ -175,7 +171,7 @@ Optional snippet for new mockup components. Not wired into the site global theme
 
 ## Typography (mockups)
 
-From Figma type styles — marketing site uses Geist; mockups approximate Suisse Intl scale:
+Mockups use the same type families as the marketing site (Gen Interface JP Display on headings, Geist on UI). Approximate scale:
 
 | Style | Size | Weight | Tracking |
 |---|---|---|---|
@@ -190,10 +186,11 @@ From Figma type styles — marketing site uses Geist; mockups approximate Suisse
 
 | Component | Location |
 |---|---|
-| `HeroMockup` | Hero section |
-| `IntegrationsMockup` | Bento — Unified intelligence |
-| `BoardsMockup` | Bento — Account monitoring |
-| `SlackAgentMockup` | Standalone Slack thread mockup (product surfaces now use `context-card.png` / `slack-card.png`) |
-| `AgentBriefingReportMockup` | Standalone briefing report mockup (product surfaces now use `context-card.png`) |
+| `PlanMockup` | Features — plan overview |
+| `TimelineMockup` | Features — timeline view |
+| `DefineMockup` | Features — define phase |
+| `CollaborateMockup` | Features — collaboration |
+| `AgentInteractionMockup` | Features — agent chat |
+| `AgentsBentoMockup`, `BudgetBentoMockup`, etc. | Bento grid |
 
-When adding a new mockup, match these tokens first. If Figma introduces a new semantic color, add it to this doc before hardcoding in the component.
+When adding a new mockup, match these tokens first. If a new semantic color is needed, add it to this doc before hardcoding in the component.

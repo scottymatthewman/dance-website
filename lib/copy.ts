@@ -1,157 +1,173 @@
 export const COPY = {
   hero: {
-    headline: "The smartest way to plan events",
-    headlineLines: ["The smartest way", "to plan events"],
-    subhead:
-      "One place for every event plan — phases, timelines, budget, and tasks. Assign work to agents or chat to adjust the plan on the fly.",
-    cta: "Book a call",
+    headline: "The smartest way to plan events.",
+    subheadLines: [
+      "Collaborate with your teammates and event agents to stay aligned and under budget.",
+    ],
+    cta: "Get early access",
   },
   statement: {
-    headlineLines: ["Plan more events.", "Not more spreadsheets."],
-    body: "Every phase, deadline, and dollar in one workspace. Dance keeps your team aligned and your agents on task.",
+    headlineLines: ["Design events.", "Not spreadsheets."],
+    body: "Dance provides a singular workspace for event teams to move fast. Templates, plan generation, live statuses, and agents that take action open up your team to do the creative strategy work to put on world-class events.",
   },
-  productFlow: {
+  mockup: {
+    headline: "One place to execute, together.",
+    body: "Outline the key event properties and scope to create a single source of truth from day one.",
+  },
+  benefits: {
+    items: [
+      {
+        icon: "/benefits/icon-time-flies.svg",
+        title: "Save hours and headache",
+        body: "Inefficiencies stack up quickly. Searching for documents, messages, and decisions require teams to spend many more hours than necessary.",
+      },
+      {
+        icon: "/benefits/icon-code-lines.svg",
+        title: "Alignment as insurance",
+        body: "Lack of clarity leads to dropping responsibilities, missed tasks, and misunderstanding. Alignment across the team leads to smooth activation.",
+      },
+      {
+        icon: "/benefits/icon-computer-use.svg",
+        title: "Make room for creativity",
+        body: "Agents allow teams to buy time so they can strategize at a higher level, get creative, and plan events that truly move the needle.",
+      },
+    ],
+  },
+  features: {
+    headline: "Build and execute on a clear picture",
     steps: [
       {
-        number: "1",
+        eyebrow: "Define",
+        body: "What used to be agreed upon in Zooms and emails can now be visually configured. Outline the key event properties and scope to create a single source of truth from day one.",
+      },
+      {
         eyebrow: "Plan",
-        headline: "See every event in one place",
-        body: "All your event plans in a single view. Timelines, owners, and status — always current, never buried in email threads.",
+        body: "Google docs and Notions get lost and outdated quickly. Generate live timelines with phases, tasks, assignees, and a clear view of task priority.",
       },
       {
-        number: "2",
-        eyebrow: "Phase",
-        headline: "Break work into phases with budget and timelines",
-        body: "Each phase has its own timeline and budget. See what's due this week and where spend is tracking before it becomes a surprise.",
-      },
-      {
-        number: "3",
-        eyebrow: "Task",
-        headline: "Assign tasks to your team or your agents",
-        body: "Tasks live inside each phase. Assign to a teammate or hand off to an agent — research vendors, draft run-of-show updates, chase confirmations.",
-      },
-      {
-        number: "4",
-        eyebrow: "Track",
-        headline: "Stay on budget and on schedule",
-        body: "Budget per phase and per plan. Timeline health at a glance. Know what's slipping before load-in day.",
+        eyebrow: "Collaborate",
+        body: "Wasted time and double work comes from disparate, disconnected communications. Maintain a clear view of statuses and work alongside your teammates and agents to move the event forward.",
       },
     ],
   },
-  productSurfaces: {
-    headline: "A better way to plan events.",
-    cta: "Book a call",
-    cards: [
+  useCases: {
+    headline: "Built for the events you want to run.",
+    subhead:
+      "Get closer to the original vision and stay aligned the whole way.",
+    items: [
       {
-        icon: "context" as const,
-        title: "Every plan at a glance",
-        body: "Open any event and see phases, open tasks, budget status, and what changed since you last looked.",
-        visual: "briefing" as const,
+        id: "executive-dinner",
+        title: "Executive Dinners",
+        body: "Close and grow relationships with key prospects with focused and curated meals.",
+        image: "/use-cases/executive-dinners.png",
       },
       {
-        icon: "slack" as const,
-        title: "Chat to adjust the plan",
-        body: "Ask an agent to shift timelines, reassign tasks, or draft vendor outreach. Changes stay within your guardrails.",
-        visual: "slack" as const,
+        id: "tradeshow",
+        title: "Tradeshows",
+        body: "Sequence and assign tasks like booth design, brand assets, and sales team prep, easily.",
+        image: "/use-cases/tradeshows.png",
       },
       {
-        icon: "crm" as const,
-        title: "Budget and timeline in sync",
-        body: "Spend tracked per phase. Dates enforced across the plan. Agents can't push a start date past your end date.",
-        visual: "crm" as const,
-      },
-    ],
-  },
-  integrations: {
-    headlineLines: ["Connected to your event stack.", "Just like your team."],
-    taglineLines: [
-      "Dance plugs into the tools your team already uses.",
-      "Calendar, email, Slack, spreadsheets, and more.",
-    ],
-    cta: "Book a call",
-  },
-  testimonial: {
-    quote:
-      "We finally have one place for every event plan. Our team spends less time chasing updates and more time on the work that matters.",
-    name: "Maya Swatch",
-    role: "Director of Events",
-    company: "Meridian Events",
-  },
-  platform: {
-    headline: "One workspace for every event plan.",
-    headlineAccent: "Agents that work within your guardrails.",
-    cta: "Book a call",
-    pillars: [
-      {
-        icon: "stack" as const,
-        title: "A workspace for event planning",
-        body: "Plans, phases, tasks, and budget in one place. Not another spreadsheet to maintain.",
+        id: "conference",
+        title: "Conferences",
+        body: "Organize large scale efforts and streamline vendor communication to host top-tier industry experiences.",
+        image: "/use-cases/conferences.png",
       },
       {
-        icon: "agents" as const,
-        title: "Agents that work like teammates",
-        body: "Assign agents to tasks or chat to adjust the plan. They research, draft, and follow up — you stay in control.",
+        id: "community-event",
+        title: "Community Events",
+        body: "Deepen relationships with users and ambassadors through smooth, creative activations.",
+        image: "/use-cases/community-events.png",
       },
       {
-        icon: "outcomes" as const,
-        title: "Built for event teams",
-        body: "Guardrails keep plans sane — start dates before end dates, budget caps per phase, dependencies enforced.",
+        id: "offsites",
+        title: "Offsites",
+        body: "Close and grow relationships with key prospects with focused and curated meals.",
+        image: "/use-cases/offsites.jpg",
       },
     ],
+    ctaCard: {
+      title: "Tell us what you're planning",
+      body: "We'd love to hear what you and your team are working on.",
+      cta: "Let us know",
+      form: {
+        emailPlaceholder: "name@email.com",
+        eventsPlaceholder: "What kind of events do you work on?",
+        submit: "Submit",
+        loading: "Submitting…",
+        successTitle: "Thank you!",
+        successBody: "We'll be in touch soon.",
+        error: "Something went wrong. Please try again.",
+        invalidEmail: "Please enter a valid email address.",
+        invalidEvents: "Tell us what kind of events you work on.",
+        rateLimited:
+          "You've reached the maximum number of submissions from this device.",
+      },
+    },
   },
-  platformBento: {
-    headline: "One workspace for every event plan.",
-    headlineAccent: "Agents that work within your guardrails.",
-    cta: "Book a call",
+  nav: {
+    features: "Features",
+    useCases: "Use Cases",
+    cta: "Get early access",
+  },
+  emailCapture: {
+    headline: "Unlock event agents for your team.",
+    subhead: "Join the waitlist and get notified the moment we launch.",
+    image: "/home/email-capture-bg.jpg",
+    placeholder: "name@email.com",
+    button: "Get in early",
+    loading: "Submitting…",
+    success: "You're on the list. We'll be in touch soon.",
+    error: "Please enter a valid email address.",
+  },
+  bento: {
     topRow: [
       {
-        title: "Plan overview",
-        subtitle: "every event in one view",
-        visual: "monitoring" as const,
+        title: "Pass off mundane, repetitive tasks",
+        subtitle: "to your team's event agent.",
+        image: "/bento-mockup/Agents-Graphic.png",
+        tag: { label: "Agents", icon: "/bento-mockup/agents/tag-at.svg" },
       },
       {
-        title: "Phase timelines",
-        subtitle: "with budget per phase",
-        visual: "intelligence" as const,
+        title: "Work where you work.",
+        subtitle: "Bring your tools with you.",
+        image: "/bento-mockup/Integrations-Graphic.png",
+        tag: {
+          label: "Integrations + MCP",
+          icon: "/bento-mockup/integrations/mcp-icon.svg",
+        },
       },
     ],
     bottomRow: [
       {
-        title: "Task assignment",
-        subtitle: "to people or agents",
-        visual: "playbooks" as const,
+        title: "Never start from step 1 again.",
+        subtitle: "Prompt a plan or use a template.",
+        image: "/bento-mockup/Templates-Graphic.png",
+        tag: { label: "Templates", icon: "/bento-mockup/templates/tag-bento.svg" },
       },
       {
-        title: "Budget tracking",
-        subtitle: "without spreadsheet chaos",
-        visual: "expansion" as const,
+        title: "Never over-spend.",
+        subtitle: "Know where every dollar is going.",
+        image: "/bento-mockup/Budget-Graphic.png",
+        tag: {
+          label: "Budget Tracking",
+          icon: "/bento-mockup/budget/receipt.svg",
+        },
       },
       {
-        title: "50+ integrations",
-        subtitle: "to the tools you already use",
-        visual: "integrations" as const,
+        title: "Contracts, receipts, internal write-ups.",
+        subtitle: "Always on-hand.",
+        image: "/bento-mockup/Docs-Graphic.png",
+        tag: { label: "Docs", icon: "/bento-mockup/docs/tag-icon.svg" },
       },
     ],
-  },
-  pricing: {
-    headline: "Pricing",
-    price: "$50",
-    period: "per seat / month",
-    body: "Less than the hour you'll save each month.",
-    subbody: "No procurement. No committee. Just better event plans.",
-    cta: "Book a call",
-    features: [
-      "Unlimited event plans",
-      "Phases, timelines, and budget tracking",
-      "Tasks with agent assignment",
-      "Agent chat with plan guardrails",
-    ],
-  },
-  nav: {
-    cta: "Book a call",
   },
   footer: {
-    taglineLines: ["Intelligent event planning", "for teams that move fast."],
-    cta: "Book a call",
+    label: "Get early access",
+    waitlistButton: "Join waitlist",
+    paragraphs: [
+      "The more digital our lives become, the more we value physical presence. In-person events are about to matter more than ever before, serving as the essential spaces for true human connection and collaboration. Planning these experiences, however, remains notoriously difficult, as teams are already spread thin trying to make sure things go as intended. Organizers spend almost all their time managing endless details and coordination, leaving very little room for creativity, which ultimately hurts team morale and forces teams to standardize efforts into predictable experiences.",
+      "We started Dance to change that by helping teams offload the heavy burden of tracking those endless details, allowing organizers to redirect their energy toward high-level strategy that drives actual business growth. Our event agents make the entire process much easier for planners, while a platform built for alignment acts as insurance for events running as intended. Having Dance take care of the chores that gate creativity ultimately allows you to protect your bottom line while building unforgettable experiences.",
+    ],
   },
 } as const;
