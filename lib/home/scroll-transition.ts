@@ -59,13 +59,32 @@ function mapSegmentRange(t: number, start: number, end: number) {
   return (t - start) / (end - start);
 }
 
-function getPinnedHoldScrollPx(
+export function getPinnedHoldScrollPx(
   section: PinnedSectionLayout,
   frameHeightPx: number,
 ) {
   const revealRange = Math.max(section.holdPx - frameHeightPx, 1);
   const postRevealHoldPx = Math.max(section.postRevealHoldPx ?? 0, 0);
   return revealRange + postRevealHoldPx;
+}
+
+/** Window scroll Y that aligns a track offset with the top of the scroll frame. */
+export function getWindowScrollYForTrackOffset(
+  targetOffset: number,
+  layout: TrackScrollLayout,
+) {
+  const { frameHeightPx, flowStartHoldPx, features, statement } = layout;
+  let scrollY = targetOffset;
+
+  if (features && targetOffset > features.offsetInTrack) {
+    scrollY += getPinnedHoldScrollPx(features, frameHeightPx);
+  }
+
+  if (statement && targetOffset > statement.offsetInTrack) {
+    scrollY += getPinnedHoldScrollPx(statement, frameHeightPx);
+  }
+
+  return flowStartHoldPx + scrollY;
 }
 
 function getTrackBottomScrollPx(

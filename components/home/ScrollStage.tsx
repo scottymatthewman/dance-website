@@ -2,9 +2,9 @@
 
 import { ScrollReleaseFooter } from "@/components/home/ScrollReleaseFooter";
 import { ScrollTrackSection } from "@/components/home/ScrollTrackSection";
-import { BenefitsContent } from "@/components/home/sections/BenefitsContent";
 import { BentoContent } from "@/components/home/sections/BentoContent";
-import { EmailCaptureContent } from "@/components/home/sections/EmailCaptureContent";
+import { BenefitsContent } from "@/components/home/sections/BenefitsContent";
+import { EmailCaptureBleedContent } from "@/components/home/sections/EmailCaptureBleedContent";
 import { FeaturesContent } from "@/components/home/sections/FeaturesContent";
 import { HeroContent } from "@/components/home/sections/HeroContent";
 import { StatementContent } from "@/components/home/sections/StatementContent";
@@ -31,6 +31,7 @@ import {
   getScrollReleaseFooterBottomPx,
   getScrollReleaseOffsetPx,
   getTrackTranslateY,
+  getWindowScrollYForTrackOffset,
   type TrackScrollLayout,
 } from "@/lib/home/scroll-transition";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
@@ -47,18 +48,18 @@ const FILL_VIEWPORT_SECTIONS = new Set<SectionId>([
   "features",
   "statement",
   "bento",
-  "emailCapture",
+  "emailCaptureBleed",
 ]);
 
 const SECTION_CONTENT: Record<
-  Exclude<SectionId, "footer" | "features" | "statement">,
+  Exclude<SectionId, "footer" | "features" | "statement" | "emailCapture">,
   ReactNode
 > = {
   hero: <HeroContent />,
   benefits: <BenefitsContent />,
   bento: <BentoContent />,
   useCases: <UseCasesContent />,
-  emailCapture: <EmailCaptureContent />,
+  emailCaptureBleed: <EmailCaptureBleedContent />,
 };
 
 export function ScrollStage() {
@@ -212,12 +213,7 @@ export function ScrollStage() {
 
     const measureTrack = () => {
       const trackHeight = track.scrollHeight;
-
-      TRACK_SECTIONS.forEach((section, index) => {
-        const element = sectionRefs.current[index];
-        const offsetInTrack = element?.offsetTop ?? 0;
-        setHomeSectionScrollTop(section.id, offsetInTrack);
-      });
+      const frameHeight = frame.clientHeight;
 
       const featuresElement = track.querySelector<HTMLElement>(
         FEATURES_SECTION_SELECTOR,
@@ -225,9 +221,40 @@ export function ScrollStage() {
       const statementElement = track.querySelector<HTMLElement>(
         STATEMENT_SECTION_SELECTOR,
       );
+      const featuresOffset = featuresElement?.offsetTop ?? 0;
+      const statementOffset = statementElement?.offsetTop ?? 0;
+
+      const scrollLayout: TrackScrollLayout = {
+        frameHeightPx: frameHeight,
+        trackHeightPx: trackHeight,
+        flowStartHoldPx: 0,
+        features: featuresElement
+          ? {
+              offsetInTrack: featuresOffset,
+              holdPx: getFeaturesHoldPx(frameHeight, viewportHeight),
+            }
+          : null,
+        statement: statementElement
+          ? {
+              offsetInTrack: statementOffset,
+              holdPx: statementHoldPx,
+              postRevealHoldPx: statementPostRevealHoldPx,
+            }
+          : null,
+      };
+
+      TRACK_SECTIONS.forEach((section, index) => {
+        const element = sectionRefs.current[index];
+        const offsetInTrack = element?.offsetTop ?? 0;
+        setHomeSectionScrollTop(
+          section.id,
+          getWindowScrollYForTrackOffset(offsetInTrack, scrollLayout),
+        );
+      });
+
       setTrackHeightPx(trackHeight);
-      setFeaturesOffsetInTrack(featuresElement?.offsetTop ?? 0);
-      setStatementOffsetInTrack(statementElement?.offsetTop ?? 0);
+      setFeaturesOffsetInTrack(featuresOffset);
+      setStatementOffsetInTrack(statementOffset);
       setTrackLayoutReady(Boolean(featuresElement && statementElement));
 
       if (releaseProgressRef.current <= 0) {
@@ -250,7 +277,13 @@ export function ScrollStage() {
       window.removeEventListener("resize", measureTrack);
       clearHomeSectionScrollTops();
     };
-  }, [TRACK_SECTION_ORDER]);
+  }, [
+    TRACK_SECTION_ORDER,
+    viewportHeight,
+    featuresHoldPx,
+    statementHoldPx,
+    statementPostRevealHoldPx,
+  ]);
 
   return (
     <>

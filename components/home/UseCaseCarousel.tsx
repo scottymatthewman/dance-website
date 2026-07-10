@@ -25,10 +25,6 @@ function UseCaseCard({
         className="w-full"
         innerClassName="h-[30rem]"
       >
-        <div
-          aria-hidden
-          className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent to-black/80"
-        />
         <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-2 p-6">
           <p className="text-xl font-normal leading-normal text-white">
             {item.title}
@@ -50,7 +46,7 @@ function UseCaseCtaCard() {
 
   return (
     <article className="w-[min(28.125rem,85vw)] shrink-0 snap-start">
-      <div className="relative h-[30rem] w-full overflow-hidden rounded-[6px]">
+      <div className="relative h-[30rem] w-full overflow-hidden rounded-[6px] media-inner-stroke">
         <div className="flex h-full flex-col items-center justify-center gap-5 bg-[#edebe9] p-6 text-center">
           {showForm ? (
             <UseCaseInterestForm

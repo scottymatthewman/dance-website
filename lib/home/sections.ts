@@ -8,6 +8,7 @@ export type SectionId =
   | "bento"
   | "useCases"
   | "emailCapture"
+  | "emailCaptureBleed"
   | "footer";
 
 export const SECTION_IDS: Record<SectionId, number> = {
@@ -18,6 +19,7 @@ export const SECTION_IDS: Record<SectionId, number> = {
   bento: 4,
   statement: 5,
   emailCapture: 6,
+  emailCaptureBleed: 6,
   footer: 7,
 };
 
@@ -25,7 +27,7 @@ export const SECTION_IDS: Record<SectionId, number> = {
 export const NAV_SECTIONS = {
   features: SECTION_IDS.bento,
   useCases: SECTION_IDS.useCases,
-  emailCapture: SECTION_IDS.emailCapture,
+  emailCapture: SECTION_IDS.emailCaptureBleed,
 } as const;
 
 export type SectionInsetPreset =
@@ -98,7 +100,7 @@ export const HOME_SECTIONS: HomeSectionConfig[] = [
     noGapAfter: true,
   },
   {
-    id: "emailCapture",
+    id: "emailCaptureBleed",
     backgroundColor: SCROLL_TRACK_BG,
   },
 ];

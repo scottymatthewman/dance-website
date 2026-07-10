@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { CtaButton } from "@/components/ui/CtaButton";
-import { DanceLogo } from "@/components/ui/DanceLogo";
+import { FullDanceLogo } from "@/components/ui/FullDanceLogo";
 import { COPY } from "@/lib/copy";
 import { cn } from "@/lib/cn";
 import { scrollToHomeSection, scrollToTop } from "@/lib/scroll-to-section";
@@ -150,7 +150,7 @@ export function Header() {
             )}
             onNavigate={closeMenu}
           >
-            <DanceLogo />
+            <FullDanceLogo />
           </LogoLink>
 
           <div className="hidden items-center gap-1 md:flex">

@@ -38,6 +38,7 @@ const DEFAULT_SECTION_INSET: Record<
   statement: "statement",
   bento: "compact",
   emailCapture: "flush",
+  emailCaptureBleed: "flush",
   footer: "default",
 };
 

@@ -361,22 +361,49 @@ const addXShape: ShapeBuilder = (keys) => {
 
 const SHAPE_BUILDERS = [addSquareShape, addTriangleShape, addXShape] as const;
 
+/** Center a shape's pixel blocks within the 32×32 canvas. */
+function centerShapeBlocks(blocks: Vec2[]): Vec2[] {
+  if (blocks.length === 0) return blocks;
+
+  let minX = Infinity;
+  let maxX = -Infinity;
+  let minY = Infinity;
+  let maxY = -Infinity;
+
+  for (const { x, y } of blocks) {
+    minX = Math.min(minX, x);
+    maxX = Math.max(maxX, x);
+    minY = Math.min(minY, y);
+    maxY = Math.max(maxY, y);
+  }
+
+  const shapeWidth = maxX - minX + PX;
+  const shapeHeight = maxY - minY + PX;
+  const offsetX = Math.round((CANVAS_SIZE - shapeWidth) / 2) - minX;
+  const offsetY = Math.round((CANVAS_SIZE - shapeHeight) / 2) - minY;
+
+  return blocks.map(({ x, y }) => ({
+    x: Math.max(0, Math.min(CANVAS_SIZE - PX, x + offsetX)),
+    y: Math.max(0, Math.min(CANVAS_SIZE - PX, y + offsetY)),
+  }));
+}
+
 /** Rasterize a shape once and order its blocks by angle around the center,
  * so morph pairings travel around the outline instead of criss-crossing. */
 function shapeBlocks(builder: ShapeBuilder): Vec2[] {
   const keys = new Set<string>();
   builder(keys);
+  const blocks = [...keys].map((key) => {
+    const [x, y] = key.split(",").map(Number);
+    return { x, y };
+  });
+  const centered = centerShapeBlocks(blocks);
   const center = (CANVAS_SIZE - PX) / 2;
-  return [...keys]
-    .map((key) => {
-      const [x, y] = key.split(",").map(Number);
-      return { x, y };
-    })
-    .sort(
-      (a, b) =>
-        Math.atan2(a.y - center, a.x - center) -
-        Math.atan2(b.y - center, b.x - center),
-    );
+  return centered.toSorted(
+    (a, b) =>
+      Math.atan2(a.y - center, a.x - center) -
+      Math.atan2(b.y - center, b.x - center),
+  );
 }
 
 const SHAPE_BLOCKS = SHAPE_BUILDERS.map(shapeBlocks);

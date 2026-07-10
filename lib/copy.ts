@@ -38,15 +38,15 @@ export const COPY = {
     steps: [
       {
         eyebrow: "Define",
-        body: "What used to be agreed upon in Zooms and emails can now be visually configured. Outline the key event properties and scope to create a single source of truth from day one.",
+        body: "What used to be agreed upon in Zooms and emails can now be visually configured.\n\nOutline the key event properties and scope to create a single source of truth from day one.",
       },
       {
         eyebrow: "Plan",
-        body: "Google docs and Notions get lost and outdated quickly. Generate live timelines with phases, tasks, assignees, and a clear view of task priority.",
+        body: "Google docs and Notions get lost and outdated quickly.\n\nGenerate live timelines with phases, tasks, assignees, and a clear view of task priority.",
       },
       {
         eyebrow: "Collaborate",
-        body: "Wasted time and double work comes from disparate, disconnected communications. Maintain a clear view of statuses and work alongside your teammates and agents to move the event forward.",
+        body: "Wasted time and double work comes from disparate, disconnected communications.\n\nMaintain a clear view of statuses and work alongside your teammates and agents to move the event forward.",
       },
     ],
   },
@@ -55,6 +55,12 @@ export const COPY = {
     subhead:
       "Get closer to the original vision and stay aligned the whole way.",
     items: [
+      {
+        id: "community-event",
+        title: "Community Events",
+        body: "Deepen relationships with users and ambassadors through smooth, creative activations.",
+        image: "/use-cases/community.jpg",
+      },
       {
         id: "executive-dinner",
         title: "Executive Dinners",
@@ -65,25 +71,25 @@ export const COPY = {
         id: "tradeshow",
         title: "Tradeshows",
         body: "Sequence and assign tasks like booth design, brand assets, and sales team prep, easily.",
-        image: "/use-cases/tradeshows.png",
+        image: "/use-cases/tradeshows.jpg",
+      },
+      {
+        id: "happy-hours",
+        title: "Happy Hours",
+        body: "Keep venue, catering, and guest list details in one place so casual team gatherings happen seamlessly.",
+        image: "/use-cases/happy-hours.jpg",
       },
       {
         id: "conference",
         title: "Conferences",
         body: "Organize large scale efforts and streamline vendor communication to host top-tier industry experiences.",
-        image: "/use-cases/conferences.png",
-      },
-      {
-        id: "community-event",
-        title: "Community Events",
-        body: "Deepen relationships with users and ambassadors through smooth, creative activations.",
-        image: "/use-cases/community-events.png",
+        image: "/use-cases/conference.jpg",
       },
       {
         id: "offsites",
         title: "Offsites",
-        body: "Close and grow relationships with key prospects with focused and curated meals.",
-        image: "/use-cases/offsites.jpg",
+        body: "Align travel, agendas, and activities so your team gets meaningful time together—not another logistics fire drill.",
+        image: "/use-cases/offsite.jpg",
       },
     ],
     ctaCard: {
@@ -119,6 +125,11 @@ export const COPY = {
     loading: "Submitting…",
     success: "You're on the list. We'll be in touch soon.",
     error: "Please enter a valid email address.",
+  },
+  emailCaptureBleed: {
+    headline: "Unlock event agents for your team.",
+    subhead: "Join the waitlist and get notified the moment we launch.",
+    image: "/home/email-capture-bg-2.png",
   },
   bento: {
     topRow: [

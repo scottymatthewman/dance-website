@@ -32,7 +32,7 @@ export function FooterContent() {
       </div>
 
       <div className="flex w-full shrink-0 justify-center pt-6">
-        <DanceLogo className="shrink-0" />
+        <DanceLogo className="shrink-0 text-[#BBBBBB]" />
       </div>
     </div>
   );

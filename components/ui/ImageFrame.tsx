@@ -42,7 +42,7 @@ export function ImageFrame({
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-[6px]",
+        "relative overflow-hidden rounded-[6px] media-inner-stroke",
         presetStyles?.className,
         className,
         innerClassName,

@@ -81,7 +81,7 @@ function FlowStepTab({
           <span
             aria-hidden={!isActive}
             className={cn(
-              "block text-body-md leading-normal text-secondary transition-opacity duration-300 ease-out md:leading-[1.5]",
+              "block whitespace-pre-line text-body-md leading-normal text-secondary transition-opacity duration-300 ease-out md:leading-[1.5]",
               isActive ? "opacity-100" : "opacity-0",
             )}
           >
