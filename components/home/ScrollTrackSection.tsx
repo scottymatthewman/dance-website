@@ -60,13 +60,14 @@ export function ScrollTrackSection({
           section.id === "statement" && "scroll-track-section-frame--statement",
           section.sizeToContent &&
             section.fillViewportLg &&
+            !fillViewport &&
             "scroll-track-section-frame--fill-lg",
         )}
         style={{
-          ...(section.sizeToContent
-            ? null
-            : fillViewport
-              ? { height: SHELL_SECTION_HEIGHT }
+          ...(fillViewport
+            ? { height: SHELL_SECTION_HEIGHT }
+            : section.sizeToContent
+              ? null
               : { minHeight: SHELL_SECTION_HEIGHT }),
           ...(backgroundStyle ?? null),
         }}

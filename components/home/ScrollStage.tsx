@@ -198,7 +198,7 @@ export function ScrollStage() {
     viewportFrozenRef.current = viewportHeightFrozen;
   }, [viewportHeightFrozen]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     useScrollPinningRef.current = useScrollPinning;
   }, [useScrollPinning]);
 
@@ -312,7 +312,10 @@ export function ScrollStage() {
               }}
               section={section}
               nextSection={TRACK_SECTIONS[index + 1]}
-              fillViewport={FILL_VIEWPORT_SECTIONS.has(section.id)}
+              fillViewport={
+                FILL_VIEWPORT_SECTIONS.has(section.id) ||
+                (useScrollPinning && section.fillViewportLg)
+              }
             >
               {section.id === "statement" ? (
                 <StatementContent entryProgress={statementScrollProgress} />
