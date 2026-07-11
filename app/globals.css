@@ -484,15 +484,6 @@
     }
   }
 
-  .section-image-scrim {
-    background: linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--bg-section) 94%, transparent) 0%,
-      color-mix(in srgb, var(--bg-section) 72%, transparent) 55%,
-      color-mix(in srgb, var(--bg-section) 40%, transparent) 100%
-    );
-  }
-
   .section-inset--statement {
     padding-top: var(--stack-md);
     padding-bottom: var(--section-y);

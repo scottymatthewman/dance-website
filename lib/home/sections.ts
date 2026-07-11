@@ -43,6 +43,10 @@ export type HomeSectionConfig = {
   id: SectionId;
   backgroundSrc?: string;
   backgroundColor?: string;
+  backgroundGradient?: {
+    from: string;
+    to: string;
+  };
   /** Content inset preset; defaults per section id in section-spacing.ts. */
   inset?: SectionInsetPreset;
   /** Hold scroll distance in vh for pinned sections. */
@@ -75,7 +79,7 @@ export function getFeaturesHoldPx(
 export const HOME_SECTIONS: HomeSectionConfig[] = [
   {
     id: "hero",
-    backgroundSrc: "/home/hero-bg.webp",
+    backgroundGradient: { from: "#EDEBEE", to: "#E4EAF0" },
   },
   {
     id: "features",

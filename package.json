@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node scripts/dev.mjs",
     "dev:webpack": "node scripts/dev.mjs --webpack",
-    "build": "node scripts/ensure-font-subset.mjs --quiet && next build",
+    "build": "node scripts/ensure-font-subset.mjs --quiet && node scripts/sync-public-asset-versions.mjs && next build",
     "start": "next start",
     "lint": "eslint",
     "subset-fonts": "node scripts/subset-fonts.mjs",

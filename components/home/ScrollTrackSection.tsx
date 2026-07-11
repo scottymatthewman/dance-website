@@ -8,6 +8,7 @@ import {
   getSectionInsetClass,
 } from "@/lib/home/section-spacing";
 import type { HomeSectionConfig } from "@/lib/home/sections";
+import { publicAssetUrl } from "@/lib/home/public-assets";
 
 type ScrollTrackSectionProps = {
   section: HomeSectionConfig;
@@ -20,6 +21,20 @@ type ScrollTrackSectionProps = {
 const SHELL_SECTION_HEIGHT =
   "calc(100dvh - var(--shell-margin-top) - var(--shell-margin))";
 
+function sectionBackgroundStyle(section: HomeSectionConfig) {
+  if (section.backgroundGradient) {
+    return {
+      backgroundImage: `linear-gradient(180deg, ${section.backgroundGradient.from} 0%, ${section.backgroundGradient.to} 100%)`,
+    };
+  }
+
+  if (section.backgroundColor) {
+    return { backgroundColor: section.backgroundColor };
+  }
+
+  return null;
+}
+
 export function ScrollTrackSection({
   section,
   nextSection,
@@ -30,17 +45,14 @@ export function ScrollTrackSection({
   const insetClass = getSectionInsetClass(section);
   const gapAfter = getSectionGapAfter(section, nextSection);
   const gapColor = getSectionGapColor(section, nextSection);
+  const backgroundStyle = sectionBackgroundStyle(section);
 
   return (
     <section
       ref={ref}
       id={`section-${section.id}`}
       className="scroll-track-section relative"
-      style={{
-        ...(section.backgroundColor
-          ? { backgroundColor: section.backgroundColor }
-          : null),
-      }}
+      style={backgroundStyle ?? undefined}
     >
       <div
         className={cn(
@@ -56,28 +68,20 @@ export function ScrollTrackSection({
             : fillViewport
               ? { height: SHELL_SECTION_HEIGHT }
               : { minHeight: SHELL_SECTION_HEIGHT }),
-          ...(section.backgroundColor
-            ? { backgroundColor: section.backgroundColor }
-            : null),
+          ...(backgroundStyle ?? null),
         }}
       >
         <div className="absolute inset-0" aria-hidden>
           {section.backgroundSrc ? (
-            <>
-              <img
-                src={section.backgroundSrc}
-                alt=""
-                decoding="async"
-                draggable={false}
-                className="absolute inset-0 size-full object-cover"
-              />
-              <div aria-hidden className="section-image-scrim absolute inset-0" />
-            </>
-          ) : section.backgroundColor ? (
-            <div
-              className="absolute inset-0"
-              style={{ backgroundColor: section.backgroundColor }}
+            <img
+              src={publicAssetUrl(section.backgroundSrc)}
+              alt=""
+              decoding="async"
+              draggable={false}
+              className="absolute inset-0 size-full object-cover"
             />
+          ) : backgroundStyle ? (
+            <div className="absolute inset-0" style={backgroundStyle} />
           ) : null}
         </div>
         <div

@@ -100,6 +100,10 @@ spawnSync("node", ["scripts/ensure-font-subset.mjs", "--quiet"], {
   cwd: root,
   stdio: "inherit",
 });
+spawnSync("node", ["scripts/sync-public-asset-versions.mjs"], {
+  cwd: root,
+  stdio: "inherit",
+});
 
 const nextArgs = useWebpack ? ["dev", "--webpack"] : ["dev"];
 const next = spawn("npx", ["next", ...nextArgs], {
@@ -109,6 +113,29 @@ const next = spawn("npx", ["next", ...nextArgs], {
 });
 
 watchCopyTree();
+watchPublicAssets();
+
+function watchPublicAssets() {
+  const heroBg = join(root, "public/home/hero-bg.jpg");
+  if (!existsSync(heroBg)) return;
+
+  let lastMtime = statSync(heroBg).mtimeMs;
+
+  const interval = setInterval(() => {
+    if (!existsSync(heroBg)) return;
+    const mtime = statSync(heroBg).mtimeMs;
+    if (mtime !== lastMtime) {
+      lastMtime = mtime;
+      spawnSync("node", ["scripts/sync-public-asset-versions.mjs"], {
+        cwd: root,
+        stdio: "inherit",
+      });
+      touchLayout();
+    }
+  }, 500);
+
+  process.on("exit", () => clearInterval(interval));
+}
 
 next.on("exit", (code) => {
   process.exit(code ?? 0);

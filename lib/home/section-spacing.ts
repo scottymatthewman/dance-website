@@ -32,6 +32,9 @@ const DEFAULT_SECTION_INSET: Record<
 
 function getSectionSurfaceKey(section: HomeSectionConfig): string {
   if (section.backgroundSrc) return `src:${section.backgroundSrc}`;
+  if (section.backgroundGradient) {
+    return `gradient:${section.backgroundGradient.from}:${section.backgroundGradient.to}`;
+  }
   if (section.backgroundColor) return `color:${section.backgroundColor}`;
   return "default";
 }
