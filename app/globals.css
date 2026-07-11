@@ -376,7 +376,8 @@
     touch-action: pan-y;
   }
 
-  .use-case-carousel {
+  .use-case-carousel,
+  .flow-carousel {
     touch-action: pan-x pinch-zoom;
   }
 
@@ -440,7 +441,7 @@
     }
 
     .header--in-shell-margin .header-bar {
-      border-radius: 0.5rem;
+      border-radius: 6px;
       border: 1px solid var(--border-subtle);
       background: color-mix(in srgb, var(--bg-section) 80%, transparent);
       padding-block: 0.375rem;

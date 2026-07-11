@@ -170,7 +170,7 @@ export function Header() {
             </nav>
             <CtaButton
               size="sm"
-              className="rounded-sm px-2.5 py-1 text-xs md:px-3 md:py-1.5 md:text-sm"
+              className="rounded-[6px] px-2.5 py-1 text-xs md:px-3 md:py-1.5 md:text-sm"
             >
               {COPY.nav.cta}
             </CtaButton>
@@ -193,7 +193,7 @@ export function Header() {
         {menuOpen ? (
           <div
             id={menuId}
-            className="pointer-events-auto absolute inset-x-0 top-[calc(100%+0.5rem)] overflow-hidden rounded-lg border border-border-subtle bg-section/95 p-2 shadow-[var(--shadow-menu)] backdrop-blur-md md:hidden"
+            className="pointer-events-auto absolute inset-x-0 top-[calc(100%+0.5rem)] overflow-hidden rounded-[6px] border border-border-subtle bg-section/95 p-2 shadow-[var(--shadow-menu)] backdrop-blur-md md:hidden"
           >
             <nav aria-label="Mobile primary" className="flex flex-col gap-1">
               {NAV_LINKS.map((link) => (
@@ -208,7 +208,7 @@ export function Header() {
               ))}
               <CtaButton
                 size="sm"
-                className="mt-1 w-full rounded-sm"
+                className="mt-1 w-full rounded-none"
                 onClick={closeMenu}
               >
                 {COPY.nav.cta}

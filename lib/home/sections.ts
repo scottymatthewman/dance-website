@@ -80,6 +80,8 @@ export const HOME_SECTIONS: HomeSectionConfig[] = [
   {
     id: "features",
     backgroundColor: SCROLL_TRACK_BG,
+    sizeToContent: true,
+    fillViewportLg: true,
   },
   {
     id: "useCases",

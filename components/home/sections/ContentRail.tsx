@@ -1,5 +1,5 @@
 import { cn } from "@/lib/cn";
-import type { ReactNode } from "react";
+import type { ReactNode, Ref } from "react";
 
 type ContentRailWidth = "content" | "headline" | "narrow" | "prose";
 type ContentRailAlign = "left" | "center";
@@ -16,6 +16,7 @@ type ContentRailProps = {
   align?: ContentRailAlign;
   className?: string;
   children: ReactNode;
+  ref?: Ref<HTMLDivElement>;
 };
 
 export function ContentRail({
@@ -23,9 +24,11 @@ export function ContentRail({
   align = "left",
   className,
   children,
+  ref,
 }: ContentRailProps) {
   return (
     <div
+      ref={ref}
       className={cn(
         "w-full",
         WIDTH_CLASS[width],

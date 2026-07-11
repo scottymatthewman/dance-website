@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { cn } from "@/lib/cn";
 import { COPY } from "@/lib/copy";
+import { NEST_RADIUS_CLASS } from "@/lib/nest-radius";
 
 function PaperPlaneIcon({ className }: { className?: string }) {
   return (
@@ -26,6 +27,41 @@ function PaperPlaneIcon({ className }: { className?: string }) {
 
 type EmailCaptureFormVariant = "default" | "overlay";
 
+const SHELL_LAYOUT =
+  "flex items-center rounded-[6px] border max-[380px]:flex-col max-[380px]:items-stretch max-[380px]:gap-2 max-[380px]:p-2 gap-3 py-0.5 pl-3 pr-0.5 transition-[border-color,box-shadow] focus-within:ring-2";
+
+const BUTTON_LAYOUT = cn(
+  "inline-flex shrink-0 items-center justify-center font-medium leading-normal transition-opacity",
+  "px-3 py-1.5 text-sm max-[380px]:w-full",
+  NEST_RADIUS_CLASS.gap2,
+  "max-[380px]:rounded-none",
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+  "disabled:cursor-not-allowed disabled:opacity-60",
+);
+
+const variantStyles = {
+  overlay: {
+    shell: "border-[#eee] bg-black/10 focus-within:border-white/60 focus-within:ring-white/20 lg:bg-white/10",
+    shellError: "border-red-500 focus-within:border-red-500 focus-within:ring-red-500/20",
+    icon: "size-5 text-white",
+    input: "text-sm text-white placeholder:text-white/50",
+    button:
+      "bg-[#eee] text-black hover:opacity-90 focus-visible:ring-white focus-visible:ring-offset-transparent",
+    success: "text-white",
+    error: "text-red-300",
+  },
+  default: {
+    shell: "border-[#eee] bg-black/5 focus-within:border-border-strong focus-within:ring-accent/20",
+    shellError: "border-red-500 focus-within:border-red-500 focus-within:ring-red-500/20",
+    icon: "size-5 text-primary",
+    input: "text-sm text-primary placeholder:text-primary/50",
+    button:
+      "bg-primary text-inverse hover:opacity-90 focus-visible:ring-accent focus-visible:ring-offset-card",
+    success: "text-primary",
+    error: "text-red-600",
+  },
+} as const;
+
 type EmailCaptureFormProps = {
   className?: string;
   inputId?: string;
@@ -39,7 +75,7 @@ export function EmailCaptureForm({
   buttonLabel = COPY.emailCapture.button,
   variant = "default",
 }: EmailCaptureFormProps) {
-  const isOverlay = variant === "overlay";
+  const styles = variantStyles[variant];
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
     "idle",
@@ -78,11 +114,7 @@ export function EmailCaptureForm({
   if (status === "success") {
     return (
       <p
-        className={cn(
-          "text-body-lg",
-          isOverlay ? "text-white" : "text-primary",
-          className,
-        )}
+        className={cn("text-body-lg", styles.success, className)}
       >
         {COPY.emailCapture.success}
       </p>
@@ -97,23 +129,12 @@ export function EmailCaptureForm({
     >
       <div
         className={cn(
-          "flex items-center rounded-xl border border-[#eee]",
-          isOverlay
-            ? "max-[380px]:flex-col max-[380px]:items-stretch max-[380px]:gap-2 max-[380px]:p-2"
-            : null,
-          isOverlay
-            ? "gap-3 py-0.5 pl-3 pr-0.5"
-            : "gap-4 py-1 pl-4 pr-1",
-          "transition-[border-color,box-shadow] focus-within:ring-2",
-          isOverlay
-            ? "bg-white/10 focus-within:border-white/60 focus-within:ring-white/20"
-            : "bg-card focus-within:border-border-strong focus-within:ring-accent/20",
-          status === "error" && "border-red-500 focus-within:border-red-500 focus-within:ring-red-500/20",
+          SHELL_LAYOUT,
+          styles.shell,
+          status === "error" && styles.shellError,
         )}
       >
-        <PaperPlaneIcon
-          className={cn(isOverlay ? "size-5 text-white" : "text-primary")}
-        />
+        <PaperPlaneIcon className={styles.icon} />
         <label htmlFor={inputId} className="sr-only">
           {COPY.emailCapture.placeholder}
         </label>
@@ -132,35 +153,19 @@ export function EmailCaptureForm({
           disabled={status === "loading"}
           className={cn(
             "min-w-0 flex-1 bg-transparent leading-normal focus:outline-none disabled:cursor-not-allowed disabled:opacity-60",
-            isOverlay ? "text-sm" : "text-base",
-            isOverlay
-              ? "text-white placeholder:text-white/50"
-              : "text-primary placeholder:text-primary/50",
+            styles.input,
           )}
         />
         <button
           type="submit"
           disabled={status === "loading"}
-          className={cn(
-            "inline-flex shrink-0 items-center justify-center rounded-lg font-medium leading-normal transition-opacity",
-            isOverlay ? "px-3 py-1.5 text-sm max-[380px]:w-full" : "px-4 py-2 text-base",
-            isOverlay
-              ? "bg-[#eee] text-black hover:opacity-90 focus-visible:ring-white focus-visible:ring-offset-transparent"
-              : "bg-primary text-inverse hover:opacity-90 focus-visible:ring-accent focus-visible:ring-offset-card",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-            "disabled:cursor-not-allowed disabled:opacity-60",
-          )}
+          className={cn(BUTTON_LAYOUT, styles.button)}
         >
           {status === "loading" ? COPY.emailCapture.loading : buttonLabel}
         </button>
       </div>
       {status === "error" ? (
-        <p
-          className={cn(
-            "text-sm leading-normal",
-            isOverlay ? "text-red-300" : "text-red-600",
-          )}
-        >
+        <p className={cn("text-sm leading-normal", styles.error)}>
           {COPY.emailCapture.error}
         </p>
       ) : null}

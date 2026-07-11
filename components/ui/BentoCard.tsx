@@ -129,7 +129,7 @@ export function BentoCard({
   return (
     <div
       className={cn(
-        "group relative flex h-full w-full overflow-hidden rounded-xl border border-border-subtle bg-white text-left transition-colors duration-200 hover:border-[#DDDDDD]",
+        "group relative flex h-full w-full overflow-hidden rounded-[6px] border border-border-subtle bg-white text-left transition-colors duration-200 hover:border-[#DDDDDD]",
         size === "large" ? "min-h-[12rem] md:min-h-[14rem]" : "min-h-[10rem] md:min-h-[12rem]",
         imageOnRight ? "flex-col-reverse md:flex-row" : "flex-col",
         className,

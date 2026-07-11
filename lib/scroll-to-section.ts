@@ -1,3 +1,4 @@
+import { COMPACT_SCROLL_MEDIA_QUERY } from "@/lib/device/breakpoints";
 import { isTouchLikeDevice } from "@/lib/device/touch";
 import { HOME_SECTIONS } from "@/lib/home/sections";
 import { getHomeSectionScrollTop } from "@/lib/home/scroll-positions";
@@ -29,6 +30,14 @@ export function scrollToFeaturesStep(
   stepIndex: number,
   options?: { smooth?: boolean },
 ) {
+  if (window.matchMedia(COMPACT_SCROLL_MEDIA_QUERY).matches) {
+    window.scrollTo({
+      top: getHomeSectionScrollTop("features"),
+      behavior: resolveScrollBehavior(options),
+    });
+    return;
+  }
+
   window.scrollTo({
     top: getFeaturesStepScrollY(stepIndex, window.innerHeight),
     behavior: resolveScrollBehavior(options),

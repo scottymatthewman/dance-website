@@ -5,7 +5,10 @@ import { SectionShell } from "@/components/home/sections/SectionShell";
 import { RevealBlock, RevealWords } from "@/components/motion/RevealWords";
 import { CtaButton } from "@/components/ui/CtaButton";
 import { COPY } from "@/lib/copy";
+import { DESKTOP_LAYOUT_MEDIA_QUERY } from "@/lib/device/breakpoints";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useViewportCenterTimedReveal } from "@/hooks/useViewportCenterTimedReveal";
 import { mapStatementScrollProgress } from "@/lib/motion/word-reveal";
 
 type StatementContentProps = {
@@ -14,13 +17,22 @@ type StatementContentProps = {
 
 export function StatementContent({ entryProgress }: StatementContentProps) {
   const reducedMotion = useReducedMotion();
+  const isDesktopLayout = useMediaQuery(DESKTOP_LAYOUT_MEDIA_QUERY);
+  const { ref, progress: timedProgress } = useViewportCenterTimedReveal({
+    delayMs: 100,
+    enabled: !isDesktopLayout && !reducedMotion,
+  });
+
   const progress = reducedMotion
     ? 1
-    : mapStatementScrollProgress(entryProgress);
+    : isDesktopLayout
+      ? mapStatementScrollProgress(entryProgress)
+      : timedProgress;
 
   return (
     <SectionShell variant="centered" className="justify-center">
       <ContentRail
+        ref={ref}
         width="narrow"
         align="center"
         className="flex flex-col items-center gap-6"

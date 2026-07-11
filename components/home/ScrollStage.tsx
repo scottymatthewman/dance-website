@@ -14,7 +14,9 @@ import {
   useScrollTrackState,
 } from "@/hooks/useScrollStageState";
 import { useStableViewportHeight } from "@/hooks/useStableViewportHeight";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { DESKTOP_LAYOUT_MEDIA_QUERY } from "@/lib/device/breakpoints";
 import {
   clearHomeSectionScrollTops,
   setHomeSectionScrollTop,
@@ -42,7 +44,6 @@ const FEATURES_SECTION_SELECTOR = "#section-features";
 const FILL_VIEWPORT_SECTIONS = new Set<SectionId>([
   "hero",
   "useCases",
-  "features",
   "statement",
   "emailCaptureBleed",
 ]);
@@ -69,10 +70,13 @@ export function ScrollStage() {
   const [trackLayoutReady, setTrackLayoutReady] = useState(false);
   const releaseProgressRef = useRef(0);
   const viewportFrozenRef = useRef(false);
+  const useScrollPinningRef = useRef(false);
 
   const { height: viewportHeight, isFrozen: viewportHeightFrozen } =
     useStableViewportHeight();
+  const isDesktopLayout = useMediaQuery(DESKTOP_LAYOUT_MEDIA_QUERY);
   const reducedMotion = useReducedMotion();
+  const useScrollPinning = isDesktopLayout && !reducedMotion;
   const featuresHoldPx = useMemo(
     () => getFeaturesHoldPx(frameHeightPx, viewportHeight),
     [frameHeightPx, viewportHeight],
@@ -92,19 +96,21 @@ export function ScrollStage() {
       frameHeightPx,
       trackHeightPx,
       flowStartHoldPx: 0,
-      features: trackLayoutReady
-        ? {
-            offsetInTrack: featuresOffsetInTrack,
-            holdPx: featuresHoldPx,
-          }
-        : null,
-      statement: trackLayoutReady
-        ? {
-            offsetInTrack: statementOffsetInTrack,
-            holdPx: statementHoldPx,
-            postRevealHoldPx: statementPostRevealHoldPx,
-          }
-        : null,
+      features:
+        trackLayoutReady && useScrollPinning
+          ? {
+              offsetInTrack: featuresOffsetInTrack,
+              holdPx: featuresHoldPx,
+            }
+          : null,
+      statement:
+        trackLayoutReady && useScrollPinning
+          ? {
+              offsetInTrack: statementOffsetInTrack,
+              holdPx: statementHoldPx,
+              postRevealHoldPx: statementPostRevealHoldPx,
+            }
+          : null,
     }),
     [
       frameHeightPx,
@@ -115,6 +121,7 @@ export function ScrollStage() {
       statementPostRevealHoldPx,
       statementOffsetInTrack,
       trackLayoutReady,
+      useScrollPinning,
     ],
   );
 
@@ -192,6 +199,10 @@ export function ScrollStage() {
   }, [viewportHeightFrozen]);
 
   useEffect(() => {
+    useScrollPinningRef.current = useScrollPinning;
+  }, [useScrollPinning]);
+
+  useEffect(() => {
     const frame = frameRef.current;
     const track = trackRef.current;
     if (!frame || !track) return;
@@ -214,19 +225,21 @@ export function ScrollStage() {
         frameHeightPx: frameHeight,
         trackHeightPx: trackHeight,
         flowStartHoldPx: 0,
-        features: featuresElement
-          ? {
-              offsetInTrack: featuresOffset,
-              holdPx: getFeaturesHoldPx(frameHeight, viewportHeight),
-            }
-          : null,
-        statement: statementElement
-          ? {
-              offsetInTrack: statementOffset,
-              holdPx: statementHoldPx,
-              postRevealHoldPx: statementPostRevealHoldPx,
-            }
-          : null,
+        features:
+          featuresElement && useScrollPinningRef.current
+            ? {
+                offsetInTrack: featuresOffset,
+                holdPx: getFeaturesHoldPx(frameHeight, viewportHeight),
+              }
+            : null,
+        statement:
+          statementElement && useScrollPinningRef.current
+            ? {
+                offsetInTrack: statementOffset,
+                holdPx: statementHoldPx,
+                postRevealHoldPx: statementPostRevealHoldPx,
+              }
+            : null,
       };
 
       TRACK_SECTIONS.forEach((section, index) => {
@@ -269,6 +282,7 @@ export function ScrollStage() {
     featuresHoldPx,
     statementHoldPx,
     statementPostRevealHoldPx,
+    useScrollPinning,
   ]);
 
   return (
