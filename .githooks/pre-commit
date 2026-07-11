@@ -1,0 +1,6 @@
+#!/bin/sh
+# Sync font subset to all on-disk copy before commit; stage updated font files.
+set -e
+
+node scripts/ensure-font-subset.mjs --stage --quiet 2>/dev/null || \
+  node scripts/ensure-font-subset.mjs --stage

@@ -32,13 +32,13 @@ export type ScrollTrackState = {
 };
 
 /** Scroll distance (in vh) to shrink the frame and reveal the footer. */
-export const SCROLL_RELEASE_VH = 80;
+const SCROLL_RELEASE_VH = 80;
 
 /** Final frame height as a fraction of the full shell viewport height. */
-export const SCROLL_FRAME_MIN_HEIGHT_RATIO = 0.25;
+const SCROLL_FRAME_MIN_HEIGHT_RATIO = 0.25;
 
 /** Bottom inset for the release footer panel once the footer section is active. */
-export const SCROLL_RELEASE_FOOTER_BOTTOM_PX = 16;
+const SCROLL_RELEASE_FOOTER_BOTTOM_PX = 16;
 
 function clamp01(value: number) {
   return Math.min(1, Math.max(0, value));
@@ -59,7 +59,7 @@ function mapSegmentRange(t: number, start: number, end: number) {
   return (t - start) / (end - start);
 }
 
-export function getPinnedHoldScrollPx(
+function getPinnedHoldScrollPx(
   section: PinnedSectionLayout,
   frameHeightPx: number,
 ) {
@@ -264,13 +264,13 @@ export function getScrollReleaseFooterOpacity(progress: number) {
 }
 
 /** Pinned scroll distance while the features flow steps advance. */
-export function getFeaturesHoldScrollPx(viewportHeight: number) {
+function getFeaturesHoldScrollPx(viewportHeight: number) {
   const stepScrollPx = (FLOW_STEP_HOLD_VH / 100) * viewportHeight;
   return FLOW_STEP_COUNT * stepScrollPx;
 }
 
 /** Scroll progress (0–1) that centers a flow step within its scroll band. */
-export function getFeaturesStepProgress(stepIndex: number) {
+function getFeaturesStepProgress(stepIndex: number) {
   const clamped = Math.min(Math.max(stepIndex, 0), FLOW_STEP_COUNT - 1);
   return (clamped + 0.5) / FLOW_STEP_COUNT;
 }

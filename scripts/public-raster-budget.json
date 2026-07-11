@@ -1,0 +1,98 @@
+{
+  "budgetMb": 10,
+  "totalMb": 2.757,
+  "files": [
+    {
+      "path": "public/bento-mockup/Agents-Graphic.webp",
+      "bytes": 39844
+    },
+    {
+      "path": "public/bento-mockup/Budget-Graphic.webp",
+      "bytes": 10722
+    },
+    {
+      "path": "public/bento-mockup/Docs-Graphic.webp",
+      "bytes": 15192
+    },
+    {
+      "path": "public/bento-mockup/Integrations-Graphic.webp",
+      "bytes": 19932
+    },
+    {
+      "path": "public/bento-mockup/Templates-Graphic.webp",
+      "bytes": 16998
+    },
+    {
+      "path": "public/flow/Collaborate-bg.jpg",
+      "bytes": 460500
+    },
+    {
+      "path": "public/flow/Define-bg.jpg",
+      "bytes": 1038794
+    },
+    {
+      "path": "public/flow/Plan-bg.jpg",
+      "bytes": 1064265
+    },
+    {
+      "path": "public/hero-mockup/timeline/logo.webp",
+      "bytes": 10424
+    },
+    {
+      "path": "public/home/email-capture-bg-2.webp",
+      "bytes": 64138
+    },
+    {
+      "path": "public/home/hero-bg.webp",
+      "bytes": 31760
+    },
+    {
+      "path": "public/profile-pictures/Ash.webp",
+      "bytes": 1354
+    },
+    {
+      "path": "public/profile-pictures/Cooper.webp",
+      "bytes": 1496
+    },
+    {
+      "path": "public/profile-pictures/Dani.webp",
+      "bytes": 1486
+    },
+    {
+      "path": "public/profile-pictures/Mira.webp",
+      "bytes": 1654
+    },
+    {
+      "path": "public/profile-pictures/Scott.webp",
+      "bytes": 2510
+    },
+    {
+      "path": "public/profile-pictures/Tessa.webp",
+      "bytes": 2614
+    },
+    {
+      "path": "public/use-cases/community.jpg",
+      "bytes": 115825
+    },
+    {
+      "path": "public/use-cases/conference.jpg",
+      "bytes": 113309
+    },
+    {
+      "path": "public/use-cases/dinner.jpg",
+      "bytes": 134147
+    },
+    {
+      "path": "public/use-cases/happy-hours.jpg",
+      "bytes": 144369
+    },
+    {
+      "path": "public/use-cases/offsite.jpg",
+      "bytes": 96127
+    },
+    {
+      "path": "public/use-cases/tradeshows.jpg",
+      "bytes": 120787
+    }
+  ]
+}

@@ -7,23 +7,21 @@ type MockupFrameProps = {
   children?: ReactNode;
   className?: string;
   innerClassName?: string;
-  /** Fills a positioned parent and bleeds past its bottom edge (hero). */
-  bleedBottom?: boolean;
+  /** Height follows child content (hero timeline mockup). */
+  fitContent?: boolean;
 };
 
 export function MockupFrame({
   children,
   className,
   innerClassName,
-  bleedBottom = false,
+  fitContent = false,
 }: MockupFrameProps) {
   return (
     <div
       className={cn(
         "relative flex w-full flex-col overflow-hidden rounded-[6px] media-inner-stroke",
-        bleedBottom
-          ? "absolute top-0 left-1/2 h-[calc(100%+12rem)] w-full max-w-content shrink-0 -translate-x-1/2 md:h-[calc(100%+20rem)]"
-          : "h-[min(43.75rem,70dvh)]",
+        fitContent ? null : "h-[min(43.75rem,70dvh)]",
         className,
         innerClassName,
       )}

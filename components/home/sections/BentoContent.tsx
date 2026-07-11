@@ -49,7 +49,7 @@ export function BentoContent() {
       <ContentRail
         width="content"
         align="center"
-        className="grid min-h-0 flex-1 grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-12 lg:grid-rows-[minmax(0,1fr)_minmax(0,1fr)]"
+        className="grid min-h-0 flex-1 grid-cols-1 gap-2 sm:max-md:w-[70%] md:grid-cols-2 lg:grid-cols-12 lg:grid-rows-[minmax(0,1fr)_minmax(0,1fr)]"
       >
         {BENTO_CARDS.map(
           ({

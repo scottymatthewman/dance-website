@@ -22,13 +22,11 @@ export function useTimedRevealProgress({
 
   useEffect(() => {
     if (!enabled) {
-      setProgress(0);
       return;
     }
 
     let raf = 0;
     let startTime: number | null = null;
-    setProgress(0);
 
     const tick = (now: number) => {
       if (startTime === null) startTime = now;
@@ -43,5 +41,5 @@ export function useTimedRevealProgress({
     return () => cancelAnimationFrame(raf);
   }, [durationMs, delayMs, easing, enabled]);
 
-  return progress;
+  return enabled ? progress : 0;
 }

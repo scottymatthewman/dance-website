@@ -3,14 +3,16 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
+import { type HeroMockupTier } from "@/lib/home/hero-mockup-layout";
 import { PROFILES } from "@/lib/profiles";
 
 /** Figma frame `Hero Mockup` (2029:15646) */
 const DESIGN_WIDTH = 1223;
 const DESIGN_HEIGHT = 644;
+const DESIGN_ASPECT = DESIGN_WIDTH / DESIGN_HEIGHT;
 
 const ASSETS = {
-  logo: "/hero-mockup/timeline/logo.png",
+  logo: "/hero-mockup/timeline/logo.webp",
   avatar: PROFILES.Scott.avatar,
   sidebarToggle: "/hero-mockup/static/sidebar-toggle.svg",
   tabClose: "/hero-mockup/static/tab-close.svg",
@@ -171,7 +173,22 @@ function GanttBar({
   );
 }
 
-export function TimelineMockup({ className }: { className?: string }) {
+function getHeroCoverLayout(width: number, height: number) {
+  const scale = Math.max(width / DESIGN_WIDTH, height / DESIGN_HEIGHT);
+  return { scale, x: 0, y: 0 };
+}
+
+export function TimelineMockup({
+  className,
+  scaleMode = "width",
+  coverTier = "sm",
+}: {
+  className?: string;
+  /** `cover` fills the container; `hero-cover` matches Figma mobile bleed crops. */
+  scaleMode?: "width" | "cover" | "hero-cover";
+  /** Active Figma tier when `scaleMode` is `hero-cover`. */
+  coverTier?: HeroMockupTier;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [layout, setLayout] = useState({ scale: 1, x: 0, y: 0 });
 
@@ -180,24 +197,37 @@ export function TimelineMockup({ className }: { className?: string }) {
     if (!element) return;
 
     const updateScale = () => {
-      const { width } = element.getBoundingClientRect();
-      /* Fill the width and pin to the top; extra height bleeds below. */
-      setLayout({ scale: width / DESIGN_WIDTH, x: 0, y: 0 });
+      const { width, height } = element.getBoundingClientRect();
+      const widthScale = width / DESIGN_WIDTH;
+      const heightScale = height / DESIGN_HEIGHT;
+
+      if (scaleMode === "hero-cover") {
+        setLayout(getHeroCoverLayout(width, height));
+        return;
+      }
+
+      const scale =
+        scaleMode === "cover"
+          ? Math.max(widthScale, heightScale)
+          : widthScale;
+      setLayout({ scale, x: 0, y: 0 });
     };
 
     updateScale();
     const observer = new ResizeObserver(updateScale);
     observer.observe(element);
     return () => observer.disconnect();
-  }, []);
+  }, [scaleMode, coverTier]);
 
   return (
     <div
       ref={containerRef}
       className={cn(
-        "relative h-full w-full overflow-hidden bg-[#fafaf9]",
+        "relative w-full overflow-hidden bg-[#fafaf9]",
+        scaleMode === "cover" || scaleMode === "hero-cover" ? "h-full" : null,
         className,
       )}
+      style={scaleMode === "width" ? { aspectRatio: DESIGN_ASPECT } : undefined}
     >
       <div
         className="absolute left-0 top-0 flex flex-col font-interface antialiased"

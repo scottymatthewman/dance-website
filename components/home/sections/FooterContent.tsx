@@ -6,14 +6,14 @@ import { COPY } from "@/lib/copy";
 
 export function FooterContent() {
   return (
-    <div className="flex h-full min-h-0 flex-col justify-between px-[calc(var(--gutter)/2)] pt-6 md:px-6">
+    <div className="flex h-full min-h-0 flex-col justify-between px-[var(--gutter)] pt-6 md:px-6">
       <div className="grid w-full grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-12">
         <div className="min-w-0 space-y-4">
           <p className="text-sm font-medium leading-normal text-primary">
             {COPY.footer.label}
           </p>
           <EmailCaptureForm
-            className="w-full max-w-[24rem]"
+            className="w-full sm:max-w-[24rem]"
             inputId="footer-waitlist-email"
             buttonLabel={COPY.footer.waitlistButton}
           />

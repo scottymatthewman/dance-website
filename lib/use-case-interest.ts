@@ -1,7 +1,7 @@
 const DEVICE_ID_KEY = "dance:device-id:v1";
 const SUBMISSION_COUNT_KEY = "dance:use-case-submissions:v1";
 
-export const MAX_USE_CASE_SUBMISSIONS = 3;
+const MAX_USE_CASE_SUBMISSIONS = 3;
 
 export function getDeviceId(): string {
   if (typeof window === "undefined") {
@@ -20,7 +20,7 @@ export function getDeviceId(): string {
   }
 }
 
-export function getUseCaseSubmissionCount(): number {
+function getUseCaseSubmissionCount(): number {
   if (typeof window === "undefined") {
     return 0;
   }

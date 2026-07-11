@@ -46,6 +46,9 @@ export function ScrollTrackSection({
         className={cn(
           "relative flex flex-col overflow-hidden",
           section.id === "statement" && "scroll-track-section-frame--statement",
+          section.sizeToContent &&
+            section.fillViewportLg &&
+            "scroll-track-section-frame--fill-lg",
         )}
         style={{
           ...(section.sizeToContent

@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
-import { Geist_Mono, Inter } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import { AgentationToolbar } from "@/components/dev/AgentationToolbar";
 import { SiteShell } from "@/components/layout/SiteShell";
@@ -11,31 +11,16 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 const genInterface = localFont({
   src: [
     {
-      path: "./fonts/gen-interface-jp/GenInterfaceJP-Regular.ttf",
+      path: "./fonts/gen-interface-jp/GenInterfaceJP-Regular.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "./fonts/gen-interface-jp/GenInterfaceJP-Medium.ttf",
+      path: "./fonts/gen-interface-jp/GenInterfaceJP-Medium.woff2",
       weight: "500",
-      style: "normal",
-    },
-    {
-      path: "./fonts/gen-interface-jp/GenInterfaceJP-SemiBold.ttf",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "./fonts/gen-interface-jp/GenInterfaceJP-Bold.ttf",
-      weight: "700",
       style: "normal",
     },
   ],
@@ -46,23 +31,13 @@ const genInterface = localFont({
 const genInterfaceDisplay = localFont({
   src: [
     {
-      path: "./fonts/gen-interface-jp-display/GenInterfaceJPDisplay-Regular.ttf",
+      path: "./fonts/gen-interface-jp-display/GenInterfaceJPDisplay-Regular.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "./fonts/gen-interface-jp-display/GenInterfaceJPDisplay-Medium.ttf",
+      path: "./fonts/gen-interface-jp-display/GenInterfaceJPDisplay-Medium.woff2",
       weight: "500",
-      style: "normal",
-    },
-    {
-      path: "./fonts/gen-interface-jp-display/GenInterfaceJPDisplay-SemiBold.ttf",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "./fonts/gen-interface-jp-display/GenInterfaceJPDisplay-Bold.ttf",
-      weight: "700",
       style: "normal",
     },
   ],
@@ -72,6 +47,12 @@ const genInterfaceDisplay = localFont({
 
 export const metadata: Metadata = siteMetadata;
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -80,7 +61,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${geistMono.variable} ${genInterface.variable} ${genInterfaceDisplay.variable} h-full antialiased`}
+      className={`${inter.variable} ${genInterface.variable} ${genInterfaceDisplay.variable} h-full antialiased`}
     >
       <body className="min-h-full overflow-x-clip bg-section text-primary">
         <SiteShell>

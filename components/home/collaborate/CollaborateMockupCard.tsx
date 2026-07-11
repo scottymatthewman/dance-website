@@ -337,7 +337,7 @@ type CollaborateMockupCardProps = {
   cardRef?: RefObject<HTMLDivElement | null>;
 };
 
-export function CollaborateMockupCard({
+function CollaborateMockupCard({
   state,
   className,
   animate = true,

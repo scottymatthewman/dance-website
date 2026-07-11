@@ -5,18 +5,6 @@ import type {
 
 export const SCROLL_TRACK_BG = "var(--bg-scroll-canvas)";
 
-/**
- * Section intro rhythm for use cases, flow, and email capture.
- * - copyTight (8px): heading → subheading
- * - copyToContent (24px): copy block → primary content
- *
- * Applied via `.section-copy` and `.section-intro` in globals.css.
- */
-export const SECTION_INTRO_SPACING = {
-  copyTight: "var(--copy-tight)",
-  copyToContent: "var(--copy-to-content)",
-} as const;
-
 const SECTION_INSET_CLASS: Record<SectionInsetPreset, string> = {
   hero: "section-inset section-inset--hero",
   default: "section-inset section-inset--default",
@@ -42,20 +30,20 @@ const DEFAULT_SECTION_INSET: Record<
   footer: "default",
 };
 
-export function getSectionSurfaceKey(section: HomeSectionConfig): string {
+function getSectionSurfaceKey(section: HomeSectionConfig): string {
   if (section.backgroundSrc) return `src:${section.backgroundSrc}`;
   if (section.backgroundColor) return `color:${section.backgroundColor}`;
   return "default";
 }
 
-export function sectionsShareSurface(
+function sectionsShareSurface(
   a: HomeSectionConfig,
   b: HomeSectionConfig,
 ): boolean {
   return getSectionSurfaceKey(a) === getSectionSurfaceKey(b);
 }
 
-export function getSectionInsetPreset(
+function getSectionInsetPreset(
   section: HomeSectionConfig,
 ): SectionInsetPreset {
   return section.inset ?? DEFAULT_SECTION_INSET[section.id];

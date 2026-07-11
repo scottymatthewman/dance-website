@@ -32,7 +32,7 @@ function BentoImage({
   const serveUnoptimized = unoptimized || src.startsWith("/bento-mockup/");
 
   return (
-    <div className="relative h-full min-h-[8rem] w-full">
+    <div className="relative h-full min-h-[9.5rem] w-full sm:min-h-[11rem] lg:min-h-[8rem]">
       <Image
         src={src}
         alt=""
@@ -82,7 +82,7 @@ export function BentoCard({
   const titleBlock = (
     <div
       className={cn(
-        "relative z-10 w-full shrink-0 px-5 py-5 lg:px-6 lg:py-6",
+        "relative z-10 w-full shrink-0 px-4 py-4 sm:px-5 sm:py-5 lg:px-6 lg:py-6",
         !hasVisual && "flex flex-1 flex-col justify-end",
         hasVisual && imageOnTop && "mt-auto",
         imageOnRight &&
@@ -107,7 +107,12 @@ export function BentoCard({
       className={cn(
         "relative min-h-0 flex-1 basis-0 overflow-hidden",
         !usesGraphicImage && "bento-mockup-surface",
-        imageOnRight && "md:min-w-0 md:flex-[1.2]",
+        // Below lg the grid rows are auto-sized, so hold the image area at the
+        // ~3:2 ratio it has in the height-filled lg layout.
+        imageOnTop &&
+          "max-lg:aspect-[3/2] max-lg:basis-auto max-lg:shrink-0 lg:aspect-auto lg:basis-0",
+        imageOnRight &&
+          "max-md:aspect-[3/2] max-md:basis-auto max-md:shrink-0 md:min-w-0 md:flex-[1.2]",
       )}
     >
       {resolvedVisual}
@@ -125,7 +130,7 @@ export function BentoCard({
     <div
       className={cn(
         "group relative flex h-full w-full overflow-hidden rounded-xl border border-border-subtle bg-white text-left transition-colors duration-200 hover:border-[#DDDDDD]",
-        size === "large" ? "min-h-[14rem]" : "min-h-[12rem]",
+        size === "large" ? "min-h-[12rem] md:min-h-[14rem]" : "min-h-[10rem] md:min-h-[12rem]",
         imageOnRight ? "flex-col-reverse md:flex-row" : "flex-col",
         className,
       )}

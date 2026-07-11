@@ -21,11 +21,12 @@ function UseCaseCard({
       <ImageFrame
         src={item.image}
         priority={priority}
+        unoptimized
         sizes="(min-width: 1024px) 450px, 85vw"
         className="w-full"
-        innerClassName="h-[30rem]"
+        innerClassName="h-[min(30rem,calc(100dvh-14rem))]"
       >
-        <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-2 p-6">
+        <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-2 p-4 sm:p-6">
           <p className="text-xl font-normal leading-normal text-white">
             {item.title}
           </p>
@@ -46,8 +47,8 @@ function UseCaseCtaCard() {
 
   return (
     <article className="w-[min(28.125rem,85vw)] shrink-0 snap-start">
-      <div className="relative h-[30rem] w-full overflow-hidden rounded-[6px] media-inner-stroke">
-        <div className="flex h-full flex-col items-center justify-center gap-5 bg-[#edebe9] p-6 text-center">
+      <div className="relative h-[min(30rem,calc(100dvh-14rem))] w-full overflow-hidden rounded-[6px] media-inner-stroke">
+        <div className="flex h-full flex-col items-center justify-center gap-5 bg-[#edebe9] p-4 text-center sm:p-6">
           {showForm ? (
             <UseCaseInterestForm
               title={formStatus !== "success" ? USE_CASE_CTA.title : undefined}

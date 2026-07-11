@@ -11,7 +11,7 @@ export type SectionId =
   | "emailCaptureBleed"
   | "footer";
 
-export const SECTION_IDS: Record<SectionId, number> = {
+const SECTION_IDS: Record<SectionId, number> = {
   hero: 0,
   features: 1,
   useCases: 2,
@@ -51,6 +51,8 @@ export type HomeSectionConfig = {
   postRevealHoldVh?: number;
   /** Section height follows content instead of filling the shell viewport. */
   sizeToContent?: boolean;
+  /** With sizeToContent: still fill the shell viewport at lg+ (CSS-driven). */
+  fillViewportLg?: boolean;
   /** Suppress the scroll-track gap before the next section. */
   noGapAfter?: boolean;
 };
@@ -73,7 +75,7 @@ export function getFeaturesHoldPx(
 export const HOME_SECTIONS: HomeSectionConfig[] = [
   {
     id: "hero",
-    backgroundSrc: "/home/hero-bg.jpg",
+    backgroundSrc: "/home/hero-bg.webp",
   },
   {
     id: "features",
@@ -91,6 +93,8 @@ export const HOME_SECTIONS: HomeSectionConfig[] = [
   {
     id: "bento",
     backgroundColor: SCROLL_TRACK_BG,
+    sizeToContent: true,
+    fillViewportLg: true,
   },
   {
     id: "statement",

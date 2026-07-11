@@ -71,7 +71,7 @@ export function SectionHeader({
     return (
       <div
         className={cn(
-          "flex w-full flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-4",
+          "flex w-full flex-col gap-3 md:flex-row md:items-end md:justify-between md:gap-4",
           className,
         )}
       >
@@ -82,30 +82,4 @@ export function SectionHeader({
   }
 
   return <div className={cn("w-full", className)}>{copyBlock}</div>;
-}
-
-/** @deprecated Use SectionHeader instead. */
-export function SectionCopy({
-  headline,
-  subhead,
-  className,
-  headlineClassName,
-  children,
-}: {
-  headline: string;
-  subhead?: string;
-  className?: string;
-  headlineClassName?: string;
-  children?: ReactNode;
-}) {
-  return (
-    <SectionHeader
-      headline={headline}
-      subhead={subhead}
-      className={className}
-      headlineClassName={headlineClassName}
-    >
-      {children}
-    </SectionHeader>
-  );
 }

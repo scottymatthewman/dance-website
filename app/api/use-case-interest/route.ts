@@ -1,3 +1,5 @@
+import { sendFormNotification } from "@/lib/form-notifications";
+
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MAX_SUBMISSIONS_PER_DEVICE = 3;
 const MAX_EVENTS_LENGTH = 500;
@@ -55,6 +57,17 @@ export async function POST(request: Request) {
 
   incrementSubmissionCount(deviceId);
 
-  // TODO: forward to CRM or notification provider
+  const delivered = await sendFormNotification("use-case", {
+    email,
+    events,
+  });
+
+  if (!delivered) {
+    return Response.json(
+      { error: "Unable to process submission right now" },
+      { status: 503 },
+    );
+  }
+
   return Response.json({ ok: true });
 }

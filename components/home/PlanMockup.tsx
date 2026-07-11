@@ -46,17 +46,11 @@ export function PlanMockup({
   }, []);
 
   useEffect(() => {
-    if (reducedMotion) {
-      setElapsedMs(getPlanMockupLoopDurationMs());
-      return;
-    }
-
-    if (!isPlaying) {
+    if (reducedMotion || !isPlaying) {
       return;
     }
 
     startRef.current = performance.now();
-    setElapsedMs(0);
 
     let frame = 0;
     const tick = (now: number) => {

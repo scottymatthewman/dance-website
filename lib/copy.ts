@@ -2,7 +2,8 @@ export const COPY = {
   hero: {
     headline: "The smartest way to plan events.",
     subheadLines: [
-      "Collaborate with your teammates and event agents to stay aligned and under budget.",
+      "Collaborate with your teammates and event agents",
+      "to stay aligned and under budget.",
     ],
     cta: "Get early access",
   },
@@ -65,7 +66,7 @@ export const COPY = {
         id: "executive-dinner",
         title: "Executive Dinners",
         body: "Close and grow relationships with key prospects with focused and curated meals.",
-        image: "/use-cases/executive-dinners.png",
+        image: "/use-cases/dinner.jpg",
       },
       {
         id: "tradeshow",
@@ -119,7 +120,6 @@ export const COPY = {
   emailCapture: {
     headline: "Unlock event agents for your team.",
     subhead: "Join the waitlist and get notified the moment we launch.",
-    image: "/home/email-capture-bg.jpg",
     placeholder: "name@email.com",
     button: "Get in early",
     loading: "Submitting…",
@@ -128,21 +128,22 @@ export const COPY = {
   },
   emailCaptureBleed: {
     headline: "Unlock event agents for your team.",
-    subhead: "Join the waitlist and get notified the moment we launch.",
-    image: "/home/email-capture-bg-2.png",
+    subhead: "Get notified the moment we launch.",
+    image: "/home/email-capture-bg-2.webp",
+    imageMobile: "/home/email-capture-bg-mobile.jpg",
   },
   bento: {
     topRow: [
       {
         title: "Pass off mundane, repetitive tasks",
         subtitle: "to your team's event agent.",
-        image: "/bento-mockup/Agents-Graphic.png",
+        image: "/bento-mockup/Agents-Graphic.webp",
         tag: { label: "Agents", icon: "/bento-mockup/agents/tag-at.svg" },
       },
       {
         title: "Work where you work.",
         subtitle: "Bring your tools with you.",
-        image: "/bento-mockup/Integrations-Graphic.png",
+        image: "/bento-mockup/Integrations-Graphic.webp",
         tag: {
           label: "Integrations + MCP",
           icon: "/bento-mockup/integrations/mcp-icon.svg",
@@ -153,13 +154,13 @@ export const COPY = {
       {
         title: "Never start from step 1 again.",
         subtitle: "Prompt a plan or use a template.",
-        image: "/bento-mockup/Templates-Graphic.png",
+        image: "/bento-mockup/Templates-Graphic.webp",
         tag: { label: "Templates", icon: "/bento-mockup/templates/tag-bento.svg" },
       },
       {
         title: "Never over-spend.",
         subtitle: "Know where every dollar is going.",
-        image: "/bento-mockup/Budget-Graphic.png",
+        image: "/bento-mockup/Budget-Graphic.webp",
         tag: {
           label: "Budget Tracking",
           icon: "/bento-mockup/budget/receipt.svg",
@@ -168,10 +169,23 @@ export const COPY = {
       {
         title: "Contracts, receipts, internal write-ups.",
         subtitle: "Always on-hand.",
-        image: "/bento-mockup/Docs-Graphic.png",
+        image: "/bento-mockup/Docs-Graphic.webp",
         tag: { label: "Docs", icon: "/bento-mockup/docs/tag-icon.svg" },
       },
     ],
+  },
+  content: {
+    blog: {
+      title: "Blog",
+      headline: "How we think about events.",
+      description: "How we think about events.",
+      year: "2026",
+    },
+    glossary: {
+      title: "Glossary",
+      headline: "Glossary",
+      description: "Terms we use across our work.",
+    },
   },
   footer: {
     label: "Get early access",

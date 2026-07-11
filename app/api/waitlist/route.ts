@@ -1,3 +1,5 @@
+import { sendFormNotification } from "@/lib/form-notifications";
+
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: Request) {
@@ -21,6 +23,14 @@ export async function POST(request: Request) {
     return Response.json({ error: "Invalid email address" }, { status: 400 });
   }
 
-  // TODO: forward to waitlist provider (Loops, Resend, etc.)
+  const delivered = await sendFormNotification("waitlist", { email });
+
+  if (!delivered) {
+    return Response.json(
+      { error: "Unable to process signup right now" },
+      { status: 503 },
+    );
+  }
+
   return Response.json({ ok: true });
 }

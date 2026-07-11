@@ -47,7 +47,6 @@ const FILL_VIEWPORT_SECTIONS = new Set<SectionId>([
   "useCases",
   "features",
   "statement",
-  "bento",
   "emailCaptureBleed",
 ]);
 

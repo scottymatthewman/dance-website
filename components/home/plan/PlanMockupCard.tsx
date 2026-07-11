@@ -486,7 +486,7 @@ type PlanMockupCardProps = {
   className?: string;
 };
 
-export function PlanMockupCard({
+function PlanMockupCard({
   state,
   background = "fill",
   cardRef,

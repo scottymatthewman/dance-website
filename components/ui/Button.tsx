@@ -12,7 +12,7 @@ const variantClasses = {
 const sizeClasses = {
   default: "text-base px-5 py-3",
   sm: "text-sm px-4 py-2",
-  section: "text-md px-4 py-2",
+  section: "px-4 py-2 [font-size:var(--font-size-button-section)]",
 } as const;
 
 type ButtonProps = {

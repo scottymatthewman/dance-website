@@ -13,7 +13,7 @@ import { COPY } from "@/lib/copy";
 import { FLOW_STEP_COUNT } from "@/lib/home/sections";
 import { scrollToFeaturesStep } from "@/lib/scroll-to-section";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const STEPS = COPY.features.steps;
 
@@ -66,7 +66,7 @@ function FlowStepTab({
       <span
         className={cn(
           "text-primary transition-[font-size,line-height] duration-300 ease-out",
-          isActive ? "text-2xl leading-8" : "text-lg leading-6",
+          isActive ? "text-xl leading-7 md:text-2xl md:leading-8" : "text-lg leading-6",
         )}
       >
         {step.eyebrow}
@@ -102,14 +102,9 @@ export function FeaturesContent({ stepProgress = 0 }: FeaturesContentProps) {
   const scrollStep = reducedMotion ? 0 : getScrollStep(stepProgress);
   const [overrideStep, setOverrideStep] = useState<number | null>(null);
 
-  useEffect(() => {
-    if (overrideStep === null || reducedMotion) return;
-    if (scrollStep === overrideStep) {
-      setOverrideStep(null);
-    }
-  }, [scrollStep, overrideStep, reducedMotion]);
-
-  const activeStep = overrideStep ?? scrollStep;
+  const effectiveOverride =
+    overrideStep !== null && overrideStep !== scrollStep ? overrideStep : null;
+  const activeStep = effectiveOverride ?? scrollStep;
 
   const handleStepSelect = (index: number) => {
     if (index === activeStep) return;
@@ -121,7 +116,7 @@ export function FeaturesContent({ stepProgress = 0 }: FeaturesContentProps) {
   };
 
   return (
-    <SectionShell variant="standard" className="justify-center">
+    <SectionShell variant="standard" className="min-h-0 justify-center">
       <ContentRail
         width="content"
         align="center"
@@ -130,14 +125,19 @@ export function FeaturesContent({ stepProgress = 0 }: FeaturesContentProps) {
         <SectionHeader
           layout="split"
           headline={COPY.mockup.headline}
-          action={<CtaButton size="section" className="w-fit shrink-0" />}
+          action={
+            <CtaButton
+              size="section"
+              className="hidden w-fit shrink-0 md:inline-flex"
+            />
+          }
         />
 
-        <div className="flex w-full flex-col gap-6 md:flex-row md:items-stretch md:gap-8">
+        <div className="flex w-full min-h-0 flex-col gap-4 md:flex-row md:items-stretch md:gap-8">
           <div
             role="tablist"
             aria-label="Product flow"
-            className="flex flex-col gap-4 md:w-[17.5625rem] md:shrink-0"
+            className="flex shrink-0 flex-col gap-3 md:w-[17.5625rem] md:gap-4"
           >
             {STEPS.map((step, index) => (
               <FlowStepTab
@@ -154,7 +154,7 @@ export function FeaturesContent({ stepProgress = 0 }: FeaturesContentProps) {
             id="flow-mockup-panel"
             role="tabpanel"
             aria-labelledby={`flow-step-${activeStep}`}
-            className="flex min-h-[16rem] w-full flex-1 flex-col"
+            className="flex min-h-0 w-full min-w-0 flex-1 flex-col"
           >
             <ImageFrame
               preset="flow"
@@ -186,6 +186,8 @@ export function FeaturesContent({ stepProgress = 0 }: FeaturesContentProps) {
             </ImageFrame>
           </div>
         </div>
+
+        <CtaButton size="section" className="h-10 w-full md:hidden" />
       </ContentRail>
     </SectionShell>
   );

@@ -96,11 +96,20 @@ export function RevealWords({
   }
 
   if (lines) {
-    let wordOffset = 0;
+    const lineWordCounts = lines.map(
+      (line) => line.split(/\s+/).filter(Boolean).length,
+    );
+    const lineOffsets = lineWordCounts.map((_, lineIndex) =>
+      lineWordCounts
+        .slice(0, lineIndex)
+        .reduce((total, count) => total + count, 0),
+    );
+
     return (
       <Component className={className}>
-        {lines.map((line) => {
+        {lines.map((line, lineIndex) => {
           const lineWords = line.split(/\s+/).filter(Boolean);
+          const wordOffset = lineOffsets[lineIndex];
           const lineElement = (
             <span key={line} className="block">
               {lineWords.map((word, index) => {
@@ -123,7 +132,6 @@ export function RevealWords({
               })}
             </span>
           );
-          wordOffset += lineWords.length;
           return lineElement;
         })}
       </Component>

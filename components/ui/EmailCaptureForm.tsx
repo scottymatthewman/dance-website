@@ -99,6 +99,9 @@ export function EmailCaptureForm({
         className={cn(
           "flex items-center rounded-xl border border-[#eee]",
           isOverlay
+            ? "max-[380px]:flex-col max-[380px]:items-stretch max-[380px]:gap-2 max-[380px]:p-2"
+            : null,
+          isOverlay
             ? "gap-3 py-0.5 pl-3 pr-0.5"
             : "gap-4 py-1 pl-4 pr-1",
           "transition-[border-color,box-shadow] focus-within:ring-2",
@@ -140,7 +143,7 @@ export function EmailCaptureForm({
           disabled={status === "loading"}
           className={cn(
             "inline-flex shrink-0 items-center justify-center rounded-lg font-medium leading-normal transition-opacity",
-            isOverlay ? "px-3 py-1.5 text-sm" : "px-4 py-2 text-base",
+            isOverlay ? "px-3 py-1.5 text-sm max-[380px]:w-full" : "px-4 py-2 text-base",
             isOverlay
               ? "bg-[#eee] text-black hover:opacity-90 focus-visible:ring-white focus-visible:ring-offset-transparent"
               : "bg-primary text-inverse hover:opacity-90 focus-visible:ring-accent focus-visible:ring-offset-card",

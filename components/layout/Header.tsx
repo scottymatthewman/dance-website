@@ -140,7 +140,7 @@ export function Header() {
   }, [menuOpen]);
 
   return (
-    <header className="header--in-shell-margin pointer-events-none fixed top-0 z-50 flex h-auto w-auto justify-stretch">
+    <header className="header--in-shell-margin pointer-events-none fixed top-0 z-50 flex h-auto justify-stretch">
       <div ref={headerRef} className="relative h-full w-full">
         <div className="header-bar pointer-events-auto flex h-full w-full items-center justify-between gap-2 border-0 bg-transparent p-1 shadow-none backdrop-blur-none md:gap-1">
           <LogoLink

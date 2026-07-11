@@ -9,7 +9,7 @@ export function UseCasesContent() {
   const { headline, subhead } = COPY.useCases;
 
   return (
-    <SectionShell variant="standard" className="justify-center">
+    <SectionShell variant="standard" className="min-h-0 justify-center">
       <div className="section-intro w-full shrink-0">
         <SectionHeader headline={headline} subhead={subhead} />
         <UseCaseCarousel />

@@ -1,9 +1,9 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { Header } from "@/components/layout/Header";
+import { useIsClient } from "@/hooks/useIsClient";
 import { cn } from "@/lib/cn";
 
 type SiteShellProps = {
@@ -12,11 +12,7 @@ type SiteShellProps = {
 };
 
 function SiteShellRails() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useIsClient();
 
   if (!mounted) return null;
 

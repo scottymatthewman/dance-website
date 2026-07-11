@@ -1,6 +1,6 @@
 # Dance mockup color system
 
-Reference for **interactive product mockups** on the marketing site (`PlanMockup`, `TimelineMockup`, `AgentInteractionMockup`, bento mockups, etc.).
+Reference for **interactive product mockups** on the marketing site (`PlanMockup`, `TimelineMockup`, `DefineMockup`, `CollaborateMockup`, etc.).
 
 This is separate from the **marketing site palette** in `app/globals.css` (black page, white text, mint accent). Mockups use Dance's dark product UI palette.
 
@@ -186,11 +186,10 @@ Mockups use the same type families as the marketing site (Gen Interface JP Displ
 
 | Component | Location |
 |---|---|
+| `TimelineMockup` | Hero — timeline view |
 | `PlanMockup` | Features — plan overview |
-| `TimelineMockup` | Features — timeline view |
 | `DefineMockup` | Features — define phase |
 | `CollaborateMockup` | Features — collaboration |
-| `AgentInteractionMockup` | Features — agent chat |
-| `AgentsBentoMockup`, `BudgetBentoMockup`, etc. | Bento grid |
+| `BentoCard` | Bento grid — static PNG graphics |
 
 When adding a new mockup, match these tokens first. If a new semantic color is needed, add it to this doc before hardcoding in the component.

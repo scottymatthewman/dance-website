@@ -181,10 +181,6 @@ export const PHASE_DURATIONS_MS = {
 
 export type DefineAnimationPhase = keyof typeof PHASE_DURATIONS_MS;
 
-export function lerp(from: number, to: number, progress: number): number {
-  return from + (to - from) * progress;
-}
-
 export function easeOutCubic(progress: number): number {
   return 1 - Math.pow(1 - progress, 3);
 }

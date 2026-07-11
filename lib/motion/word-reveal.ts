@@ -1,9 +1,9 @@
 import { smootherstep, smoothstep } from "@/lib/motion/easing";
 
-export const WORDS_END_PROGRESS = 0.82;
-export const SUBHEAD_START_PROGRESS = 0.78;
+const WORDS_END_PROGRESS = 0.82;
+const SUBHEAD_START_PROGRESS = 0.78;
 /** Subhead finishes here; CTA begins immediately after. */
-export const CTA_START_PROGRESS = 0.9;
+const CTA_START_PROGRESS = 0.9;
 
 /** Statement scroll track: headline phase ends, subhead phase ends (then hold). */
 const STATEMENT_SCROLL_HEADLINE_END = 0.72;
