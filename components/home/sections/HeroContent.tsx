@@ -67,9 +67,10 @@ export function HeroContent() {
               hidden={!secondaryEnabled}
               className="w-full"
             >
-              <p className="flex flex-col gap-y-1 text-body-lg leading-normal text-secondary md:leading-[1.5]">
-                {COPY.hero.subheadLines.map((line) => (
-                  <span key={line} className="block">
+              <p className="text-body-lg leading-normal text-secondary md:leading-[1.5]">
+                {COPY.hero.subheadLines.map((line, index) => (
+                  <span key={line} className="sm:block">
+                    {index > 0 ? <span className="sm:hidden"> </span> : null}
                     {line}
                   </span>
                 ))}
