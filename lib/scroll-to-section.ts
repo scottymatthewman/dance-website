@@ -1,6 +1,11 @@
+import { isTouchLikeDevice } from "@/lib/device/touch";
 import { HOME_SECTIONS } from "@/lib/home/sections";
 import { getHomeSectionScrollTop } from "@/lib/home/scroll-positions";
 import { getFeaturesStepScrollY } from "@/lib/home/scroll-transition";
+
+function resolveScrollBehavior(options?: { smooth?: boolean }) {
+  return options?.smooth && !isTouchLikeDevice() ? "smooth" : "auto";
+}
 
 export function scrollToHomeSection(
   sectionIndex: number,
@@ -16,7 +21,7 @@ export function scrollToHomeSection(
 
   window.scrollTo({
     top: getHomeSectionScrollTop(section.id),
-    behavior: options?.smooth ? "smooth" : "auto",
+    behavior: resolveScrollBehavior(options),
   });
 }
 
@@ -26,7 +31,7 @@ export function scrollToFeaturesStep(
 ) {
   window.scrollTo({
     top: getFeaturesStepScrollY(stepIndex, window.innerHeight),
-    behavior: options?.smooth ? "smooth" : "auto",
+    behavior: resolveScrollBehavior(options),
   });
 }
 
@@ -34,6 +39,6 @@ export function scrollToTop(options?: { smooth?: boolean }) {
   window.scrollTo({
     top: 0,
     left: 0,
-    behavior: options?.smooth ? "smooth" : "auto",
+    behavior: resolveScrollBehavior(options),
   });
 }

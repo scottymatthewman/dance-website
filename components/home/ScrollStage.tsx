@@ -12,8 +12,8 @@ import { UseCasesContent } from "@/components/home/sections/UseCasesContent";
 import {
   useScrollSpacerHeight,
   useScrollTrackState,
-  useViewportHeight,
 } from "@/hooks/useScrollStageState";
+import { useStableViewportHeight } from "@/hooks/useStableViewportHeight";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import {
   clearHomeSectionScrollTops,
@@ -28,9 +28,6 @@ import {
 } from "@/lib/home/sections";
 import {
   getScrollReleaseFooterOpacity,
-  getScrollReleaseFooterBottomPx,
-  getScrollReleaseOffsetPx,
-  getTrackTranslateY,
   getWindowScrollYForTrackOffset,
   type TrackScrollLayout,
 } from "@/lib/home/scroll-transition";
@@ -71,8 +68,10 @@ export function ScrollStage() {
   const [featuresOffsetInTrack, setFeaturesOffsetInTrack] = useState(0);
   const [trackLayoutReady, setTrackLayoutReady] = useState(false);
   const releaseProgressRef = useRef(0);
+  const viewportFrozenRef = useRef(false);
 
-  const viewportHeight = useViewportHeight();
+  const { height: viewportHeight, isFrozen: viewportHeightFrozen } =
+    useStableViewportHeight();
   const reducedMotion = useReducedMotion();
   const featuresHoldPx = useMemo(
     () => getFeaturesHoldPx(frameHeightPx, viewportHeight),
@@ -119,7 +118,11 @@ export function ScrollStage() {
     ],
   );
 
-  const scrollState = useScrollTrackState(trackLayout);
+  const scrollState = useScrollTrackState(trackLayout, {
+    trackRef,
+    frameRef,
+    reducedMotion,
+  });
   const spacerHeight = useScrollSpacerHeight(
     scrollState.totalScrollHeight,
     viewportHeight,
@@ -129,12 +132,6 @@ export function ScrollStage() {
       ? 1
       : 0
     : scrollState.scrollReleaseProgress;
-  const releaseOffsetPx = Math.round(
-    getScrollReleaseOffsetPx(frameHeightPx, releaseProgress),
-  );
-  const trackTranslateY = Math.round(
-    getTrackTranslateY(scrollState.trackOffset, releaseOffsetPx),
-  );
   const footerOpacity = getScrollReleaseFooterOpacity(releaseProgress);
   const featuresScrollProgress = reducedMotion
     ? 1
@@ -170,31 +167,16 @@ export function ScrollStage() {
 
   useLayoutEffect(() => {
     releaseProgressRef.current = releaseProgress;
+  }, [releaseProgress]);
 
-    const root = document.documentElement;
-    const shellMargin =
-      parseFloat(getComputedStyle(root).getPropertyValue("--shell-margin")) || 0;
-    const footerBottomPx = getScrollReleaseFooterBottomPx(
-      shellMargin,
-      releaseProgress,
-    );
-
-    root.style.setProperty("--scroll-release-offset", `${releaseOffsetPx}px`);
-    root.style.setProperty(
-      "--scroll-release-progress",
-      String(releaseProgress),
-    );
-    root.style.setProperty(
-      "--scroll-release-footer-bottom",
-      `${footerBottomPx}px`,
-    );
-
+  useLayoutEffect(() => {
     return () => {
+      const root = document.documentElement;
       root.style.setProperty("--scroll-release-offset", "0px");
       root.style.setProperty("--scroll-release-progress", "0");
       root.style.removeProperty("--scroll-release-footer-bottom");
     };
-  }, [releaseOffsetPx, releaseProgress]);
+  }, []);
 
   useLayoutEffect(() => {
     if (releaseProgress > 0) return;
@@ -206,11 +188,16 @@ export function ScrollStage() {
   }, [releaseProgress, viewportHeight]);
 
   useEffect(() => {
+    viewportFrozenRef.current = viewportHeightFrozen;
+  }, [viewportHeightFrozen]);
+
+  useEffect(() => {
     const frame = frameRef.current;
     const track = trackRef.current;
     if (!frame || !track) return;
 
     const measureTrack = () => {
+      if (viewportFrozenRef.current) return;
       const trackHeight = track.scrollHeight;
       const frameHeight = frame.clientHeight;
 
@@ -292,7 +279,7 @@ export function ScrollStage() {
         style={{
           top: "var(--shell-margin-top)",
           right: "var(--shell-margin)",
-          bottom: `calc(var(--shell-margin) + ${releaseOffsetPx}px)`,
+          bottom: "var(--shell-margin)",
           left: "var(--shell-margin)",
         }}
       >
@@ -300,7 +287,7 @@ export function ScrollStage() {
           ref={trackRef}
           className="scroll-track relative z-0 will-change-transform"
           style={{
-            transform: `translate3d(0, -${trackTranslateY}px, 0)`,
+            transform: "translate3d(0, 0, 0)",
           }}
         >
           {TRACK_SECTIONS.map((section, index) => (

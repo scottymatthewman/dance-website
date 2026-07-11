@@ -173,6 +173,13 @@
     overscroll-behavior-x: none;
   }
 
+  /* Smooth scroll fights touch scroll-jacking; keep native momentum on phones. */
+  @media (hover: none) and (pointer: coarse) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
   body {
     background: var(--bg-section);
     color: var(--text-primary);
@@ -366,6 +373,11 @@
   .scroll-stage,
   .scroll-track {
     background: var(--bg-scroll-canvas);
+    touch-action: pan-y;
+  }
+
+  .use-case-carousel {
+    touch-action: pan-x pinch-zoom;
   }
 
   .scroll-stage {
