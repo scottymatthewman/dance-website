@@ -29,8 +29,10 @@ const SECTION_IDS: Record<SectionId, number> = {
 
 /** Nav targets — indices into the scroll stage section list. */
 export const NAV_SECTIONS = {
-  features: SECTION_IDS.bento,
   useCases: SECTION_IDS.useCases,
+  features: SECTION_IDS.bento,
+  whyDance: SECTION_IDS.differentiator,
+  faq: SECTION_IDS.faq,
   emailCapture: SECTION_IDS.emailCaptureBleed,
 } as const;
 

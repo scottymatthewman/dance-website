@@ -113,8 +113,10 @@ export const COPY = {
     },
   },
   nav: {
-    features: "Features",
     useCases: "Use Cases",
+    features: "Features",
+    whyDance: "Why Dance",
+    faq: "FAQ",
     cta: "Get early access",
   },
   differentiator: {

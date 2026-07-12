@@ -14,12 +14,20 @@ import { NAV_SECTIONS } from "@/lib/home/sections";
 
 const NAV_LINKS = [
   {
+    sectionIndex: NAV_SECTIONS.useCases,
+    label: COPY.nav.useCases,
+  },
+  {
     sectionIndex: NAV_SECTIONS.features,
     label: COPY.nav.features,
   },
   {
-    sectionIndex: NAV_SECTIONS.useCases,
-    label: COPY.nav.useCases,
+    sectionIndex: NAV_SECTIONS.whyDance,
+    label: COPY.nav.whyDance,
+  },
+  {
+    sectionIndex: NAV_SECTIONS.faq,
+    label: COPY.nav.faq,
   },
 ] as const;
 
