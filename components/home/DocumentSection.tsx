@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode, Ref } from "react";
+import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import {
   getSectionGapAfter,
@@ -11,24 +11,19 @@ import type { HomeSectionConfig } from "@/lib/home/sections";
 import { sectionBackgroundStyle } from "@/lib/home/section-surface";
 import { publicAssetUrl } from "@/lib/home/public-assets";
 
-type ScrollTrackSectionProps = {
+type DocumentSectionProps = {
   section: HomeSectionConfig;
   nextSection?: HomeSectionConfig;
   children: ReactNode;
-  fillViewport?: boolean;
-  ref?: Ref<HTMLElement>;
+  frameClassName?: string;
 };
 
-const SHELL_SECTION_HEIGHT =
-  "calc(100dvh - var(--shell-margin-top) - var(--shell-margin))";
-
-export function ScrollTrackSection({
+export function DocumentSection({
   section,
   nextSection,
   children,
-  fillViewport = false,
-  ref,
-}: ScrollTrackSectionProps) {
+  frameClassName,
+}: DocumentSectionProps) {
   const insetClass = getSectionInsetClass(section);
   const gapAfter = getSectionGapAfter(section, nextSection);
   const gapColor = getSectionGapColor(section, nextSection);
@@ -36,28 +31,17 @@ export function ScrollTrackSection({
 
   return (
     <section
-      ref={ref}
       id={`section-${section.id}`}
-      className="scroll-track-section relative"
+      className="document-section relative scroll-mt-[var(--shell-margin-top)]"
       style={backgroundStyle ?? undefined}
     >
       <div
         className={cn(
           "relative flex flex-col overflow-hidden",
           section.id === "statement" && "scroll-track-section-frame--statement",
-          section.sizeToContent &&
-            section.fillViewportLg &&
-            !fillViewport &&
-            "scroll-track-section-frame--fill-lg",
+          frameClassName,
         )}
-        style={{
-          ...(fillViewport
-            ? { height: SHELL_SECTION_HEIGHT }
-            : section.sizeToContent
-              ? null
-              : { minHeight: SHELL_SECTION_HEIGHT }),
-          ...(backgroundStyle ?? null),
-        }}
+        style={backgroundStyle ?? undefined}
       >
         <div className="absolute inset-0" aria-hidden>
           {section.backgroundSrc ? (
@@ -74,7 +58,8 @@ export function ScrollTrackSection({
         </div>
         <div
           className={cn(
-            "relative flex h-full min-h-0 w-full flex-col",
+            "relative flex w-full flex-col",
+            /(?:^|\s)h-/.test(frameClassName ?? "") && "h-full min-h-0",
             insetClass,
           )}
         >

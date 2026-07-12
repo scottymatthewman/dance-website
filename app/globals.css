@@ -180,6 +180,13 @@
     }
   }
 
+  /* Native document-flow homepage below lg — clear fixed header on in-page nav. */
+  @media (max-width: 63.9375rem) {
+    html {
+      scroll-padding-top: var(--shell-margin-top);
+    }
+  }
+
   body {
     background: var(--bg-section);
     color: var(--text-primary);

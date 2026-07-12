@@ -1,5 +1,5 @@
-import { ScrollStage } from "@/components/home/ScrollStage";
+import { HomePage } from "@/components/home/HomePage";
 
 export default function Home() {
-  return <ScrollStage />;
+  return <HomePage />;
 }

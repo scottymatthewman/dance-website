@@ -8,6 +8,23 @@ function resolveScrollBehavior(options?: { smooth?: boolean }) {
   return options?.smooth && !isTouchLikeDevice() ? "smooth" : "auto";
 }
 
+function scrollToSectionElement(
+  sectionId: string,
+  options?: { smooth?: boolean },
+) {
+  const element = document.getElementById(`section-${sectionId}`);
+  if (!element) return;
+
+  element.scrollIntoView({
+    behavior: resolveScrollBehavior(options),
+    block: "start",
+  });
+}
+
+function isCompactScrollLayout() {
+  return window.matchMedia(COMPACT_SCROLL_MEDIA_QUERY).matches;
+}
+
 export function scrollToHomeSection(
   sectionIndex: number,
   options?: { smooth?: boolean },
@@ -17,6 +34,11 @@ export function scrollToHomeSection(
 
   if (sectionIndex === 0) {
     scrollToTop(options);
+    return;
+  }
+
+  if (isCompactScrollLayout()) {
+    scrollToSectionElement(section.id, options);
     return;
   }
 
@@ -30,11 +52,8 @@ export function scrollToFeaturesStep(
   stepIndex: number,
   options?: { smooth?: boolean },
 ) {
-  if (window.matchMedia(COMPACT_SCROLL_MEDIA_QUERY).matches) {
-    window.scrollTo({
-      top: getHomeSectionScrollTop("features"),
-      behavior: resolveScrollBehavior(options),
-    });
+  if (isCompactScrollLayout()) {
+    scrollToSectionElement("features", options);
     return;
   }
 
