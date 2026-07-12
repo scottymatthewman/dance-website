@@ -208,7 +208,7 @@ export function Header() {
               ))}
               <CtaButton
                 size="sm"
-                className="mt-1 w-full rounded-none"
+                className="mt-1 w-full rounded-[6px]"
                 onClick={closeMenu}
               >
                 {COPY.nav.cta}
