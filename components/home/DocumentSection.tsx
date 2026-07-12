@@ -28,6 +28,9 @@ export function DocumentSection({
   const gapAfter = getSectionGapAfter(section, nextSection);
   const gapColor = getSectionGapColor(section, nextSection);
   const backgroundStyle = sectionBackgroundStyle(section);
+  const fillsShellViewport = frameClassName?.includes(
+    "mobile-section--shell-height",
+  );
 
   return (
     <section
@@ -39,6 +42,7 @@ export function DocumentSection({
         className={cn(
           "relative flex flex-col overflow-hidden",
           section.id === "statement" && "scroll-track-section-frame--statement",
+          section.id === "faq" && "scroll-track-section-frame--faq",
           frameClassName,
         )}
         style={backgroundStyle ?? undefined}
@@ -59,7 +63,7 @@ export function DocumentSection({
         <div
           className={cn(
             "relative flex w-full flex-col",
-            /(?:^|\s)h-/.test(frameClassName ?? "") && "h-full min-h-0",
+            fillsShellViewport && "h-full min-h-0",
             insetClass,
           )}
         >

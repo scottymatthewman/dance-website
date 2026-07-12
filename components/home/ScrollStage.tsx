@@ -4,7 +4,9 @@ import { ScrollReleaseFooter } from "@/components/home/ScrollReleaseFooter";
 import { ScrollTrackSection } from "@/components/home/ScrollTrackSection";
 import { BentoContent } from "@/components/home/sections/BentoContent";
 import { BenefitsContent } from "@/components/home/sections/BenefitsContent";
+import { DifferentiatorContent } from "@/components/home/sections/DifferentiatorContent";
 import { EmailCaptureBleedContent } from "@/components/home/sections/EmailCaptureBleedContent";
+import { FaqContent } from "@/components/home/sections/FaqContent";
 import { FeaturesContent } from "@/components/home/sections/FeaturesContent";
 import { HeroContent } from "@/components/home/sections/HeroContent";
 import { StatementContent } from "@/components/home/sections/StatementContent";
@@ -56,6 +58,8 @@ const SECTION_CONTENT: Record<
   benefits: <BenefitsContent />,
   bento: <BentoContent />,
   useCases: <UseCasesContent />,
+  differentiator: <DifferentiatorContent />,
+  faq: <FaqContent />,
   emailCaptureBleed: <EmailCaptureBleedContent />,
 };
 

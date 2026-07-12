@@ -24,6 +24,8 @@ const DEFAULT_SECTION_INSET: Record<
   features: "viewport",
   benefits: "spacious",
   statement: "statement",
+  differentiator: "spacious",
+  faq: "spacious",
   bento: "compact",
   emailCapture: "flush",
   emailCaptureBleed: "flush",

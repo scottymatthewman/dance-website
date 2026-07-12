@@ -483,12 +483,22 @@
     border-block: 1px solid var(--shell-rail);
   }
 
+  .scroll-track-section-frame--faq {
+    border-block-start: 1px solid var(--shell-rail);
+  }
+
   /* Size-to-content sections that still fill the shell viewport on desktop
      (e.g. bento — the 12-col × 2-row grid needs the full frame height). */
   .scroll-track-section-frame--fill-lg {
     @media (min-width: 64rem) {
       height: calc(100dvh - var(--shell-margin-top) - var(--shell-margin));
     }
+  }
+
+  /* Mobile document-flow sections that match one shell viewport (hero, use cases, email). */
+  .mobile-section--shell-height {
+    height: calc(100dvh - var(--shell-margin-top) - var(--shell-margin));
+    min-height: calc(100dvh - var(--shell-margin-top) - var(--shell-margin));
   }
 
   .section-inset--statement {

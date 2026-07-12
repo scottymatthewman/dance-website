@@ -5,6 +5,8 @@ export type SectionId =
   | "features"
   | "benefits"
   | "statement"
+  | "differentiator"
+  | "faq"
   | "bento"
   | "useCases"
   | "emailCapture"
@@ -18,9 +20,11 @@ const SECTION_IDS: Record<SectionId, number> = {
   benefits: 3,
   bento: 4,
   statement: 5,
-  emailCapture: 6,
-  emailCaptureBleed: 6,
-  footer: 7,
+  differentiator: 6,
+  faq: 7,
+  emailCapture: 8,
+  emailCaptureBleed: 8,
+  footer: 9,
 };
 
 /** Nav targets — indices into the scroll stage section list. */
@@ -108,6 +112,17 @@ export const HOME_SECTIONS: HomeSectionConfig[] = [
     holdVh: 250,
     postRevealHoldVh: 70,
     noGapAfter: true,
+  },
+  {
+    id: "differentiator",
+    backgroundColor: SCROLL_TRACK_BG,
+    sizeToContent: true,
+    noGapAfter: true,
+  },
+  {
+    id: "faq",
+    backgroundColor: SCROLL_TRACK_BG,
+    sizeToContent: true,
   },
   {
     id: "emailCaptureBleed",

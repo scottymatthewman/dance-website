@@ -117,6 +117,99 @@ export const COPY = {
     useCases: "Use Cases",
     cta: "Get early access",
   },
+  differentiator: {
+    headline: "What makes Dance different?",
+    subhead:
+      "Most tools store tasks or give generic advice. Dance lives in your event plan and takes real action.",
+    promptLabel: "When you ask",
+    othersLabel: "Spreadsheets & docs",
+    danceLabel: "Dance",
+    footerHeadline: "Give your AI the right tools",
+    items: [
+      {
+        prompt: "Where does our budget stand for the Q3 conference?",
+        others:
+          "Export your budget sheet, cross-reference invoices in email, and manually update totals in a shared doc…",
+        danceSteps: [
+          "Pulling live budget line items",
+          "Flagging overages against approved spend",
+          "Surfacing open vendor contracts",
+        ],
+        danceResult:
+          "You're $4,200 under budget with 3 open POs awaiting approval.",
+      },
+      {
+        prompt: "Who owns venue research for the exec dinner?",
+        others:
+          "Search your channels for \"venue\" and check if anyone replied to the thread from last Tuesday…",
+        danceSteps: [
+          "Checking task assignments across the plan",
+          "Reviewing venue shortlist status",
+          "Pulling the latest vendor thread",
+        ],
+        danceResult:
+          "Sarah owns venue research. 2 of 5 options confirmed, tasting scheduled Thursday.",
+      },
+      {
+        prompt: "Turn this brief into a timeline.",
+        others:
+          "Start with a blank doc, break the brief into phases, assign owners, and build a checklist from scratch…",
+        danceSteps: [
+          "Parsing event properties from the brief",
+          "Generating a phased timeline with owners",
+          "Setting default task priorities",
+        ],
+        danceResult:
+          "12-week timeline drafted with 47 tasks across 4 phases. Ready to review.",
+      },
+    ],
+  },
+  faq: {
+    headline: "FAQ",
+    subhead: "Common questions about Dance and how it works for event teams.",
+    items: [
+      {
+        question: "What is Dance?",
+        answer:
+          "Dance is an event planning workspace where your team and event agents collaborate on one live picture — scope, timeline, budget, and status — instead of scattered docs and threads.",
+      },
+      {
+        question: "How do event agents work?",
+        answer:
+          "Agents handle repetitive coordination: drafting follow-ups, updating statuses, surfacing blockers, and pulling context from your connected tools. You stay in control; they do the busywork.",
+      },
+      {
+        question: "Who is Dance for?",
+        answer:
+          "Marketing, field, and ops teams running conferences, dinners, offsites, tradeshows, and community events — anywhere alignment and follow-through matter.",
+      },
+      {
+        question: "How is Dance different from Notion or Asana?",
+        answer:
+          "Those tools store tasks. Dance is built for events: templates, live plans, budget tracking, and agents that understand event context and take action across your stack.",
+      },
+      {
+        question: "Which tools does Dance connect to?",
+        answer:
+          "Dance works alongside the tools you already use — email, calendar, docs, spreadsheets, and more — so context flows in without re-entering data.",
+      },
+      {
+        question: "Can my whole team use one event plan?",
+        answer:
+          "Yes. One source of truth for scope, timeline, owners, and status keeps everyone aligned from kickoff through show day.",
+      },
+      {
+        question: "Is our event data secure?",
+        answer:
+          "Dance only uses what's needed to get the job done. Sensitive work data stays within your workspace with permissions you control.",
+      },
+      {
+        question: "When can we get access?",
+        answer:
+          "Join the waitlist below. Early access opens in waves — waitlist members get first notice.",
+      },
+    ],
+  },
   emailCapture: {
     headline: "Unlock event agents for your team.",
     subhead: "Join the waitlist and get notified the moment we launch.",
