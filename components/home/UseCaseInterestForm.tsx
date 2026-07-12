@@ -38,12 +38,12 @@ export function UseCaseInterestForm({
     onStatusChange?.(nextStatus);
   }
 
-  function handleInputFocus() {
-    if (formRef.current && window.innerWidth < 768) {
-      const formRect = formRef.current.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const targetPosition = viewportHeight * 0.3; // Position form at 30% from top
-      const scrollOffset = formRect.top - targetPosition;
+  function handleInputFocus(event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    if (window.innerWidth < 768) {
+      const inputRect = event.target.getBoundingClientRect();
+      const inputBottom = inputRect.bottom;
+      const targetPosition = window.innerHeight * 0.005; // 0.5vh from top
+      const scrollOffset = inputBottom - targetPosition;
       
       if (scrollOffset > 0) {
         window.scrollBy({ top: scrollOffset, behavior: 'smooth' });
