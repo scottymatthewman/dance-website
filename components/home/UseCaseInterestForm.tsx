@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent, useRef } from "react";
+import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
 import { COPY } from "@/lib/copy";
@@ -25,7 +25,6 @@ export function UseCaseInterestForm({
   title,
   onStatusChange,
 }: UseCaseInterestFormProps) {
-  const formRef = useRef<HTMLFormElement>(null);
   const [email, setEmail] = useState("");
   const [events, setEvents] = useState("");
   const [status, setStatus] = useState<FormStatus>(() =>
@@ -36,19 +35,6 @@ export function UseCaseInterestForm({
   function updateStatus(nextStatus: FormStatus) {
     setStatus(nextStatus);
     onStatusChange?.(nextStatus);
-  }
-
-  function handleInputFocus(event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    if (window.innerWidth < 768) {
-      const inputRect = event.target.getBoundingClientRect();
-      const inputBottom = inputRect.bottom;
-      const targetPosition = window.innerHeight * 0.005; // 0.5vh from top
-      const scrollOffset = inputBottom - targetPosition;
-      
-      if (scrollOffset > 0) {
-        window.scrollBy({ top: scrollOffset, behavior: 'smooth' });
-      }
-    }
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -135,7 +121,6 @@ export function UseCaseInterestForm({
 
   return (
     <form
-      ref={formRef}
       onSubmit={handleSubmit}
       className={cn("flex w-full flex-col items-center gap-5", className)}
       noValidate
@@ -163,7 +148,6 @@ export function UseCaseInterestForm({
               setErrorMessage(null);
             }
           }}
-          onFocus={handleInputFocus}
           disabled={status === "loading"}
           className={cn(
             inputClasses,
@@ -189,7 +173,6 @@ export function UseCaseInterestForm({
               setErrorMessage(null);
             }
           }}
-          onFocus={handleInputFocus}
           disabled={status === "loading"}
           className={cn(
             inputClasses,
