@@ -185,12 +185,6 @@
     html {
       scroll-padding-top: var(--shell-margin-top);
     }
-
-    input,
-    textarea,
-    select {
-      scroll-margin-bottom: 8rem;
-    }
   }
 
   body {

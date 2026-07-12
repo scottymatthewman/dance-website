@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { useMobileInputFocusHandler } from "@/hooks/useMobileInputFocusHandler";
 import { cn } from "@/lib/cn";
 import { COPY } from "@/lib/copy";
 import { NEST_RADIUS_CLASS } from "@/lib/nest-radius";
@@ -80,6 +81,8 @@ export function EmailCaptureForm({
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
     "idle",
   );
+  const { onFocus: handleInputFocus, onTouchStart: handleInputTouchStart } =
+    useMobileInputFocusHandler();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -150,6 +153,8 @@ export function EmailCaptureForm({
             setEmail(event.target.value);
             if (status === "error") setStatus("idle");
           }}
+          onTouchStart={handleInputTouchStart}
+          onFocus={handleInputFocus}
           disabled={status === "loading"}
           className={cn(
             "min-w-0 flex-1 bg-transparent leading-normal focus:outline-none disabled:cursor-not-allowed disabled:opacity-60 [@media(max-width:47.9375rem)]:text-base",

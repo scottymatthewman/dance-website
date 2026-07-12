@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
+import { useMobileInputFocusHandler } from "@/hooks/useMobileInputFocusHandler";
 import { cn } from "@/lib/cn";
 import { COPY } from "@/lib/copy";
 import {
@@ -31,6 +32,8 @@ export function UseCaseInterestForm({
     canSubmitUseCaseInterest() ? "idle" : "rateLimited",
   );
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const { onFocus: handleInputFocus, onTouchStart: handleInputTouchStart } =
+    useMobileInputFocusHandler();
 
   function updateStatus(nextStatus: FormStatus) {
     setStatus(nextStatus);
@@ -148,6 +151,8 @@ export function UseCaseInterestForm({
               setErrorMessage(null);
             }
           }}
+          onTouchStart={handleInputTouchStart}
+          onFocus={handleInputFocus}
           disabled={status === "loading"}
           className={cn(
             inputClasses,
@@ -173,6 +178,8 @@ export function UseCaseInterestForm({
               setErrorMessage(null);
             }
           }}
+          onTouchStart={handleInputTouchStart}
+          onFocus={handleInputFocus}
           disabled={status === "loading"}
           className={cn(
             inputClasses,
