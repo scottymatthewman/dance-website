@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, type FormEvent, useRef } from "react";
 import { cn } from "@/lib/cn";
 import { COPY } from "@/lib/copy";
 import { NEST_RADIUS_CLASS } from "@/lib/nest-radius";
@@ -75,11 +75,25 @@ export function EmailCaptureForm({
   buttonLabel = COPY.emailCapture.button,
   variant = "default",
 }: EmailCaptureFormProps) {
+  const formRef = useRef<HTMLFormElement>(null);
   const styles = variantStyles[variant];
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
     "idle",
   );
+
+  function handleInputFocus() {
+    if (formRef.current && window.innerWidth < 768) {
+      const formRect = formRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const targetPosition = viewportHeight * 0.3; // Position form at 30% from top
+      const scrollOffset = formRect.top - targetPosition;
+      
+      if (scrollOffset > 0) {
+        window.scrollBy({ top: scrollOffset, behavior: 'smooth' });
+      }
+    }
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -123,6 +137,7 @@ export function EmailCaptureForm({
 
   return (
     <form
+      ref={formRef}
       onSubmit={handleSubmit}
       className={cn("flex w-full flex-col gap-1.5", className)}
       noValidate
@@ -150,9 +165,10 @@ export function EmailCaptureForm({
             setEmail(event.target.value);
             if (status === "error") setStatus("idle");
           }}
+          onFocus={handleInputFocus}
           disabled={status === "loading"}
           className={cn(
-            "min-w-0 flex-1 bg-transparent leading-normal focus:outline-none disabled:cursor-not-allowed disabled:opacity-60",
+            "min-w-0 flex-1 bg-transparent leading-normal focus:outline-none disabled:cursor-not-allowed disabled:opacity-60 [@media(max-width:47.9375rem)]:text-base",
             styles.input,
           )}
         />

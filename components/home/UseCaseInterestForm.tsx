@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, type FormEvent, useRef } from "react";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
 import { COPY } from "@/lib/copy";
@@ -25,6 +25,7 @@ export function UseCaseInterestForm({
   title,
   onStatusChange,
 }: UseCaseInterestFormProps) {
+  const formRef = useRef<HTMLFormElement>(null);
   const [email, setEmail] = useState("");
   const [events, setEvents] = useState("");
   const [status, setStatus] = useState<FormStatus>(() =>
@@ -35,6 +36,19 @@ export function UseCaseInterestForm({
   function updateStatus(nextStatus: FormStatus) {
     setStatus(nextStatus);
     onStatusChange?.(nextStatus);
+  }
+
+  function handleInputFocus() {
+    if (formRef.current && window.innerWidth < 768) {
+      const formRect = formRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const targetPosition = viewportHeight * 0.3; // Position form at 30% from top
+      const scrollOffset = formRect.top - targetPosition;
+      
+      if (scrollOffset > 0) {
+        window.scrollBy({ top: scrollOffset, behavior: 'smooth' });
+      }
+    }
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -117,10 +131,11 @@ export function UseCaseInterestForm({
   }
 
   const inputClasses =
-    "w-full rounded-[6px] border border-[#ddd] bg-white px-3 py-2 text-sm leading-normal text-primary placeholder:text-primary/50 focus:border-border-strong focus:outline-none focus:ring-2 focus:ring-accent/20 disabled:cursor-not-allowed disabled:opacity-60";
+    "w-full rounded-[6px] border border-[#ddd] bg-white px-3 py-2 text-sm leading-normal text-primary placeholder:text-primary/50 focus:border-border-strong focus:outline-none focus:ring-2 focus:ring-accent/20 disabled:cursor-not-allowed disabled:opacity-60 [@media(max-width:47.9375rem)]:text-base";
 
   return (
     <form
+      ref={formRef}
       onSubmit={handleSubmit}
       className={cn("flex w-full flex-col items-center gap-5", className)}
       noValidate
@@ -148,6 +163,7 @@ export function UseCaseInterestForm({
               setErrorMessage(null);
             }
           }}
+          onFocus={handleInputFocus}
           disabled={status === "loading"}
           className={cn(
             inputClasses,
@@ -173,6 +189,7 @@ export function UseCaseInterestForm({
               setErrorMessage(null);
             }
           }}
+          onFocus={handleInputFocus}
           disabled={status === "loading"}
           className={cn(
             inputClasses,
