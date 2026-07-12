@@ -82,7 +82,7 @@ function UseCaseCtaCard() {
 export function UseCaseCarousel() {
   return (
     <div
-      className="use-case-carousel -mx-[var(--gutter)] snap-x snap-mandatory overflow-x-auto overscroll-x-contain scroll-pl-[var(--gutter)] px-[var(--gutter)] touch-pan-x [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+      className="use-case-carousel -mx-[var(--gutter)] snap-x snap-mandatory overflow-x-auto overscroll-x-contain scroll-pl-[var(--gutter)] px-[var(--gutter)] [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       aria-label="Event use cases"
     >
       <div className="flex w-max gap-2 pb-1">

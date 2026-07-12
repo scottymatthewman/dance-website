@@ -54,7 +54,7 @@ function FlowStepCard({
 export function FlowCarousel() {
   return (
     <div
-      className="flow-carousel -mx-[var(--gutter)] snap-x snap-mandatory overflow-x-auto overscroll-x-contain scroll-pl-[var(--gutter)] px-[var(--gutter)] touch-pan-x [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+      className="flow-carousel -mx-[var(--gutter)] snap-x snap-mandatory overflow-x-auto overscroll-x-contain scroll-pl-[var(--gutter)] px-[var(--gutter)] [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       aria-label="Product flow"
     >
       <div className="flex w-max items-stretch gap-2 pb-1">

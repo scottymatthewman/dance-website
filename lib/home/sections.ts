@@ -1,4 +1,5 @@
 import { SCROLL_TRACK_BG } from "@/lib/home/section-spacing";
+import { HERO_BACKGROUND_GRADIENT } from "@/lib/home/section-surface";
 
 export type SectionId =
   | "hero"
@@ -85,7 +86,7 @@ export function getFeaturesHoldPx(
 export const HOME_SECTIONS: HomeSectionConfig[] = [
   {
     id: "hero",
-    backgroundGradient: { from: "#EDEBEE", to: "#E4EAF0" },
+    backgroundGradient: HERO_BACKGROUND_GRADIENT,
   },
   {
     id: "features",

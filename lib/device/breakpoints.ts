@@ -1,7 +1,7 @@
-/** Tailwind `lg` — desktop scroll-driven layouts start here. */
-export const LG_MIN_WIDTH_REM = 64;
+/** Tailwind `md` — shell side margins and scroll-driven homepage layout start here. */
+export const MD_MIN_WIDTH_REM = 48;
 
-export const DESKTOP_LAYOUT_MEDIA_QUERY = `(min-width: ${LG_MIN_WIDTH_REM}rem)`;
+export const DESKTOP_LAYOUT_MEDIA_QUERY = `(min-width: ${MD_MIN_WIDTH_REM}rem)`;
 
-/** Below `lg`: normal scroll, carousels, and viewport-triggered reveals. */
-export const COMPACT_SCROLL_MEDIA_QUERY = `(max-width: ${LG_MIN_WIDTH_REM - 0.0625}rem)`;
+/** Below `md`: native document scroll, carousels, and viewport-triggered reveals. */
+export const COMPACT_SCROLL_MEDIA_QUERY = `(max-width: ${MD_MIN_WIDTH_REM - 0.0625}rem)`;

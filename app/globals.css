@@ -180,8 +180,8 @@
     }
   }
 
-  /* Native document-flow homepage below lg — clear fixed header on in-page nav. */
-  @media (max-width: 63.9375rem) {
+  /* Native document-flow homepage below md — clear fixed header on in-page nav. */
+  @media (max-width: 47.9375rem) {
     html {
       scroll-padding-top: var(--shell-margin-top);
     }
@@ -385,7 +385,7 @@
 
   .use-case-carousel,
   .flow-carousel {
-    touch-action: pan-x pinch-zoom;
+    touch-action: pan-x pan-y pinch-zoom;
   }
 
   .scroll-stage {

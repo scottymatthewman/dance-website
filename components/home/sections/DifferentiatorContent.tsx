@@ -1,5 +1,6 @@
 "use client";
 
+import { Fragment } from "react";
 import { ContentRail } from "@/components/home/sections/ContentRail";
 import { SectionHeader } from "@/components/home/sections/SectionHeader";
 import { SectionShell } from "@/components/home/sections/SectionShell";
@@ -15,12 +16,15 @@ export function DifferentiatorContent() {
       <ContentRail width="content" align="left" className="flex flex-col gap-8">
         <SectionHeader headline={headline} subhead={subhead} />
 
-        <div className="flex flex-col gap-4">
-          {items.map((item) => (
-            <article
-              key={item.prompt}
-              className="flex flex-col gap-4 rounded-[6px] bg-[#f5f5f5] p-5 sm:p-8"
-            >
+        <div className="flex flex-col gap-0 rounded-[6px] bg-[#f5f5f5]">
+          {items.map((item, index) => (
+            <Fragment key={item.prompt}>
+              {index > 0 ? (
+                <div aria-hidden className="px-5 sm:px-8">
+                  <div className="h-px bg-border-subtle" />
+                </div>
+              ) : null}
+              <article className="flex flex-col gap-4 p-5 sm:p-8">
               <div className="flex flex-col gap-2">
                 <p className="text-sm font-medium leading-normal text-secondary">
                   {promptLabel}
@@ -59,7 +63,8 @@ export function DifferentiatorContent() {
                   </p>
                 </div>
               </div>
-            </article>
+              </article>
+            </Fragment>
           ))}
         </div>
 

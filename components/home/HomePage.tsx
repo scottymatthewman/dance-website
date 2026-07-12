@@ -7,8 +7,8 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { DESKTOP_LAYOUT_MEDIA_QUERY } from "@/lib/device/breakpoints";
 
 /**
- * Below lg: native document scroll (no fixed track / spacer / release footer).
- * lg+: scroll-stage experience with pinned flow and statement holds.
+ * Below md: native document scroll (no fixed track / spacer / release footer).
+ * md+: scroll-stage experience with pinned flow and statement holds.
  */
 export function HomePage() {
   const mounted = useIsClient();
