@@ -4,9 +4,20 @@ import { useCallback, useRef } from "react";
 import { isTouchLikeDevice } from "@/lib/device/touch";
 
 const KEYBOARD_OPEN_RATIO = 0.85;
-const SETTLE_DELAYS_MS = [0, 50, 150, 350, 550, 700];
+const SETTLE_DELAYS_MS = [50, 150, 350, 550];
+const VIEWPORT_EDGE_PADDING = 16;
+/** Fallback when --mobile-input-scroll-inset is unavailable. */
+const MOBILE_INPUT_TOP_INSET_FALLBACK = 120;
 
 let activeCleanup: (() => void) | null = null;
+
+function getMobileInputTopInset() {
+  const value = getComputedStyle(document.documentElement)
+    .getPropertyValue("--mobile-input-scroll-inset")
+    .trim();
+  const parsed = parseFloat(value);
+  return Number.isFinite(parsed) ? parsed : MOBILE_INPUT_TOP_INSET_FALLBACK;
+}
 
 function isKeyboardOpen() {
   const vv = window.visualViewport;
@@ -14,31 +25,35 @@ function isKeyboardOpen() {
   return vv.height < window.innerHeight * KEYBOARD_OPEN_RATIO;
 }
 
-function getHeaderScrollPadding() {
-  const parsed = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop);
-  return Number.isFinite(parsed) ? parsed : 0;
+function getVisibleBounds() {
+  const vv = window.visualViewport;
+  if (!vv) {
+    return { top: 0, bottom: window.innerHeight };
+  }
+
+  return {
+    top: vv.offsetTop,
+    bottom: vv.offsetTop + vv.height,
+  };
 }
 
 function settleInputInView(element: HTMLElement) {
-  const vv = window.visualViewport;
-  if (!vv) return;
-
   const rect = element.getBoundingClientRect();
-  const topPadding = getHeaderScrollPadding() + 12;
-  const bottomPadding = 12;
-  const visibleBottom = vv.height;
+  const { top: visibleTop, bottom: visibleBottom } = getVisibleBounds();
+  const minTop = visibleTop + getMobileInputTopInset();
+  const maxBottom = visibleBottom - VIEWPORT_EDGE_PADDING;
 
-  if (rect.top < topPadding) {
+  if (rect.top < minTop) {
     window.scrollTo({
-      top: window.scrollY + rect.top - topPadding,
+      top: window.scrollY + rect.top - minTop,
       behavior: "instant",
     });
     return;
   }
 
-  if (rect.bottom > visibleBottom - bottomPadding) {
+  if (rect.bottom > maxBottom) {
     window.scrollTo({
-      top: window.scrollY + rect.bottom - visibleBottom + bottomPadding,
+      top: window.scrollY + rect.bottom - maxBottom,
       behavior: "instant",
     });
   }
@@ -68,6 +83,8 @@ function scheduleColdFocusSettle(element: HTMLElement) {
     timers.push(window.setTimeout(settle, delay));
   }
 
+  requestAnimationFrame(settle);
+
   const cleanup = () => {
     cancelled = true;
     vv.removeEventListener("resize", onResize);
@@ -76,45 +93,40 @@ function scheduleColdFocusSettle(element: HTMLElement) {
   };
 
   activeCleanup = cleanup;
+  timers.push(window.setTimeout(cleanup, 700));
 }
 
 /**
- * On mobile, fixes over-scroll when the keyboard opens on a cold focus
- * (no input focused yet). Warm focus (keyboard already open) is left alone.
+ * On mobile, prevents the cold-focus keyboard jump and keeps inputs below the
+ * fixed header. Warm focus (keyboard already open) is left to native behavior.
  */
 export function useMobileInputFocusHandler() {
-  const touchScrollYRef = useRef<number | null>(null);
+  const coldFocusRef = useRef(false);
 
   const onTouchStart = useCallback(() => {
     if (!isTouchLikeDevice()) return;
-    touchScrollYRef.current = window.scrollY;
+    coldFocusRef.current = !isKeyboardOpen();
+  }, []);
+
+  const onTouchEnd = useCallback((event: React.TouchEvent<HTMLElement>) => {
+    if (!isTouchLikeDevice() || !coldFocusRef.current) return;
+
+    event.preventDefault();
+    const element = event.currentTarget;
+    element.focus({ preventScroll: true });
+    scheduleColdFocusSettle(element);
+    coldFocusRef.current = false;
   }, []);
 
   const onFocus = useCallback((event: React.FocusEvent<HTMLElement>) => {
     if (!isTouchLikeDevice()) return;
-    if (isKeyboardOpen()) {
-      touchScrollYRef.current = null;
-      return;
-    }
+    if (isKeyboardOpen()) return;
 
-    const element = event.currentTarget;
-    const savedScrollY = touchScrollYRef.current;
-    touchScrollYRef.current = null;
+    // Keyboard/assistive-tech focus without a preceding touch tap.
+    if (coldFocusRef.current) return;
 
-    const beginSettle = () => scheduleColdFocusSettle(element);
-
-    // Browser scrolls aggressively on first focus before the keyboard opens.
-    // Revert to the pre-tap position, then reposition once the keyboard is up.
-    if (savedScrollY !== null) {
-      requestAnimationFrame(() => {
-        window.scrollTo({ top: savedScrollY, behavior: "instant" });
-        requestAnimationFrame(beginSettle);
-      });
-      return;
-    }
-
-    beginSettle();
+    scheduleColdFocusSettle(event.currentTarget);
   }, []);
 
-  return { onFocus, onTouchStart };
+  return { onFocus, onTouchStart, onTouchEnd };
 }

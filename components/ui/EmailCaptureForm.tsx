@@ -81,7 +81,7 @@ export function EmailCaptureForm({
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
     "idle",
   );
-  const { onFocus: handleInputFocus, onTouchStart: handleInputTouchStart } =
+  const { onFocus: handleInputFocus, onTouchStart: handleInputTouchStart, onTouchEnd: handleInputTouchEnd } =
     useMobileInputFocusHandler();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -154,6 +154,7 @@ export function EmailCaptureForm({
             if (status === "error") setStatus("idle");
           }}
           onTouchStart={handleInputTouchStart}
+          onTouchEnd={handleInputTouchEnd}
           onFocus={handleInputFocus}
           disabled={status === "loading"}
           className={cn(

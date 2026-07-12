@@ -182,8 +182,12 @@
 
   /* Native document-flow homepage below md — clear fixed header on in-page nav. */
   @media (max-width: 47.9375rem) {
+    :root {
+      --mobile-input-scroll-inset: 120px;
+    }
+
     html {
-      scroll-padding-top: var(--shell-margin-top);
+      scroll-padding-top: var(--mobile-input-scroll-inset);
     }
   }
 

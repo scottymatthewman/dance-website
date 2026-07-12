@@ -32,7 +32,7 @@ export function UseCaseInterestForm({
     canSubmitUseCaseInterest() ? "idle" : "rateLimited",
   );
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const { onFocus: handleInputFocus, onTouchStart: handleInputTouchStart } =
+  const { onFocus: handleInputFocus, onTouchStart: handleInputTouchStart, onTouchEnd: handleInputTouchEnd } =
     useMobileInputFocusHandler();
 
   function updateStatus(nextStatus: FormStatus) {
@@ -152,6 +152,7 @@ export function UseCaseInterestForm({
             }
           }}
           onTouchStart={handleInputTouchStart}
+          onTouchEnd={handleInputTouchEnd}
           onFocus={handleInputFocus}
           disabled={status === "loading"}
           className={cn(
@@ -179,6 +180,7 @@ export function UseCaseInterestForm({
             }
           }}
           onTouchStart={handleInputTouchStart}
+          onTouchEnd={handleInputTouchEnd}
           onFocus={handleInputFocus}
           disabled={status === "loading"}
           className={cn(
