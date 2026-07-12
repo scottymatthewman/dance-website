@@ -127,6 +127,7 @@ export const HOME_SECTIONS: HomeSectionConfig[] = [
   {
     id: "emailCaptureBleed",
     backgroundColor: SCROLL_TRACK_BG,
+    noGapAfter: true,
   },
 ];
 

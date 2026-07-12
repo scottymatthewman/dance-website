@@ -1,6 +1,8 @@
 "use client";
 
+import { useLayoutEffect } from "react";
 import { DocumentSection } from "@/components/home/DocumentSection";
+import { useStableViewportHeight } from "@/hooks/useStableViewportHeight";
 import { BentoContent } from "@/components/home/sections/BentoContent";
 import { BenefitsContent } from "@/components/home/sections/BenefitsContent";
 import { DifferentiatorContent } from "@/components/home/sections/DifferentiatorContent";
@@ -11,10 +13,16 @@ import { FooterContent } from "@/components/home/sections/FooterContent";
 import { HeroContent } from "@/components/home/sections/HeroContent";
 import { StatementContent } from "@/components/home/sections/StatementContent";
 import { UseCasesContent } from "@/components/home/sections/UseCasesContent";
-import { HOME_SECTIONS } from "@/lib/home/sections";
+import { HOME_SECTIONS, type HomeSectionConfig } from "@/lib/home/sections";
 import type { ReactNode } from "react";
 
 const MOBILE_SECTIONS = HOME_SECTIONS;
+
+const FOOTER_SECTION: HomeSectionConfig = {
+  id: "footer",
+  inset: "flush",
+  noGapAfter: true,
+};
 
 const SECTION_CONTENT: Record<
   | "hero"
@@ -49,6 +57,16 @@ const SECTION_FRAME_CLASS: Partial<
 };
 
 export function MobileHomePage() {
+  const { height: viewportHeight } = useStableViewportHeight();
+
+  useLayoutEffect(() => {
+    const root = document.documentElement;
+    root.style.setProperty("--mobile-viewport-height", `${viewportHeight}px`);
+    return () => {
+      root.style.removeProperty("--mobile-viewport-height");
+    };
+  }, [viewportHeight]);
+
   return (
     <div className="mobile-home bg-scroll-canvas pt-[var(--shell-margin-top)]">
       {MOBILE_SECTIONS.map((section, index) => (
@@ -62,12 +80,12 @@ export function MobileHomePage() {
         </DocumentSection>
       ))}
 
-      <footer
-        id="section-footer"
-        className="border-t border-[var(--shell-rail)] bg-section px-0 pb-8 pt-2"
+      <DocumentSection
+        section={FOOTER_SECTION}
+        frameClassName="border-t border-[var(--shell-rail)] bg-section pb-8 pt-2"
       >
         <FooterContent />
-      </footer>
+      </DocumentSection>
     </div>
   );
 }

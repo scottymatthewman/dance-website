@@ -274,7 +274,7 @@
   }
 
   .site-shell-gutter {
-    min-height: 100dvh;
+    min-height: var(--mobile-viewport-height, 100dvh);
     padding-top: max(var(--shell-margin-top, var(--shell-margin)), env(safe-area-inset-top, 0px));
     padding-right: max(var(--shell-margin), env(safe-area-inset-right, 0px));
     padding-bottom: max(var(--shell-margin), env(safe-area-inset-bottom, 0px));
@@ -495,10 +495,19 @@
     }
   }
 
-  /* Mobile document-flow sections that match one shell viewport (hero, use cases, email). */
+  /*
+   * Mobile document-flow sections that match one shell viewport (hero, use cases, email).
+   * Uses a JS-frozen visualViewport height on touch (see MobileHomePage) with svh fallback
+   * so address-bar show/hide does not remap section heights mid-scroll.
+   */
   .mobile-section--shell-height {
-    height: calc(100dvh - var(--shell-margin-top) - var(--shell-margin));
-    min-height: calc(100dvh - var(--shell-margin-top) - var(--shell-margin));
+    --mobile-shell-height: calc(
+      var(--mobile-viewport-height, 100svh) - var(--shell-margin-top) -
+        var(--shell-margin)
+    );
+    height: var(--mobile-shell-height);
+    min-height: var(--mobile-shell-height);
+    overflow-anchor: none;
   }
 
   .section-inset--statement {
