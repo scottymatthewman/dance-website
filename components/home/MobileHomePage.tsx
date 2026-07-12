@@ -68,7 +68,7 @@ export function MobileHomePage() {
   }, [viewportHeight]);
 
   return (
-    <div className="mobile-home bg-scroll-canvas pt-[var(--shell-margin-top)]">
+    <div className="mobile-home bg-scroll-canvas">
       {MOBILE_SECTIONS.map((section, index) => (
         <DocumentSection
           key={section.id}
