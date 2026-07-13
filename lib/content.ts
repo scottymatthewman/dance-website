@@ -14,6 +14,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   { title: "Article Title", slug: "article-title-3" },
   { title: "Article Title", slug: "article-title-4" },
   { title: "From Tessa's Laptop", slug: "from-tessas-laptop" },
+  { title: "Another Test from Tessa", slug: "another-test-from-tessa" },
 ];
 
 export const GLOSSARY_TERMS: GlossaryEntry[] = [
