@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dance marketing site
 
-## Getting Started
+Marketing site for [Dance](https://usedance.com) — event planning workspace for teams and event agents.
 
-First, run the development server:
+## Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Purpose |
+|---------|---------|
+| `npm run dev` | Start dev server |
+| `npm run build` | Production build |
+| `npm run lint` | ESLint |
+| `npm run knip` | Find unused exports/files |
 
-## Learn More
+## Docs
 
-To learn more about Next.js, take a look at the following resources:
+| Doc | Audience |
+|-----|----------|
+| [`docs/brand-positioning.md`](docs/brand-positioning.md) | Brand voice, audience, messaging |
+| [`docs/content-guide.md`](docs/content-guide.md) | Blog and glossary publishing workflow |
+| [`docs/design-system.md`](docs/design-system.md) | Layout and typography |
+| [`docs/mockup-color-system.md`](docs/mockup-color-system.md) | Product mockup colors |
+| [`docs/responsive-system.md`](docs/responsive-system.md) | Breakpoints and responsive behavior |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contributing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Branch from `main`
+2. Open a PR
+3. Scotty merges to `main` → Vercel deploys production
 
-## Deploy on Vercel
+For content work, start with `docs/content-guide.md` and `docs/brand-positioning.md`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Environment variables
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Copy `.env.example` to `.env.local` for local form notifications (Resend). Never commit `.env.local`.

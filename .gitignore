@@ -44,3 +44,12 @@ next-env.d.ts
 # font subsetting (full TTF sources — restore from git history to regenerate)
 app/fonts/**/_source/*.ttf
 scripts/.font-glyphs.txt
+scripts/font-sources/
+
+# Editor settings (personal)
+.vscode/
+
+# Local AI workflow (not needed for deploy or collaborators)
+.agents/
+AGENTS.md
+CLAUDE.md
