@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import posthog from "posthog-js";
 import { UseCaseInterestForm } from "@/components/home/UseCaseInterestForm";
 import { Button } from "@/components/ui/Button";
 import { ImageFrame } from "@/components/ui/ImageFrame";
@@ -67,7 +68,10 @@ function UseCaseCtaCard() {
               <Button
                 variant="secondary"
                 size="sm"
-                onClick={() => setShowForm(true)}
+                onClick={() => {
+                  posthog.capture("use_case_interest_form_opened");
+                  setShowForm(true);
+                }}
               >
                 {USE_CASE_CTA.cta}
               </Button>

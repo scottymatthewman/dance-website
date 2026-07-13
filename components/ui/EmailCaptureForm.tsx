@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import posthog from "posthog-js";
 import { useMobileInputFocusHandler } from "@/hooks/useMobileInputFocusHandler";
 import { cn } from "@/lib/cn";
 import { COPY } from "@/lib/copy";
@@ -98,7 +99,11 @@ export function EmailCaptureForm({
     try {
       const response = await fetch("/api/waitlist", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "x-posthog-distinct-id": posthog.get_distinct_id() ?? "",
+          "x-posthog-session-id": posthog.get_session_id() ?? "",
+        },
         body: JSON.stringify({ email: trimmed }),
       });
 
@@ -107,6 +112,9 @@ export function EmailCaptureForm({
         return;
       }
 
+      posthog.capture("waitlist_signup_completed", {
+        variant: variant,
+      });
       setStatus("success");
       setEmail("");
     } catch {
