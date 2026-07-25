@@ -4,6 +4,7 @@ import { Fragment } from "react";
 import { ContentRail } from "@/components/home/sections/ContentRail";
 import { SectionHeader } from "@/components/home/sections/SectionHeader";
 import { SectionShell } from "@/components/home/sections/SectionShell";
+import { AgentFlowMockup } from "@/components/home/differentiator/AgentFlowMockup";
 import { CtaButton } from "@/components/ui/CtaButton";
 import { COPY } from "@/lib/copy";
 
@@ -48,19 +49,10 @@ export function DifferentiatorContent() {
                   <p className="text-sm font-medium leading-normal text-primary">
                     {danceLabel}
                   </p>
-                  <ul className="flex flex-col gap-1.5">
-                    {item.danceSteps.map((step) => (
-                      <li
-                        key={step}
-                        className="text-body-md leading-normal text-secondary md:leading-[1.5]"
-                      >
-                        {step}
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="text-body-md font-medium leading-normal text-primary md:leading-[1.5]">
-                    {item.danceResult}
-                  </p>
+                  <AgentFlowMockup
+                    flowIndex={index}
+                    className="mx-auto w-[70%]"
+                  />
                 </div>
               </div>
               </article>
