@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/cn";
 import { useId, useState } from "react";
+import posthog from "posthog-js";
 
 type FaqItem = {
   question: string;
@@ -38,7 +39,16 @@ export function FaqAccordion({ items, className }: FaqAccordionProps) {
                 type="button"
                 aria-expanded={isOpen}
                 aria-controls={panelId}
-                onClick={() => setOpenIndex(isOpen ? null : index)}
+                onClick={() => {
+                  const opening = !isOpen;
+                  setOpenIndex(opening ? index : null);
+                  if (opening) {
+                    posthog.capture("faq_item_expanded", {
+                      question: item.question,
+                      index,
+                    });
+                  }
+                }}
                 className="flex w-full items-center justify-between gap-4 py-5 text-left transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-section"
               >
                 <span className="text-h3 font-medium leading-snug text-primary">

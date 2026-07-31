@@ -1,4 +1,5 @@
 import { sendFormNotification } from "@/lib/form-notifications";
+import { getPostHogClient } from "@/lib/posthog-server";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MAX_SUBMISSIONS_PER_DEVICE = 3;
@@ -68,6 +69,15 @@ export async function POST(request: Request) {
       { status: 503 },
     );
   }
+
+  const distinctId = request.headers.get("x-posthog-distinct-id") ?? email;
+  const posthog = getPostHogClient();
+  posthog.capture({
+    distinctId,
+    event: "use_case_interest_submitted",
+    properties: { source: "api" },
+  });
+  await posthog.flush();
 
   return Response.json({ ok: true });
 }
