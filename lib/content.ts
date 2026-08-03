@@ -8,12 +8,7 @@ export type GlossaryEntry = {
   definition: string;
 };
 
-export const BLOG_ARTICLES: BlogArticle[] = [
-  { title: "Article Title", slug: "article-title-1" },
-  { title: "Article Title", slug: "article-title-2" },
-  { title: "Article Title", slug: "article-title-3" },
-  { title: "Article Title", slug: "article-title-4" },
-];
+export const BLOG_ARTICLES: BlogArticle[] = [];
 
 export const GLOSSARY_TERMS: GlossaryEntry[] = [
   {

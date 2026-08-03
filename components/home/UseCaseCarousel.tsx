@@ -21,6 +21,7 @@ function UseCaseCard({
     <article className="w-[min(28.125rem,85vw)] shrink-0 snap-start">
       <ImageFrame
         src={item.image}
+        alt={`${item.title} event use case`}
         priority={priority}
         unoptimized
         sizes="(min-width: 1024px) 450px, 85vw"

@@ -21,10 +21,16 @@ import { useState } from "react";
 const STEPS = COPY.features.steps;
 
 const FLOW_BACKGROUNDS = [
-  "/flow/Define-bg.jpg",
-  "/flow/Plan-bg.jpg",
-  "/flow/Collaborate-bg.jpg",
+  "/flow/Define-bg.webp",
+  "/flow/Plan-bg.webp",
+  "/flow/Collaborate-bg.webp",
 ] as const;
+
+const FLOW_BACKGROUND_ALT: Record<(typeof FLOW_BACKGROUNDS)[number], string> = {
+  "/flow/Define-bg.webp": "Define step: event scope and properties background",
+  "/flow/Plan-bg.webp": "Plan step: timeline and task planning background",
+  "/flow/Collaborate-bg.webp": "Collaborate step: team coordination background",
+};
 
 const DEFINE_STEP_INDEX = 0;
 const PLAN_STEP_INDEX = 1;
@@ -166,6 +172,7 @@ export function FeaturesContent({ stepProgress = 0 }: FeaturesContentProps) {
                   preset="flow"
                   src={FLOW_BACKGROUNDS}
                   activeIndex={activeStep}
+                  alt={FLOW_BACKGROUND_ALT[FLOW_BACKGROUNDS[activeStep]]}
                   priority
                 >
                   {activeStep === DEFINE_STEP_INDEX ? (

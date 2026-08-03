@@ -52,6 +52,8 @@ export function DocumentSection({
             <img
               src={publicAssetUrl(section.backgroundSrc)}
               alt=""
+              width={1920}
+              height={1080}
               decoding="async"
               draggable={false}
               className="absolute inset-0 size-full object-cover"

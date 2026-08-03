@@ -23,7 +23,7 @@ export function BentoMockupTag({
     >
       {icon ??
         (iconSrc ? (
-          <img src={iconSrc} alt="" className="size-4 shrink-0" draggable={false} />
+          <img src={iconSrc} alt="" width={16} height={16} className="size-4 shrink-0" draggable={false} />
         ) : null)}
       <span className="whitespace-nowrap text-xs font-medium leading-[1.4] tracking-[-0.24px] text-[#360057]">
         {label}

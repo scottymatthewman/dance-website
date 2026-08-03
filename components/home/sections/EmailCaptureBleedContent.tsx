@@ -15,6 +15,8 @@ export function EmailCaptureBleedContent() {
         <img
           src={imageMobile}
           alt=""
+          width={1164}
+          height={2292}
           decoding="async"
           draggable={false}
           className="size-full object-cover md:object-[66%_50%] lg:object-center"

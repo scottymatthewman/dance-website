@@ -79,6 +79,7 @@ function LogoLink({
   return (
     <Link
       href="/"
+      aria-label="Dance home"
       className={className}
       onClick={(event) => {
         if (pathname !== "/") return;
