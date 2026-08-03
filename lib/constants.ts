@@ -1,5 +1,5 @@
 export const SITE = {
   name: "Dance",
-  domain: "https://usedance.com",
+  domain: "https://www.usedance.com",
   demoHref: "mailto:hello@usedance.com",
 } as const;

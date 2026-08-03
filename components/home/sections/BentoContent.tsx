@@ -46,6 +46,7 @@ const BENTO_CARDS = [
 export function BentoContent() {
   return (
     <SectionShell variant="headingless" className="h-full min-h-0">
+      <h2 className="sr-only">{COPY.features.headline}</h2>
       <ContentRail
         width="content"
         align="center"

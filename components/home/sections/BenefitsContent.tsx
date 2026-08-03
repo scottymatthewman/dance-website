@@ -21,6 +21,7 @@ const BENEFIT_ICONS: ReactNode[] = [
 export function BenefitsContent() {
   return (
     <SectionShell variant="headingless">
+      <h2 className="sr-only">Benefits of planning events with Dance</h2>
       <ContentRail
         width="content"
         align="center"

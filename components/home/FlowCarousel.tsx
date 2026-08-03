@@ -9,9 +9,15 @@ import { COPY } from "@/lib/copy";
 const STEPS = COPY.features.steps;
 
 const FLOW_BACKGROUNDS = [
-  "/flow/Define-bg.jpg",
-  "/flow/Plan-bg.jpg",
-  "/flow/Collaborate-bg.jpg",
+  "/flow/Define-bg.webp",
+  "/flow/Plan-bg.webp",
+  "/flow/Collaborate-bg.webp",
+] as const;
+
+const FLOW_BACKGROUND_ALT = [
+  "Define step: event scope and properties background",
+  "Plan step: timeline and task planning background",
+  "Collaborate step: team coordination background",
 ] as const;
 
 const FLOW_MOCKUPS = [DefineMockup, PlanMockup, CollaborateMockup] as const;
@@ -40,6 +46,7 @@ function FlowStepCard({
         </div>
         <ImageFrame
           src={FLOW_BACKGROUNDS[index]}
+          alt={FLOW_BACKGROUND_ALT[index]}
           priority={priority}
           sizes="(min-width: 1024px) 450px, 85vw"
           className="min-h-[10rem] w-full flex-1"

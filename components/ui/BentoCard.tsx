@@ -24,9 +24,11 @@ type BentoCardProps = {
 
 function BentoImage({
   src,
+  alt,
   unoptimized = false,
 }: {
   src: string;
+  alt: string;
   unoptimized?: boolean;
 }) {
   const serveUnoptimized = unoptimized || src.startsWith("/bento-mockup/");
@@ -35,8 +37,7 @@ function BentoImage({
     <div className="relative h-full min-h-[9.5rem] w-full sm:min-h-[11rem] lg:min-h-[8rem]">
       <Image
         src={src}
-        alt=""
-        aria-hidden
+        alt={alt}
         fill
         className="object-cover"
         sizes="(min-width: 1024px) 40vw, (min-width: 768px) 50vw, 100vw"
@@ -61,7 +62,14 @@ export function BentoCard({
   imageUnoptimized = false,
 }: BentoCardProps) {
   const resolvedVisual =
-    visual ?? (image ? <BentoImage src={image} unoptimized={imageUnoptimized} /> : null);
+    visual ??
+    (image ? (
+      <BentoImage
+        src={image}
+        alt={`${title} ${subtitle}`}
+        unoptimized={imageUnoptimized}
+      />
+    ) : null);
   const hasVisual = Boolean(resolvedVisual);
   const usesGraphicImage = Boolean(image && !visual);
   const imageOnTop = imagePosition === "top";

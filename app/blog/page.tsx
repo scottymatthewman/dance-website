@@ -32,18 +32,20 @@ export default function BlogPage() {
           <div className="content-article-group">
             <p className="content-article-year">{COPY.content.blog.year}</p>
 
-            <ul className="content-articles">
-              {BLOG_ARTICLES.map((article) => (
-                <li key={article.slug}>
-                  <ContentArticleLink
-                    href={`/blog/${article.slug}`}
-                    icon={<FileTextIcon />}
-                  >
-                    {article.title}
-                  </ContentArticleLink>
-                </li>
-              ))}
-            </ul>
+            {BLOG_ARTICLES.length > 0 ? (
+              <ul className="content-articles">
+                {BLOG_ARTICLES.map((article) => (
+                  <li key={article.slug}>
+                    <ContentArticleLink
+                      href={`/blog/${article.slug}`}
+                      icon={<FileTextIcon />}
+                    >
+                      {article.title}
+                    </ContentArticleLink>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
           </div>
         </section>
       </div>

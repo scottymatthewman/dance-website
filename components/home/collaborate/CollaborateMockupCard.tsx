@@ -96,6 +96,8 @@ function UserHeader({ time }: { time: string }) {
       <img
         src={ASSETS.avatar}
         alt=""
+        width={16}
+        height={16}
         className="size-4 shrink-0 rounded-full object-cover"
         draggable={false}
       />
@@ -168,6 +170,8 @@ function TypingIndicator() {
       <img
         src={ASSETS.loader}
         alt=""
+        width={20}
+        height={20}
         className="collaborate-mockup-loader size-5 shrink-0"
         draggable={false}
       />
@@ -305,6 +309,8 @@ function ReplyComposer({
       <img
         src={ASSETS.send}
         alt=""
+        width={18}
+        height={18}
         className={cn(
           "size-[18px] shrink-0 transition-opacity ease-[var(--collaborate-content-ease)]",
           isDrafting ? "opacity-100" : "opacity-30",

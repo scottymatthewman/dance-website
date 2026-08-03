@@ -19,6 +19,8 @@ type ImageFrameProps = {
   mobileBreakpoint?: string;
   activeIndex?: number;
   alt?: string;
+  width?: number;
+  height?: number;
   priority?: boolean;
   sizes?: string;
   unoptimized?: boolean;
@@ -34,6 +36,8 @@ export function ImageFrame({
   mobileBreakpoint = "(min-width: 1024px)",
   activeIndex = 0,
   alt = "",
+  width = 1444,
+  height = 676,
   priority = false,
   sizes,
   unoptimized = false,
@@ -63,7 +67,9 @@ export function ImageFrame({
             <img
               src={mobileSrc}
               alt={alt}
-              aria-hidden={alt === ""}
+              width={width}
+              height={height}
+              aria-hidden={alt === "" ? true : undefined}
               decoding={priority ? "sync" : "async"}
               fetchPriority={priority ? "high" : undefined}
               draggable={false}
@@ -76,7 +82,7 @@ export function ImageFrame({
               key={imageSrc}
               src={imageSrc}
               alt={alt}
-              aria-hidden={alt === ""}
+              aria-hidden={alt === "" ? true : undefined}
               fill
               priority={priority && index === 0}
               sizes={resolvedSizes}
