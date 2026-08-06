@@ -125,7 +125,7 @@ export function AgentFlowCard({
           <div className="overflow-hidden">
             <div
               className={cn(
-                "flex items-start gap-2",
+                "grid grid-cols-[1rem_minmax(0,1fr)] gap-x-2",
                 animate &&
                   "transition-[opacity,transform,filter] ease-[var(--agent-flow-ease)]",
                 state.showAgentResponse
@@ -139,7 +139,7 @@ export function AgentFlowCard({
             >
               <span
                 aria-hidden
-                className="w-4 shrink-0 text-base leading-5 tracking-[-0.02em]"
+                className="col-start-1 row-start-1 flex w-4 shrink-0 items-center self-center text-base leading-none"
               >
                 {AGENT_EMOJI}
               </span>

@@ -60,22 +60,35 @@ function CollapsibleBlock({
   );
 }
 
-function ChevronIcon() {
+function VenueActionButton({
+  letter,
+  label,
+  revealProgress,
+}: {
+  letter: string;
+  label: string;
+  revealProgress: number;
+}) {
   return (
-    <svg aria-hidden viewBox="0 0 16 16" className="size-4 shrink-0 text-[#999]">
-      <path
-        d="M6 4.5 10 8 6 11.5"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+    <div
+      className="flex items-center gap-2"
+      style={{
+        opacity: revealProgress,
+        transform: `translateY(${(1 - revealProgress) * 4}px)`,
+        filter: `blur(${(1 - revealProgress) * 2}px)`,
+      }}
+    >
+      <span className="inline-flex size-7 shrink-0 items-center justify-center rounded-[5px] border border-[#bbb] bg-[#fafafa] text-[14px] leading-[1.4] tracking-[-0.28px] text-black opacity-70">
+        {letter}
+      </span>
+      <span className="text-[14px] leading-[1.4] tracking-[-0.28px] text-black opacity-90">
+        {label}
+      </span>
+    </div>
   );
 }
 
-function BudgetResponse({
+function BudgetResponseRows({
   flow,
   state,
   animate,
@@ -98,14 +111,18 @@ function BudgetResponse({
   const spendProgress = spentValue / budget.totalAmount;
 
   return (
-    <div className="flex flex-col gap-0.5">
-      <p className="text-body-md leading-normal text-primary md:leading-[1.5]">
+    <>
+      <p className="col-start-2 row-start-1 min-w-0 text-body-md leading-normal text-primary md:leading-[1.5]">
         {budget.summaryPrefix}
         <span className="font-semibold text-[#137100]">{budget.amount}</span>
         {budget.summarySuffix}
       </p>
 
-      <CollapsibleBlock open={state.showAgentExtras} animate={animate}>
+      <CollapsibleBlock
+        open={state.showAgentExtras}
+        animate={animate}
+        className="col-start-2 row-start-2 min-w-0"
+      >
         <div className="pt-1.5">
           <div className="rounded-[6px] border border-[#eee] bg-white/60 p-2.5 shadow-[0_6px_10px_rgba(0,0,0,0.04)] backdrop-blur-[1.6px]">
             <div className="flex items-center justify-between gap-3">
@@ -129,11 +146,11 @@ function BudgetResponse({
           </div>
         </div>
       </CollapsibleBlock>
-    </div>
+    </>
   );
 }
 
-function VenueResponse({
+function VenueResponseRows({
   flow,
   state,
   animate,
@@ -148,8 +165,8 @@ function VenueResponse({
   }
 
   return (
-    <div className="flex flex-col gap-0.5">
-      <div className="flex flex-wrap items-center gap-1.5">
+    <>
+      <div className="col-start-2 row-start-1 flex min-w-0 flex-wrap items-center gap-1.5">
         <span className="inline-flex items-center gap-2 rounded-full border border-[#eee] px-2 py-1">
           <img
             src={venue.ownerAvatar}
@@ -166,8 +183,12 @@ function VenueResponse({
         </span>
       </div>
 
-      <CollapsibleBlock open={state.showAgentExtras} animate={animate}>
-        <div className="flex flex-col pt-1.5 [&>*+*]:mt-1">
+      <CollapsibleBlock
+        open={state.showAgentExtras}
+        animate={animate}
+        className="col-start-2 row-start-2 min-w-0"
+      >
+        <div className="flex flex-col gap-2 pt-1.5">
           {venue.actions.map((action, index) => {
             const revealProgress = animate
               ? getVenueActionRevealProgress(
@@ -184,64 +205,18 @@ function VenueResponse({
                 key={action}
                 open={revealProgress > 0}
                 animate={animate}
-                spacing={false}
               >
-                <div
-                  className="flex items-center gap-0.5"
-                  style={{
-                    opacity: revealProgress,
-                    transform: `translateY(${(1 - revealProgress) * 4}px)`,
-                    filter: `blur(${(1 - revealProgress) * 2}px)`,
-                  }}
-                >
-                  <span className="inline-flex rounded-[4px] border border-[#eee] bg-[#eee] py-1 pl-3 pr-2 text-body-md leading-normal text-primary md:leading-[1.5]">
-                    {action}
-                  </span>
-                  <ChevronIcon />
-                </div>
+                <VenueActionButton
+                  letter={String.fromCharCode(65 + index)}
+                  label={action}
+                  revealProgress={revealProgress}
+                />
               </CollapsibleBlock>
             );
           })}
         </div>
       </CollapsibleBlock>
-    </div>
-  );
-}
-
-function TimelineResponse({
-  flow,
-  state,
-  animate,
-}: {
-  flow: AgentFlowConfig;
-  state: AgentFlowViewState;
-  animate: boolean;
-}) {
-  const timeline = flow.response.timeline;
-  if (!timeline) {
-    return null;
-  }
-
-  return (
-    <div className="flex flex-col gap-0.5">
-      <div className="flex flex-wrap items-center gap-1.5">
-        <span className="text-body-md leading-normal text-primary md:leading-[1.5]">
-          {timeline.intro}
-        </span>
-        <span className="inline-flex rounded-[6px] border border-[rgba(0,142,231,0.4)] bg-[#e9f6ff] px-2 py-0.5 text-[13px] leading-[1.4] tracking-[-0.02em] text-[#008ee7]">
-          {timeline.eventName}
-        </span>
-      </div>
-
-      <p
-        className={cn(
-          "text-body-md leading-normal text-primary md:leading-[1.5]",
-          animate && "transition-opacity duration-500 ease-out",
-        )}
-      >
-        {state.showAgentExtras ? timeline.summaryExtended : timeline.summaryInitial}
-      </p>
-    </div>
+    </>
   );
 }
 
@@ -254,17 +229,13 @@ export function AgentFlowResponse({
   state: AgentFlowViewState;
   animate: boolean;
 }) {
-  return (
-    <div className="min-w-0 flex-1">
-      {flow.id === "budget" ? (
-        <BudgetResponse flow={flow} state={state} animate={animate} />
-      ) : null}
-      {flow.id === "venue" ? (
-        <VenueResponse flow={flow} state={state} animate={animate} />
-      ) : null}
-      {flow.id === "timeline" ? (
-        <TimelineResponse flow={flow} state={state} animate={animate} />
-      ) : null}
-    </div>
-  );
+  if (flow.id === "budget") {
+    return <BudgetResponseRows flow={flow} state={state} animate={animate} />;
+  }
+
+  if (flow.id === "venue") {
+    return <VenueResponseRows flow={flow} state={state} animate={animate} />;
+  }
+
+  return null;
 }

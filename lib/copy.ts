@@ -124,14 +124,39 @@ export const COPY = {
     subhead:
       "Most tools store tasks or give generic advice. Dance lives in your event plan and takes real action.",
     promptLabel: "When you ask",
-    othersLabel: "Spreadsheets & docs",
+    othersLabel: "Generic AI",
     danceLabel: "Dance",
     footerHeadline: "Give your AI the right tools",
     items: [
       {
+        prompt: "Turn this brief into a timeline.",
+        genericAi: {
+          intro: "Here's a suggested 5-week timeline:",
+          phases: [
+            { label: "Kickoff & scope", detail: "Week 1" },
+            { label: "Logistics", detail: "Weeks 2–3" },
+            { label: "Content & programming", detail: "Weeks 3–4" },
+            { label: "Registration & comms", detail: "Week 4" },
+            { label: "Day-of operations", detail: "Week 5" },
+          ],
+          outro:
+            "Copy this into your tracker and assign owners. Want me to adjust any phases?",
+        },
+        danceSteps: [
+          "Parsing event properties from the brief",
+          "Generating a phased timeline with owners",
+          "Setting default task priorities",
+        ],
+        danceResult:
+          "5-week timeline drafted with 23 tasks across 5 phases. Ready to review.",
+      },
+      {
         prompt: "Where does our budget stand for the Q3 conference?",
-        others:
-          "Export your budget sheet, cross-reference invoices in email, and manually update totals in a shared doc…",
+        genericAi: {
+          intro:
+            "I'd need your budget spreadsheet or a list of line items to calculate that.",
+          outro: "Can you paste your current spend breakdown?",
+        },
         danceSteps: [
           "Pulling live budget line items",
           "Flagging overages against approved spend",
@@ -142,8 +167,11 @@ export const COPY = {
       },
       {
         prompt: "Who owns venue research for the exec dinner?",
-        others:
-          "Search your channels for \"venue\" and check if anyone replied to the thread from last Tuesday…",
+        genericAi: {
+          intro: "I don't have access to your project assignments.",
+          outro:
+            "Check your task tracker or search Slack for recent venue threads.",
+        },
         danceSteps: [
           "Checking task assignments across the plan",
           "Reviewing venue shortlist status",
@@ -151,18 +179,6 @@ export const COPY = {
         ],
         danceResult:
           "Sarah owns venue research. 2 of 5 options confirmed, tasting scheduled Thursday.",
-      },
-      {
-        prompt: "Turn this brief into a timeline.",
-        others:
-          "Start with a blank doc, break the brief into phases, assign owners, and build a checklist from scratch…",
-        danceSteps: [
-          "Parsing event properties from the brief",
-          "Generating a phased timeline with owners",
-          "Setting default task priorities",
-        ],
-        danceResult:
-          "12-week timeline drafted with 47 tasks across 4 phases. Ready to review.",
       },
     ],
   },

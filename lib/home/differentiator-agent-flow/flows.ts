@@ -36,13 +36,28 @@ const { items } = COPY.differentiator;
 
 export const AGENT_FLOWS: readonly AgentFlowConfig[] = [
   {
-    id: "budget",
+    id: "timeline",
     steps: items[0].danceSteps,
+    scrollOffsetsRem: [7.0625, 6.4375, 3.9375, 2.5625, 0],
+    response: {
+      timeline: {
+        intro: "Here is the",
+        eventName: "Community hackathon",
+        summaryInitial:
+          "It's got a 5-week timeline drafted with 23 tasks across 5 phases. Ready to review.",
+        summaryExtended:
+          "It's got a 5-week timeline drafted with 23 tasks across 5 phases. All assigned and ready to work on.",
+      },
+    },
+  },
+  {
+    id: "budget",
+    steps: items[1].danceSteps,
     scrollOffsetsRem: [7.0625, 6.4375, 3.9375, 2.5625, 0],
     response: {
       budget: {
         summaryPrefix: "You're ",
-        amount: "$4,000",
+        amount: "$4,200",
         summarySuffix: " under budget with 3 open POs awaiting approval",
         spentAmount: 35800,
         totalAmount: 40000,
@@ -52,8 +67,8 @@ export const AGENT_FLOWS: readonly AgentFlowConfig[] = [
   {
     id: "venue",
     steps: [
-      items[1].danceSteps[0],
-      items[1].danceSteps[1],
+      items[2].danceSteps[0],
+      items[2].danceSteps[1],
       "Pulling the latest vendor thread from Slack",
     ],
     scrollOffsetsRem: [7.0625, 6.4375, 3.9375, 2.4375, 0],
@@ -64,21 +79,6 @@ export const AGENT_FLOWS: readonly AgentFlowConfig[] = [
         ownerStatement: "owns venue search.",
         actions: ["Request a status update", "Show most recent progress"],
         slackLabel: "Slack",
-      },
-    },
-  },
-  {
-    id: "timeline",
-    steps: items[2].danceSteps,
-    scrollOffsetsRem: [7.0625, 6.4375, 3.9375, 2.5625, 0],
-    response: {
-      timeline: {
-        intro: "Here is the",
-        eventName: "Community hackathon",
-        summaryInitial:
-          "It's got a 12-week timeline drafted with 47 tasks across 4 phases. Ready to review.",
-        summaryExtended:
-          "It's got a 12-week timeline drafted with 47 tasks across 4 phases. All assigned and ready to work on.",
       },
     },
   },

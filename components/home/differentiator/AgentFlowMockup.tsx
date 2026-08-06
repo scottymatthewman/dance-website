@@ -1,7 +1,9 @@
 "use client";
 
 import { AgentFlowCard } from "@/components/home/differentiator/AgentFlowCard";
+import { DifferentiatorTimelineMockup } from "@/components/home/differentiator/DifferentiatorTimelineMockup";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { cn } from "@/lib/cn";
 import { getAgentFlowConfig } from "@/lib/home/differentiator-agent-flow/flows";
 import {
   getAgentFlowLoopDurationMs,
@@ -12,9 +14,14 @@ import { useEffect, useRef, useState } from "react";
 type AgentFlowMockupProps = {
   flowIndex: number;
   className?: string;
+  fullBleed?: boolean;
 };
 
-export function AgentFlowMockup({ flowIndex, className }: AgentFlowMockupProps) {
+export function AgentFlowMockup({
+  flowIndex,
+  className,
+  fullBleed = false,
+}: AgentFlowMockupProps) {
   const reducedMotion = useReducedMotion();
   const flow = getAgentFlowConfig(flowIndex);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -28,8 +35,6 @@ export function AgentFlowMockup({ flowIndex, className }: AgentFlowMockupProps) 
       return;
     }
 
-    let frame = 0;
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsPlaying(entry.isIntersecting);
@@ -41,13 +46,14 @@ export function AgentFlowMockup({ flowIndex, className }: AgentFlowMockupProps) 
 
     return () => {
       observer.disconnect();
-      if (frame) {
-        window.cancelAnimationFrame(frame);
-      }
     };
   }, []);
 
   useEffect(() => {
+    if (flow.id === "timeline") {
+      return;
+    }
+
     if (reducedMotion || !isPlaying) {
       return;
     }
@@ -66,7 +72,15 @@ export function AgentFlowMockup({ flowIndex, className }: AgentFlowMockupProps) 
 
     frame = window.requestAnimationFrame(tick);
     return () => window.cancelAnimationFrame(frame);
-  }, [isPlaying, reducedMotion]);
+  }, [flow.id, isPlaying, reducedMotion]);
+
+  if (flow.id === "timeline") {
+    return (
+      <div ref={containerRef} className={cn("h-full", className)}>
+        <DifferentiatorTimelineMockup fullBleed={fullBleed} isPlaying={isPlaying} />
+      </div>
+    );
+  }
 
   const state = getAgentFlowState(
     flow,
