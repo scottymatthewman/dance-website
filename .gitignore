@@ -53,3 +53,4 @@ scripts/font-sources/
 .agents/
 AGENTS.md
 CLAUDE.md
+.env.local

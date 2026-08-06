@@ -1,6 +1,7 @@
 "use client";
 
 import type { ComponentProps, ReactNode } from "react";
+import posthog from "posthog-js";
 import { Button } from "@/components/ui/Button";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { COPY } from "@/lib/copy";
@@ -23,6 +24,7 @@ export function CtaButton({
   return (
     <Button
       onClick={() => {
+        posthog.capture("cta_clicked");
         scrollToHomeSection(NAV_SECTIONS.emailCapture, { smooth: !reducedMotion });
         onClick?.();
       }}

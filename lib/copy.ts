@@ -60,31 +60,31 @@ export const COPY = {
         id: "community-event",
         title: "Community Events",
         body: "Deepen relationships with users and ambassadors through smooth, creative activations.",
-        image: "/use-cases/community.jpg",
+        image: "/use-cases/community.webp",
       },
       {
         id: "executive-dinner",
         title: "Executive Dinners",
         body: "Close and grow relationships with key prospects with focused and curated meals.",
-        image: "/use-cases/dinner.jpg",
+        image: "/use-cases/dinner.webp",
       },
       {
         id: "tradeshow",
         title: "Tradeshows",
         body: "Sequence and assign tasks like booth design, brand assets, and sales team prep, easily.",
-        image: "/use-cases/tradeshows.jpg",
+        image: "/use-cases/tradeshows.webp",
       },
       {
         id: "happy-hours",
         title: "Happy Hours",
         body: "Keep venue, catering, and guest list details in one place so casual team gatherings happen seamlessly.",
-        image: "/use-cases/happy-hours.jpg",
+        image: "/use-cases/happy-hours.webp",
       },
       {
         id: "conference",
         title: "Conferences",
         body: "Organize large scale efforts and streamline vendor communication to host top-tier industry experiences.",
-        image: "/use-cases/conference.jpg",
+        image: "/use-cases/conference.webp",
       },
       {
         id: "offsites",
@@ -241,7 +241,7 @@ export const COPY = {
     headline: "Unlock event agents for your team.",
     subhead: "Get notified the moment we launch.",
     image: "/home/email-capture-bg-2.webp",
-    imageMobile: "/home/email-capture-bg-mobile.jpg",
+    imageMobile: "/home/email-capture-bg-mobile.webp",
   },
   bento: {
     topRow: [

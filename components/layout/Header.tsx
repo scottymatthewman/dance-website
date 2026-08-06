@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
+import posthog from "posthog-js";
 import { CtaButton } from "@/components/ui/CtaButton";
 import { FullDanceLogo } from "@/components/ui/FullDanceLogo";
 import { COPY } from "@/lib/copy";
@@ -53,6 +54,7 @@ function NavSectionLink({
         className,
       )}
       onClick={() => {
+        posthog.capture("nav_section_clicked", { section_index: sectionIndex });
         scrollToHomeSection(sectionIndex, { smooth: !reducedMotion });
         onNavigate?.();
       }}
@@ -77,6 +79,7 @@ function LogoLink({
   return (
     <Link
       href="/"
+      aria-label="Dance home"
       className={className}
       onClick={(event) => {
         if (pathname !== "/") return;
